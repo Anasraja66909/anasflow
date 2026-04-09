@@ -37,7 +37,7 @@ const Footer = () => {
             </span>
           </Link>
           <p className="text-zinc-600 text-lg font-medium italic leading-relaxed">
-            Aggressive AI scale requires surgical cost intelligence. Establish
+            Aggressive AI scale requires clear cost insights. Establish
             total dominance over your neural footprint.
           </p>
           <div className="flex items-center gap-4">

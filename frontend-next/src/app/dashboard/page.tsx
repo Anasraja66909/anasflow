@@ -256,7 +256,7 @@ export default function DashboardOverview() {
                 <Sparkles className="w-5 h-5 text-[#00E5C0] relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-                Unified Intelligence Hub
+                Dashboard Overview
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[0.85]">
@@ -267,8 +267,8 @@ export default function DashboardOverview() {
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">
               {activeClientId
-                ? "Surgical focus on client sub-account metrics and AI growth vectors."
-                : "Global agency-wide aggregation of all connected neural networks."}
+                ? "Viewing metrics for selected client."
+                : "All your connected platforms and costs in one place."}
             </p>
             <div className="flex items-center gap-10 pt-4">
               <div className="flex flex-col">
@@ -276,7 +276,7 @@ export default function DashboardOverview() {
                   {kpis?.clients || 0}
                 </span>
                 <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
-                  Active Nodes
+                  Active Clients
                 </span>
               </div>
               <div className="w-px h-12 bg-white/10" />
@@ -285,7 +285,7 @@ export default function DashboardOverview() {
                   {kpis?.automations || 0}
                 </span>
                 <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
-                  Live Cycles
+                  Automations
                 </span>
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function DashboardOverview() {
               <RefreshCw
                 className={`w-5 h-5 transition-transform duration-1000 ${loading ? "animate-spin" : "group-hover:rotate-180"}`}
               />
-              {loading ? "Synchronizing" : "Establish Pulse"}
+              {loading ? "Loading..." : "Refresh"}
               <div className="absolute inset-x-0 bottom-0 h-1 bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
             </button>
           </div>
@@ -365,7 +365,7 @@ export default function DashboardOverview() {
               <Layers className="w-10 h-10 text-zinc-600 group-hover:text-white transition-colors" />
             </div>
             <h2 className="text-4xl font-black text-white tracking-tighter mb-4">
-              No Neural Handshake established.
+              No platforms connected yet.
             </h2>
             <p className="text-zinc-500 text-lg font-medium max-w-lg mb-12">
               Connect your first automation platform to start tracking costs and
@@ -375,12 +375,12 @@ export default function DashboardOverview() {
               href="/dashboard/connect"
               className="px-12 py-6 bg-white text-black font-black text-[11px] uppercase tracking-[0.3em] rounded-[1.5rem] hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40"
             >
-              Inject First Protocol
+              Connect a Platform
             </Link>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24 min-w-0">
-            {/* Left Column: Intelligence Flux */}
+            {/* Left Column: Suggestions Flux */}
             <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-10 w-full min-w-0">
               <motion.div
                 variants={itemVariants}
@@ -390,16 +390,16 @@ export default function DashboardOverview() {
                 <div className="flex justify-between items-center mb-16">
                   <div className="space-y-1">
                     <h3 className="text-2xl font-black tracking-tighter text-white uppercase">
-                      Growth Flux
+                      Spending Trend
                     </h3>
                     <p className="text-[10px] text-zinc-600 font-black tracking-widest uppercase ml-0.5">
-                      Telemetry Trend (Last 7 Cycles)
+                      Over the past 4 weeks
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-[#6366F1] rounded-full animate-ping" />
                     <span className="text-[9px] font-black text-indigo-400 uppercase tracking-widest">
-                      Real-time Feed
+                      Live
                     </span>
                   </div>
                 </div>
@@ -530,10 +530,10 @@ export default function DashboardOverview() {
                   <div className="flex-1 w-full space-y-8">
                     <div className="space-y-1">
                       <h3 className="text-2xl font-black tracking-tighter text-white uppercase">
-                        Portfolio Density
+                        Cost Breakdown
                       </h3>
                       <p className="text-[10px] text-zinc-600 font-black tracking-widest uppercase ml-0.5">
-                        Asset Allocation / Spend Matrix
+                        Cost by platform
                       </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -622,10 +622,10 @@ export default function DashboardOverview() {
                   </div>
                   <div className="space-y-0.5 text-left">
                     <h3 className="text-2xl font-black text-white tracking-tighter uppercase leading-none">
-                      Intelligence
+                      Suggestions
                     </h3>
                     <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em] ml-0.5">
-                      Neural Optimization Feed
+                      Cost Optimization
                     </p>
                   </div>
                 </div>
@@ -646,7 +646,7 @@ export default function DashboardOverview() {
                 </div>
 
                 <button className="w-full py-6 mt-12 rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.3em] text-[#00E5C0] border border-[#00E5C0]/20 hover:bg-[#00E5C0] hover:text-black transition-all duration-700 flex items-center justify-center gap-4 group/btn">
-                  System Diagnostic{" "}
+                  View All Suggestions{" "}
                   <ArrowRight className="w-4 h-4 translate-x-0 group-hover/btn:translate-x-3 transition-transform" />
                 </button>
               </motion.div>
@@ -665,7 +665,7 @@ export default function DashboardOverview() {
                     account nodes.
                   </p>
                   <button className="w-full py-5 text-[11px] font-black uppercase tracking-[0.3em] text-white bg-black rounded-[1.5rem] hover:bg-zinc-900 transition-all shadow-xl hover:shadow-black/20 flex items-center justify-center gap-3">
-                    Export Handshake <ArrowRight className="w-4 h-4" />
+                    Export PDF <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </motion.div>
@@ -686,15 +686,15 @@ export default function DashboardOverview() {
                     <Terminal className="w-4 h-4 text-[#00E5C0]" />
                   </div>
                   <h3 className="text-3xl font-black tracking-tighter text-white uppercase">
-                    Master Ledger
+                    Recent Activity
                   </h3>
                 </div>
                 <p className="text-[11px] text-zinc-600 font-black tracking-[0.4em] uppercase ml-11">
-                  Sequential Event Protocol
+                  Recent platform events
                 </p>
               </div>
               <button className="text-[11px] font-black uppercase tracking-[0.4em] text-[#00E5C0] hover:text-white flex items-center gap-4 transition-all group/log border border-[#00E5C0]/20 px-8 py-4 rounded-full hover:bg-[#00E5C0]/10">
-                Full Systems Feed
+                View All Activity
                 <ArrowRight className="w-4 h-4 group-hover/log:translate-x-3 transition-transform" />
               </button>
             </div>
@@ -703,16 +703,16 @@ export default function DashboardOverview() {
                 <thead>
                   <tr className="bg-zinc-950/20 border-b border-white/5">
                     <th className="px-12 py-8 text-[11px] font-black text-zinc-500 uppercase tracking-[0.4em]">
-                      Node Origin
+                      Platform
                     </th>
                     <th className="px-12 py-8 text-[11px] font-black text-zinc-500 uppercase tracking-[0.4em]">
-                      Signal Identity
+                      Activity
                     </th>
                     <th className="px-12 py-8 text-[11px] font-black text-zinc-500 uppercase tracking-[0.4em] text-right">
-                      Computed Cost
+                      Cost
                     </th>
                     <th className="px-12 py-8 text-[11px] font-black text-zinc-500 uppercase tracking-[0.4em] text-right">
-                      Timestamp
+                      Time
                     </th>
                   </tr>
                 </thead>

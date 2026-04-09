@@ -116,7 +116,7 @@ const Pricing = () => {
               <Crown className="w-5 h-5 text-indigo-400 relative z-10" />
             </div>
             <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400/60">
-              Expansion Protocols // Tiered Expansion
+              Simple Pricing
             </span>
           </motion.div>
 
@@ -134,8 +134,8 @@ const Pricing = () => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto font-medium leading-relaxed italic"
           >
-            Select your agency's operative scale. High-fidelity ROI intelligence
-            and automated neural repair for teams that refuse to guess.
+            Select your agency's business size. accurate ROI reporting
+            and automated optimization for teams that refuse to guess.
           </motion.p>
         </motion.div>
 
@@ -240,7 +240,7 @@ const Pricing = () => {
                       : "bg-white text-black hover:bg-[#00E5C0]"
                   }`}
                 >
-                  Register Node
+                  Get Started
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-3" />
                 </a>
               </motion.div>
@@ -258,14 +258,14 @@ const Pricing = () => {
         >
           <div className="space-y-3">
             <h4 className="text-3xl font-black text-white uppercase tracking-tighter leading-none">
-              Enterprise Deployment.
+              Enterprise Plan.
             </h4>
             <p className="text-zinc-600 font-medium italic">
               Custom features for large teams and dedicated support services.
             </p>
           </div>
           <button className="px-12 py-6 bg-zinc-900 border border-white/5 text-zinc-400 hover:text-white rounded-[1.75rem] text-[10px] font-black uppercase tracking-[0.5em] transition-all flex items-center gap-6 group">
-            Contact Sales
+            Contact Us
             <ActivitySquare className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
           </button>
         </motion.div>

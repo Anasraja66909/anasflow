@@ -65,7 +65,7 @@ const Features = () => {
               <Cpu className="w-5 h-5 text-[#00E5C0] relative z-10" />
             </div>
             <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-              Engineered For Dominance // Tier-1
+              Powerful Features
             </span>
           </motion.div>
 
@@ -73,9 +73,9 @@ const Features = () => {
             variants={itemVariants}
             className="text-5xl sm:text-6xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
-            Neural Feature <br className="hidden lg:block" />
+            Key Features <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-              Architecture.
+              
             </span>
           </motion.h2>
 
@@ -84,7 +84,7 @@ const Features = () => {
             className="text-xl md:text-2xl text-zinc-600 max-w-3xl mx-auto font-medium leading-relaxed italic"
           >
             Built from the ground up to give AI agencies the unfair advantage
-            they need to hyper-scale profitability through precise telemetry.
+            they need to grow your agency profitably.
           </motion.p>
         </motion.div>
 
@@ -108,7 +108,7 @@ const Features = () => {
               </div>
               <div className="space-y-4">
                 <h3 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                  Unified Spend Hub.
+                  Track All Spending.
                 </h3>
                 <p className="text-zinc-600 text-lg font-medium italic leading-relaxed max-w-md">
                   Aggregate usage metrics and calculate exact per-client profit
@@ -154,7 +154,7 @@ const Features = () => {
             </div>
             <div className="space-y-4 text-left">
               <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none">
-                Neural Optimizer.
+                AI Cost Optimizer.
               </h3>
               <p className="text-zinc-600 text-lg font-medium italic leading-relaxed">
                 AI engines dynamically suggest cheaper API alternatives to cut
@@ -175,7 +175,7 @@ const Features = () => {
               </div>
               <div className="space-y-4">
                 <h3 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                  Universal Connectors.
+                  30+ Integrations.
                 </h3>
                 <p className="text-zinc-600 text-lg font-medium italic leading-relaxed max-w-md">
                   Seamless integrations with Claude, OpenAI, n8n, Zapier, and
