@@ -47,7 +47,7 @@ const Features = () => {
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[400px] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
@@ -71,7 +71,7 @@ const Features = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-5xl sm:text-6xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Neural Feature <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
@@ -94,12 +94,12 @@ const Features = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[320px]"
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 auto-rows-auto md:auto-rows-[320px]"
         >
           {/* Tile 1: Unified Spend (Span 8) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-8 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-16 shadow-3xl relative overflow-hidden group/tile flex flex-col md:flex-row items-center gap-12"
+            className="md:col-span-8 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-16 shadow-3xl relative overflow-hidden group/tile flex flex-col md:flex-row items-center gap-8 md:gap-12 min-h-[280px] md:min-h-0"
           >
             <div className="absolute top-0 left-0 w-96 h-96 bg-[#00E5C0]/5 blur-[120px] rounded-full pointer-events-none group-hover/tile:bg-[#00E5C0]/10 transition-colors" />
             <div className="relative z-10 flex-1 space-y-8 text-left">
@@ -127,7 +127,7 @@ const Features = () => {
           {/* Tile 2: 1-Click ROI (Span 4) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-4 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-12 shadow-3xl relative overflow-hidden group/tile flex flex-col justify-center items-start gap-8"
+            className="md:col-span-4 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-12 shadow-3xl relative overflow-hidden group/tile flex flex-col justify-center items-start gap-6 md:gap-8 min-h-[220px] md:min-h-0"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none group-hover/tile:bg-indigo-500/10 transition-colors" />
             <div className="w-16 h-16 rounded-[1.5rem] bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shadow-inner group-hover/tile:rotate-12 transition-transform duration-700">
@@ -146,7 +146,7 @@ const Features = () => {
           {/* Tile 3: AI Optimizer (Span 4) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-4 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-12 shadow-3xl relative overflow-hidden group/tile flex flex-col justify-center items-start gap-8"
+            className="md:col-span-4 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-12 shadow-3xl relative overflow-hidden group/tile flex flex-col justify-center items-start gap-6 md:gap-8 min-h-[220px] md:min-h-0"
           >
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-500/5 blur-[100px] rounded-full pointer-events-none group-hover/tile:bg-orange-500/10 transition-colors" />
             <div className="w-16 h-16 rounded-[1.5rem] bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shadow-inner group-hover/tile:scale-110 transition-transform duration-700">
@@ -166,7 +166,7 @@ const Features = () => {
           {/* Tile 4: Connectors (Span 8) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-8 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-16 shadow-3xl relative overflow-hidden group/tile flex flex-col md:flex-row items-center justify-between gap-12"
+            className="md:col-span-8 bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-16 shadow-3xl relative overflow-hidden group/tile flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 min-h-[280px] md:min-h-0"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.02] to-transparent pointer-events-none" />
             <div className="relative z-10 flex-1 space-y-8 text-left">

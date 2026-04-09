@@ -98,7 +98,7 @@ const Pricing = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-indigo-500/5 blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
@@ -122,7 +122,7 @@ const Pricing = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-5xl sm:text-6xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Expansion <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
@@ -179,7 +179,7 @@ const Pricing = () => {
               <motion.div
                 key={plan.id}
                 variants={itemVariants}
-                className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-12 flex flex-col justify-between overflow-hidden group/plan transition-all duration-700 hover:bg-zinc-900/40 shadow-[0_50px_150px_rgba(0,0,0,0.6)] relative group ${plan.badge ? "ring-2 ring-[#00E5C0]/40" : ""}`}
+                className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden group/plan transition-all duration-700 hover:bg-zinc-900/40 shadow-[0_50px_150px_rgba(0,0,0,0.6)] relative group ${plan.badge ? "ring-2 ring-[#00E5C0]/40" : ""}`}
               >
                 {plan.badge && (
                   <div className="absolute top-10 right-10 px-5 py-2 bg-[#00E5C0] text-black text-[9px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(0,229,192,0.4)]">

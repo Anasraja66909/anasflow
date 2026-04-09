@@ -133,3 +133,60 @@ h3 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ===== LIGHT MODE ===== */
+.light-mode {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 8%;
+}
+
+.light-mode body {
+  background-color: #f8f9fa;
+  color: #111;
+}
+
+.light-mode section {
+  background-color: #ffffff !important;
+}
+
+.light-mode .bg-black {
+  background-color: #ffffff !important;
+}
+
+.light-mode .bg-zinc-950\/40,
+.light-mode .bg-zinc-950\/60 {
+  background-color: rgba(240, 240, 245, 0.8) !important;
+}
+
+.light-mode .text-white {
+  color: #111827 !important;
+}
+
+.light-mode .text-zinc-500,
+.light-mode .text-zinc-600 {
+  color: #6b7280 !important;
+}
+
+.light-mode .text-zinc-700,
+.light-mode .text-zinc-800 {
+  color: #9ca3af !important;
+}
+
+.light-mode .border-white\/5,
+.light-mode .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-mode nav {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.light-mode .backdrop-blur-\[60px\],
+.light-mode .backdrop-blur-3xl {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light-mode .text-transparent.bg-clip-text {
+  -webkit-text-fill-color: transparent !important;
+  background-image: linear-gradient(to right, #111827, #6b7280, #d1d5db) !important;
+}

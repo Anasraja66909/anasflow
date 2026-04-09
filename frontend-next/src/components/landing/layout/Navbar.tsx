@@ -4,11 +4,26 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Terminal, ShieldCheck, Zap } from "lucide-react";
+import { Menu, X, Terminal, ShieldCheck, Zap, Sun, Moon } from "lucide-react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const dark = stored !== "light";
+    setIsDark(dark);
+    document.documentElement.classList.toggle("light-mode", !dark);
+  }, []);
+
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    localStorage.setItem("theme", newDark ? "dark" : "light");
+    document.documentElement.classList.toggle("light-mode", !newDark);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -75,7 +90,19 @@ const Navbar = () => {
         </div>
 
         {/* Access Protocol Nodes */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-4">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all duration-500"
+            aria-label="Toggle theme"
+          >
+            {isDark ? (
+              <Sun className="w-4 h-4 text-zinc-400 hover:text-yellow-400 transition-colors" />
+            ) : (
+              <Moon className="w-4 h-4 text-zinc-700 hover:text-indigo-500 transition-colors" />
+            )}
+          </button>
           <Link
             href="/login"
             className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 hover:text-white transition-colors duration-500"
