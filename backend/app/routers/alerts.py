@@ -1,0 +1,9 @@
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/alerts", tags=["Alerts"])
+
+
+@router.get("/")
+async def list_alerts():
+    # Return list of alerts
+    return []
