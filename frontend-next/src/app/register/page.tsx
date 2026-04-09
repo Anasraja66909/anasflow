@@ -57,15 +57,41 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name || !email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
     setLoading(true);
     try {
       if (register) {
         await register(email, password, name);
       }
-      toast.success("Identity Generated.");
+      toast.success("Account created! Welcome to AnasFlow.");
       router.push("/dashboard");
     } catch (err: any) {
-      toast.error(err.message || "Registration Failed.");
+      // Demo mode: if backend is not available, create a local demo session
+      const errMsg = err?.message || "";
+      if (
+        errMsg.includes("fetch") ||
+        errMsg.includes("network") ||
+        errMsg.includes("Failed to fetch") ||
+        errMsg.includes("ECONNREFUSED") ||
+        errMsg.toLowerCase().includes("load") ||
+        errMsg.toLowerCase().includes("connect")
+      ) {
+        // Backend not available - enter demo mode
+        const demoUser = { id: "demo-" + Date.now(), email, full_name: name };
+        localStorage.setItem("demo_user", JSON.stringify(demoUser));
+        localStorage.setItem("demo_mode", "true");
+        toast.success("Welcome to AnasFlow Demo! Exploring the full dashboard.");
+        router.push("/dashboard");
+      } else {
+        toast.error(errMsg || "Registration Failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

@@ -59,10 +59,27 @@ export default function LoginPage() {
       if (login) {
         await login(email, password);
       }
-      toast.success("Identity Verified.");
+      toast.success("Welcome back!");
       router.push("/dashboard");
     } catch (err: any) {
-      toast.error(err.message || "Authentication Failed.");
+      const errMsg = err?.message || "";
+      if (
+        errMsg.includes("fetch") ||
+        errMsg.includes("network") ||
+        errMsg.includes("Failed to fetch") ||
+        errMsg.includes("ECONNREFUSED") ||
+        errMsg.toLowerCase().includes("load") ||
+        errMsg.toLowerCase().includes("connect")
+      ) {
+        // Demo mode fallback
+        const demoUser = { id: "demo-" + Date.now(), email, full_name: "Demo User" };
+        localStorage.setItem("demo_user", JSON.stringify(demoUser));
+        localStorage.setItem("demo_mode", "true");
+        toast.success("Welcome to AnasFlow Demo!");
+        router.push("/dashboard");
+      } else {
+        toast.error(errMsg || "Authentication Failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

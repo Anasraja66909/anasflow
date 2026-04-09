@@ -69,16 +69,16 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative pt-40 pb-32 lg:pt-60 lg:pb-48 overflow-hidden select-none bg-black">
+    <section className="relative pt-28 pb-20 lg:pt-60 lg:pb-48 overflow-hidden select-none bg-black">
       {/* Immersive Background Architecture */}
       <motion.div
         animate={{ rotate: [0, 5, 0, -5, 0], scale: [1, 1.1, 1, 1.1, 1] }}
         transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] opacity-30 pointer-events-none blur-[180px] bg-gradient-to-b from-indigo-500/20 via-[#00E5C0]/10 to-transparent rounded-full"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] md:w-[1200px] h-[600px] md:h-[800px] opacity-30 pointer-events-none blur-[180px] bg-gradient-to-b from-indigo-500/20 via-[#00E5C0]/10 to-transparent rounded-full"
       />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10 w-full grid lg:grid-cols-12 gap-20 items-center">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10 w-full grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
         {/* Left Content Column (70%) */}
         <motion.div
           variants={containerVariants}
@@ -101,7 +101,7 @@ const Hero = () => {
 
           <motion.h1
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] mb-12 uppercase"
+            className="text-5xl sm:text-6xl lg:text-[90px] xl:text-[110px] font-black tracking-tighter text-white leading-[0.85] mb-12 uppercase"
           >
             Control Your <br className="hidden lg:block" />
             <div className="inline-grid [grid-template-areas:'stack'] overflow-visible">
@@ -170,12 +170,12 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Columns: Tactical Mockup (5 cols) */}
+        {/* Right Columns: Tactical Mockup (hidden on mobile) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, rotateY: -10 }}
           animate={{ opacity: 1, scale: 1, rotateY: 0 }}
           transition={{ duration: 1.5, delay: 0.5 }}
-          className="relative lg:col-span-5 h-[700px] flex items-center justify-center pointer-events-none perspective-[2000px]"
+          className="relative lg:col-span-5 h-[700px] hidden lg:flex items-center justify-center pointer-events-none perspective-[2000px]"
         >
           <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 1, 0, -1, 0] }}

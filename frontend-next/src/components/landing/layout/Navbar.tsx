@@ -25,10 +25,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-8 left-1/2 -translate-x-1/2 z-[100] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      className={`fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-[100] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
         scrolled
-          ? "w-[90%] max-w-5xl bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 py-3 rounded-[2.5rem] px-8 shadow-[0_50px_100px_rgba(0,0,0,0.6)]"
-          : "w-[95%] max-w-7xl bg-transparent py-6 px-4 border-transparent"
+          ? "w-[95%] max-w-5xl bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 py-3 rounded-[2.5rem] px-4 md:px-8 shadow-[0_50px_100px_rgba(0,0,0,0.6)]"
+          : "w-[98%] max-w-7xl bg-transparent py-4 md:py-6 px-3 md:px-4 border-transparent"
       }`}
     >
       <div className="flex items-center justify-between">

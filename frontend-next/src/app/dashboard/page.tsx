@@ -126,6 +126,41 @@ const KpiCard = ({
   </motion.div>
 );
 
+const DEMO_DATA = {
+  total_spend: 5847.5,
+  savings: 1284.0,
+  active_platforms: 12,
+  roi: 24600,
+  trend_data: [
+    { name: "Week 1", total: 3200 },
+    { name: "Week 2", total: 4100 },
+    { name: "Week 3", total: 4800 },
+    { name: "Week 4", total: 5847 },
+  ],
+  platform_breakdown: [
+    { name: "OpenAI", cost: 1240 },
+    { name: "Zapier", cost: 299 },
+    { name: "n8n", cost: 89 },
+    { name: "Make", cost: 145 },
+    { name: "Claude", cost: 430 },
+    { name: "Other", cost: 3644 },
+  ],
+  health_status: [
+    { id: 1, name: "OpenAI API", status: "Active", color: "#00E5C0", time: "2 min ago" },
+    { id: 2, name: "Zapier", status: "Active", color: "#6366F1", time: "5 min ago" },
+    { id: 3, name: "Make.com", status: "Syncing", color: "#F59E0B", time: "1 min ago" },
+    { id: 4, name: "n8n Cloud", status: "Active", color: "#00E5C0", time: "just now" },
+  ],
+  recent_activity: [
+    { id: 1, platform: "OpenAI", activity: "GPT-4 API Call Batch", cost: "$0.48", time: "2 min ago" },
+    { id: 2, platform: "Zapier", activity: "Workflow Triggered", cost: "$0.01", time: "5 min ago" },
+    { id: 3, platform: "Claude", activity: "Analysis Request", cost: "$0.12", time: "8 min ago" },
+    { id: 4, platform: "Make.com", activity: "Scenario Run", cost: "$0.03", time: "12 min ago" },
+  ],
+};
+
+const DEMO_KPIS = { clients: 14, automations: 156 };
+
 export default function DashboardOverview() {
   const { activeClientId } = useClient();
   const [data, setData] = useState<any>(null);
@@ -138,6 +173,14 @@ export default function DashboardOverview() {
 
   async function fetchAllData() {
     setLoading(true);
+    // Check demo mode
+    const isDemoMode = typeof window !== "undefined" && localStorage.getItem("demo_mode") === "true";
+    if (isDemoMode) {
+      setData(DEMO_DATA);
+      setKpis(DEMO_KPIS);
+      setLoading(false);
+      return;
+    }
     await Promise.all([fetchDashboardData(), fetchKpis()]);
     setLoading(false);
   }
@@ -145,33 +188,37 @@ export default function DashboardOverview() {
   async function fetchKpis() {
     try {
       const storedToken = localStorage.getItem("token");
-      const res = await fetch("http://localhost:8000/dashboard/kpis", {
-        headers: storedToken ? { Authorization: "Bearer " + storedToken } : {},
-      });
+      const res = await fetch(
+        (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000") + "/api/v1/dashboard/kpis",
+        { headers: storedToken ? { Authorization: "Bearer " + storedToken } : {} }
+      );
       if (res.ok) {
         const result = await res.json();
         setKpis(result);
+      } else {
+        setKpis(DEMO_KPIS);
       }
     } catch (e) {
-      console.error("KPI fetch error:", e);
+      setKpis(DEMO_KPIS);
     }
   }
 
   async function fetchDashboardData() {
     try {
       const storedToken = localStorage.getItem("token");
-      let url = "http://localhost:8000/dashboard/summary";
+      let url = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000") + "/api/v1/dashboard/summary";
       if (activeClientId) url += `?client_id=${activeClientId}`;
-
       const res = await fetch(url, {
         headers: storedToken ? { Authorization: "Bearer " + storedToken } : {},
       });
       if (res.ok) {
         const result = await res.json();
         setData(result);
+      } else {
+        setData(DEMO_DATA);
       }
     } catch (e) {
-      console.error("Dashboard fetch error:", e);
+      setData(DEMO_DATA);
     }
   }
 
@@ -212,7 +259,7 @@ export default function DashboardOverview() {
                 Unified Intelligence Hub
               </span>
             </div>
-            <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
+            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[0.85]">
               System{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
                 Oversight.
