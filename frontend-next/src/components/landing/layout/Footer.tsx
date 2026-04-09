@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
       {/* Main Footer Layout */}
-      <div className="max-w-screen-2xl mx-auto px-8 py-20 relative z-10 flex flex-col md:flex-row items-start justify-between gap-16 text-left">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 py-12 md:py-20 relative z-10 flex flex-col md:flex-row items-start justify-between gap-16 text-left">
         {/* Brand Core Column */}
         <div className="space-y-8 max-w-sm">
           <Link href="/" className="flex items-center gap-4 group">

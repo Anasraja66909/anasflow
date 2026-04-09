@@ -40,12 +40,12 @@ const itemVariants = {
 
 const AIOptimizationHighlight = () => {
   return (
-    <section className="py-32 bg-black relative overflow-hidden border-y border-white/5">
+    <section className="py-16 md:py-32 bg-black relative overflow-hidden border-y border-white/5">
       {/* Immersive Background Architecture */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none opacity-50" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10 grid lg:grid-cols-2 gap-24 items-center">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10 grid lg:grid-cols-2 gap-24 items-center">
         {/* Left: High-Fidelity Neural Diagnostic Handset */}
         <motion.div
           initial={{ opacity: 0, y: 50, rotateY: -15, scale: 0.9 }}
@@ -196,7 +196,7 @@ const AIOptimizationHighlight = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Repair Before <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-[#00E5C0] to-indigo-400">

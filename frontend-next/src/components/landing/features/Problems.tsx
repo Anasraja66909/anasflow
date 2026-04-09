@@ -74,7 +74,7 @@ const Problems = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-red-500/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -97,7 +97,7 @@ const Problems = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.9] uppercase"
           >
             Managing <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-zinc-400 to-zinc-800">
@@ -125,7 +125,7 @@ const Problems = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[3.5rem] p-10 flex flex-col items-start gap-10 group transition-all duration-700 hover:bg-zinc-900/40 hover:border-red-500/20 cursor-default shadow-3xl hover:-translate-y-4"
+              className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2rem] md:rounded-[3.5rem] p-6 md:p-10 flex flex-col items-start gap-6 md:gap-10 group transition-all duration-700 hover:bg-zinc-900/40 hover:border-red-500/20 cursor-default shadow-3xl hover:-translate-y-2 md:hover:-translate-y-4"
             >
               <div className="w-full flex justify-between items-start">
                 <div

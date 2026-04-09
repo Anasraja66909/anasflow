@@ -60,20 +60,20 @@ const FAQ = () => {
   return (
     <section
       id="faq"
-      className="py-32 bg-black border-y border-white/5 relative overflow-hidden"
+      className="py-16 md:py-32 bg-black border-y border-white/5 relative overflow-hidden"
     >
       {/* Immersive Background Architecture */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[300px] bg-[#00E5C0]/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-24 space-y-8"
+          className="text-center mb-12 md:mb-24 space-y-8"
         >
           <motion.div
             variants={itemVariants}
@@ -90,7 +90,7 @@ const FAQ = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Frequently <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">

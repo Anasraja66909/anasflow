@@ -73,12 +73,12 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-black relative overflow-hidden">
       {/* Immersive Background Architecture */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[400px] bg-indigo-500/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
@@ -102,7 +102,7 @@ const HowItWorks = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Surgical <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">

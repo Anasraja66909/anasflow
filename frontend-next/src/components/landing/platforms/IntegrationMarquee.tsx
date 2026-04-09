@@ -69,7 +69,7 @@ const IntegrationMarquee = () => {
   const row2 = [...row2Platforms, ...row2Platforms, ...row2Platforms];
 
   return (
-    <section className="py-24 bg-black relative border-y border-white/5 overflow-hidden">
+    <section className="py-12 md:py-24 bg-black relative border-y border-white/5 overflow-hidden">
       {/* Cinematic HUD Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00E5C0]/50 to-transparent" />

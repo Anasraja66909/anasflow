@@ -137,19 +137,19 @@ const platforms: Platform[] = [
 
 const SupportedPlatforms = () => {
   return (
-    <section className="py-32 bg-black relative border-b border-white/5 overflow-hidden">
+    <section className="py-16 md:py-32 bg-black relative border-b border-white/5 overflow-hidden">
       {/* Immersive Background Architecture */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] bg-[#00E5C0]/5 blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10 text-center">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10 text-center">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-24 space-y-8"
+          className="text-center mb-12 md:mb-24 space-y-8"
         >
           <motion.div
             variants={itemVariants}
@@ -166,7 +166,7 @@ const SupportedPlatforms = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Platform <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
@@ -196,7 +196,7 @@ const SupportedPlatforms = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[3.5rem] p-12 flex flex-col items-center justify-center transition-all duration-700 relative group cursor-default shadow-3xl hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 hover:-translate-y-4`}
+              className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[3.5rem] p-6 md:p-12 flex flex-col items-center justify-center transition-all duration-700 relative group cursor-default shadow-3xl hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 hover:-translate-y-4`}
             >
               {p.live && (
                 <div className="absolute top-8 right-8 flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-3xl bg-[#00E5C0]/5 border border-[#00E5C0]/20 text-[#00E5C0] text-[9px] uppercase font-black tracking-widest group-hover:bg-[#00E5C0]/10 transition-colors">

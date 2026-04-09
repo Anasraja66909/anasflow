@@ -37,7 +37,7 @@ const itemVariants = {
 
 const Solution = () => {
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-black relative overflow-hidden">
       {/* Immersive Background Architecture */}
       <div className="absolute top-0 right-0 w-[800px] h-[400px] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
@@ -75,7 +75,7 @@ const Solution = () => {
               <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05] pointer-events-none" />
 
               {/* Left Side: Neural Chaos */}
-              <div className="flex-1 p-12 flex flex-col gap-6 relative justify-center bg-red-500/[0.01]">
+              <div className="flex-1 p-6 md:p-12 flex flex-col gap-6 relative justify-center bg-red-500/[0.01]">
                 <p className="text-[9px] font-black text-red-500/40 uppercase tracking-[0.4em] mb-4 text-center">
                   Unfiltered Chaos
                 </p>
@@ -94,7 +94,7 @@ const Solution = () => {
               </div>
 
               {/* Right Side: The AnasFlow Protocol */}
-              <div className="flex-1 p-12 flex flex-col gap-6 relative justify-center bg-[#00E5C0]/[0.01]">
+              <div className="flex-1 p-6 md:p-12 flex flex-col gap-6 relative justify-center bg-[#00E5C0]/[0.01]">
                 <p className="text-[9px] font-black text-[#00E5C0]/40 uppercase tracking-[0.4em] mb-4 text-center">
                   Neural Optimization
                 </p>
@@ -141,7 +141,7 @@ const Solution = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Surgical <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">

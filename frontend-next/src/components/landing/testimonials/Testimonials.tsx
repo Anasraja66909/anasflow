@@ -69,19 +69,19 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-32 bg-black overflow-hidden border-t border-white/5 relative">
+    <section className="py-16 md:py-32 bg-black overflow-hidden border-t border-white/5 relative">
       {/* Immersive Background Architecture */}
       <div className="absolute top-0 right-0 w-[800px] h-[400px] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10">
         {/* Aggressive Header */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-24 space-y-8"
+          className="text-center mb-12 md:mb-24 space-y-8"
         >
           <motion.div
             variants={itemVariants}
@@ -98,7 +98,7 @@ const Testimonials = () => {
 
           <motion.h2
             variants={itemVariants}
-            className="text-7xl lg:text-[110px] font-black tracking-tighter text-white leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl lg:text-[90px] font-black tracking-tighter text-white leading-[0.85] uppercase"
           >
             Proof of <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
@@ -127,7 +127,7 @@ const Testimonials = () => {
                 delay: i * 0.1,
                 duration: 0.8,
               }}
-              className="min-w-[420px] snap-center bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-12 flex flex-col group hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 transition-all duration-700 shadow-3xl hover:-translate-y-4 cursor-default"
+              className="min-w-[420px] snap-center bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-6 md:p-12 flex flex-col group hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 transition-all duration-700 shadow-3xl hover:-translate-y-4 cursor-default"
             >
               <div className="flex justify-between items-start mb-10">
                 <div className="flex items-center gap-1">

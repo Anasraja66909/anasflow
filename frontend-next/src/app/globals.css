@@ -3,6 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== MOBILE BASE FIX ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 @layer base {
   :root {
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
