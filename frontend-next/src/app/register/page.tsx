@@ -98,11 +98,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-6 relative overflow-hidden selection:bg-[#00E5C0]/30 selection:text-white">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 relative overflow-hidden selection:bg-[#00E5C0]/30 selection:text-black">
       {/* Immersive Background Architecture */}
-      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#00E5C0]/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-indigo-600/5 blur-[150px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#00E5C0]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.05] pointer-events-none" />
 
       {/* Floating Logo */}
       <motion.div
@@ -121,7 +121,7 @@ export default function RegisterPage() {
               priority
             />
           </div>
-          <span className="text-2xl font-black tracking-tighter text-white">
+          <span className="text-2xl font-black tracking-tighter text-zinc-900">
             AnasFlow<span className="text-[#00E5C0]">.</span>
           </span>
         </Link>
@@ -147,9 +147,9 @@ export default function RegisterPage() {
               Initial Handshake Protocol
             </span>
           </div>
-          <h1 className="text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-8">
+          <h1 className="text-8xl xl:text-9xl font-black text-zinc-900 tracking-tighter leading-[0.85] mb-8">
             Generate <br />{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-500 to-zinc-300">
               Identity.
             </span>
           </h1>
@@ -179,14 +179,14 @@ export default function RegisterPage() {
         {/* Left Side: The Glass Form */}
         <motion.div
           variants={itemVariants}
-          className="w-full lg:w-[500px] bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-10 md:p-14 shadow-[0_50px_200px_rgba(0,0,0,0.8)] relative overflow-hidden"
+          className="w-full lg:w-[500px] bg-white/80 backdrop-blur-[60px] border border-zinc-100 rounded-[4rem] p-10 md:p-14 shadow-[0_50px_200px_rgba(0,0,0,0.1)] relative overflow-hidden"
         >
           {/* Subtle Accent Glows inside the card */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-600/5 blur-[80px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 space-y-10">
             <div className="text-left space-y-4">
-              <h2 className="text-5xl font-black text-white tracking-tighter">
+              <h2 className="text-5xl font-black text-zinc-900 tracking-tighter">
                 Sign Up<span className="text-[#00E5C0]">.</span>
               </h2>
               <p className="text-sm text-zinc-500 font-medium">
@@ -209,7 +209,7 @@ export default function RegisterPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full bg-black/40 border border-white/5 text-white text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-800 font-medium"
+                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium"
                     />
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default function RegisterPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-black/40 border border-white/5 text-white text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-800 font-medium"
+                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium"
                     />
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export default function RegisterPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-black/40 border border-white/5 text-white text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-800 font-medium font-mono tracking-[0.3em]"
+                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium font-mono tracking-[0.3em]"
                     />
                     <button
                       type="button"
@@ -266,7 +266,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-white text-black font-black text-[11px] uppercase tracking-[0.3em] py-6 rounded-[1.5rem] mt-4 transition-all shadow-2xl hover:bg-[#00E5C0] hover:scale-[1.02] active:scale-95 disabled:opacity-50 group"
+                className="w-full bg-zinc-900 text-white font-black text-[11px] uppercase tracking-[0.3em] py-6 rounded-[1.5rem] mt-4 transition-all shadow-2xl hover:bg-[#00E5C0] hover:text-black hover:scale-[1.02] active:scale-95 disabled:opacity-50 group"
               >
                 {loading ? (
                   <RefreshCw className="w-5 h-5 animate-spin mx-auto" />
