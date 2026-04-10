@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Sun, Moon } from "lucide-react";
@@ -39,19 +40,19 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 overflow-x-hidden ${
           scrolled
             ? "bg-black/80 backdrop-blur-xl border-b border-white/5 py-3"
             : "bg-transparent py-5"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-9 h-9 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center overflow-hidden">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 shrink-0">
+            <div className="relative w-8 h-8 md:w-9 md:h-9 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center overflow-hidden">
               <Image src="/logo.png" alt="AnasFlow" fill className="object-contain p-1.5" priority />
             </div>
-            <span className="text-xl font-bold text-white tracking-tight">
+            <span className="text-lg md:text-xl font-bold text-white tracking-tight">
               Anas<span className="text-[#00E5C0]">Flow</span>
             </span>
           </Link>
@@ -113,38 +114,46 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu Dropdown */}
-      {mobileOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 z-[99] bg-black/95 backdrop-blur-xl flex flex-col pt-20 px-6">
-          <div className="flex flex-col gap-2 mt-4">
-            {links.map((l) => (
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-0 left-0 right-0 bottom-0 z-[99] bg-black/95 backdrop-blur-xl flex flex-col pt-24 px-8 overflow-y-auto"
+          >
+            <div className="flex flex-col gap-2 mt-4">
+              {links.map((l) => (
+                <Link
+                  key={l.name}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-2xl font-black text-white py-6 border-b border-white/5 hover:text-[#00E5C0] transition-colors uppercase tracking-tighter"
+                >
+                  {l.name}
+                </Link>
+              ))}
+            </div>
+            <div className="flex flex-col gap-4 mt-8">
               <Link
-                key={l.name}
-                href={l.href}
+                href="/login"
                 onClick={() => setMobileOpen(false)}
-                className="text-lg font-semibold text-white py-4 border-b border-white/5 hover:text-[#00E5C0] transition-colors"
+                className="w-full py-5 text-center text-[11px] font-black uppercase tracking-[0.3em] text-white bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all"
               >
-                {l.name}
+                Sign In
               </Link>
-            ))}
-          </div>
-          <div className="flex flex-col gap-3 mt-8">
-            <Link
-              href="/login"
-              onClick={() => setMobileOpen(false)}
-              className="w-full py-4 text-center text-base font-semibold text-white bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              onClick={() => setMobileOpen(false)}
-              className="w-full py-4 text-center text-base font-semibold bg-white text-black rounded-2xl hover:bg-[#00E5C0] transition-all"
-            >
-              Get Started Free
-            </Link>
-          </div>
-        </div>
-      )}
+              <Link
+                href="/register"
+                onClick={() => setMobileOpen(false)}
+                className="w-full py-5 text-center text-[11px] font-black uppercase tracking-[0.3em] bg-white text-black rounded-2xl hover:bg-[#00E5C0] transition-all"
+              >
+                Get Started Free
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </>
   );
 };

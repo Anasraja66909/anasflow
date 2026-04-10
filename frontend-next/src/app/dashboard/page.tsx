@@ -101,11 +101,11 @@ const KpiCard = ({
     </div>
 
     {loading ? (
-      <div className="h-14 w-32 bg-white/5 animate-pulse rounded-2xl mb-4"></div>
+      <div className="h-10 md:h-14 w-24 md:w-32 bg-white/5 animate-pulse rounded-2xl mb-4"></div>
     ) : (
       <div className="relative mb-4">
         <p
-          className={`text-5xl md:text-7xl font-black tracking-tighter relative z-10 transition-colors duration-500 ${highlightText ? highlightClass : "text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-zinc-500"}`}
+          className={`text-4xl md:text-5xl font-black tracking-tighter relative z-10 transition-colors duration-500 ${highlightText ? highlightClass : "text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-zinc-500"}`}
         >
           {value}
         </p>
@@ -247,63 +247,64 @@ export default function DashboardOverview() {
         {/* Aggressive Header Area */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col xl:flex-row xl:items-end justify-between mb-24 gap-12 pt-12"
+          className="flex flex-col xl:flex-row xl:items-end justify-between mb-12 md:mb-24 gap-8 pt-6 md:pt-12"
         >
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-6 md:space-y-8">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#00E5C0]/10 border border-[#00E5C0]/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#00E5C0]/10 border border-[#00E5C0]/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
                 <div className="absolute inset-0 bg-[#00E5C0]/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
                 <Sparkles className="w-5 h-5 text-[#00E5C0] relative z-10" />
               </div>
-              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
+              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-[#00E5C0]">
                 Dashboard Overview
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[0.85]">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[1] md:leading-[0.85] break-words">
               System{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
                 Oversight.
               </span>
             </h1>
-            <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">
+            <p className="text-zinc-500 text-base md:text-xl font-medium max-w-2xl leading-relaxed">
               {activeClientId
                 ? "Viewing metrics for selected client."
                 : "All your connected platforms and costs in one place."}
             </p>
-            <div className="flex items-center gap-10 pt-4">
+            <div className="flex items-center gap-6 md:gap-10 pt-2 md:pt-4">
               <div className="flex flex-col">
-                <span className="text-4xl font-black text-white">
+                <span className="text-2xl md:text-4xl font-black text-white">
                   {kpis?.clients || 0}
                 </span>
-                <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
+                <span className="text-[9px] md:text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
                   Active Clients
                 </span>
               </div>
-              <div className="w-px h-12 bg-white/10" />
+              <div className="w-px h-8 md:h-12 bg-white/10" />
               <div className="flex flex-col">
-                <span className="text-4xl font-black text-white">
+                <span className="text-2xl md:text-4xl font-black text-white">
                   {kpis?.automations || 0}
                 </span>
-                <span className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
+                <span className="text-[9px] md:text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">
                   Automations
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-end gap-6">
+          <div className="flex flex-col items-start xl:items-end gap-6">
             <button
               onClick={fetchAllData}
-              className="group relative flex items-center gap-4 bg-white text-black px-10 py-6 rounded-[2rem] font-black text-[11px] uppercase tracking-widest hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40 overflow-hidden"
+              className="group relative flex items-center gap-4 bg-white text-black px-8 md:px-10 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2rem] font-black text-[10px] md:text-[11px] uppercase tracking-widest hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40 overflow-hidden w-full sm:w-auto justify-center"
             >
               <RefreshCw
-                className={`w-5 h-5 transition-transform duration-1000 ${loading ? "animate-spin" : "group-hover:rotate-180"}`}
+                className={`w-4 h-4 md:w-5 md:h-5 transition-transform duration-1000 ${loading ? "animate-spin" : "group-hover:rotate-180"}`}
               />
               {loading ? "Loading..." : "Refresh"}
               <div className="absolute inset-x-0 bottom-0 h-1 bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
             </button>
           </div>
         </motion.div>
+
 
         {/* 2. KPI Cards Matrix */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 mb-24">
@@ -488,17 +489,18 @@ export default function DashboardOverview() {
                 className="bg-zinc-950/40 backdrop-blur-3xl border border-white/5 rounded-[3.5rem] p-10 md:p-14 shadow-2xl relative overflow-hidden group"
               >
                 <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00E5C0]/5 blur-[120px] rounded-full pointer-events-none" />
-                <div className="flex flex-col md:flex-row items-center gap-16">
-                  <div className="h-[300px] w-[300px] shrink-0 relative">
+                <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                  <div className="w-full max-w-[280px] sm:max-w-[300px] aspect-square shrink-0 relative">
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                       <span className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">
                         Density
                       </span>
-                      <span className="text-4xl font-black text-white">
+                      <span className="text-3xl md:text-4xl font-black text-white">
                         360°
                       </span>
                     </div>
                     <ResponsiveContainer width="100%" height="100%">
+
                       <PieChart>
                         <Pie
                           data={formattedBreakdown}

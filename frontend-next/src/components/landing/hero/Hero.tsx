@@ -60,16 +60,16 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative pt-28 sm:pt-36 lg:pt-60 pb-20 lg:pb-48 overflow-hidden select-none bg-black">
+    <section className="relative pt-24 sm:pt-36 lg:pt-60 pb-16 lg:pb-48 overflow-hidden select-none bg-black">
       {/* Background */}
       <motion.div
         animate={{ rotate: [0, 5, 0, -5, 0], scale: [1, 1.1, 1, 1.1, 1] }}
         transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] md:w-[1200px] h-[500px] md:h-[800px] opacity-30 pointer-events-none blur-[180px] bg-gradient-to-b from-indigo-500/20 via-[#00E5C0]/10 to-transparent rounded-full"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[1200px] h-[300px] md:h-[800px] opacity-30 pointer-events-none blur-[100px] md:blur-[180px] bg-gradient-to-b from-indigo-500/20 via-[#00E5C0]/10 to-transparent rounded-full"
       />
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative z-10 w-full grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+      <div className="max-w-screen-2xl mx-auto px-6 md:px-8 relative z-10 w-full grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
         {/* Left Content Column */}
         <motion.div
           variants={containerVariants}
@@ -77,19 +77,19 @@ const Hero = () => {
           animate="visible"
           className="lg:col-span-7 flex flex-col text-left"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-4 mb-8 md:mb-12">
+          <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6 md:mb-12">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-indigo-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
               <Terminal className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 relative z-10" />
             </div>
-            <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-indigo-400">
+            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-indigo-400">
               AI Cost &amp; Automation Analytics
             </span>
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-[90px] xl:text-[110px] font-black tracking-tighter text-white leading-[0.85] mb-8 md:mb-12 uppercase"
+            className="text-4xl sm:text-6xl lg:text-[90px] xl:text-[110px] font-black tracking-tighter text-white leading-[0.9] md:leading-[0.85] mb-8 md:mb-12 uppercase break-words"
           >
             Control Your{" "}
             <br className="hidden lg:block" />
@@ -111,7 +111,7 @@ const Hero = () => {
 
           <motion.div
             variants={itemVariants}
-            className="relative mb-16 md:mb-20 max-w-2xl min-h-[80px] md:min-h-[120px]"
+            className="relative mb-12 md:mb-20 max-w-2xl min-h-[100px] md:min-h-[120px]"
           >
             <AnimatePresence mode="wait">
               <motion.p
@@ -120,7 +120,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.6 }}
-                className="text-lg md:text-xl lg:text-2xl text-zinc-500 leading-relaxed font-medium italic absolute"
+                className="text-base md:text-xl lg:text-2xl text-zinc-500 leading-relaxed font-medium italic absolute inset-x-0"
               >
                 {subtitleLines[swapperIndex]}
               </motion.p>
@@ -133,11 +133,11 @@ const Hero = () => {
           >
             <Link
               href="/register"
-              className="w-full sm:w-auto px-8 md:px-12 py-5 md:py-8 bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,0.5)] hover:shadow-[#00E5C0]/40 active:scale-95 text-center"
+              className="w-full sm:w-auto px-8 md:px-12 py-5 md:py-6 bg-white text-black font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.4em] rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,0.5)] hover:shadow-[#00E5C0]/40 active:scale-95 text-center"
             >
               Start Free Now
             </Link>
-            <button className="w-full sm:w-auto px-8 md:px-12 py-5 md:py-8 bg-zinc-950/40 backdrop-blur-3xl border border-white/5 text-white font-black text-[11px] uppercase tracking-[0.4em] rounded-[2rem] hover:bg-white/5 transition-all duration-700 flex items-center justify-center gap-4 group active:scale-95">
+            <button className="w-full sm:w-auto px-8 md:px-12 py-5 md:py-6 bg-zinc-950/40 backdrop-blur-3xl border border-white/5 text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.4em] rounded-[2rem] hover:bg-white/5 transition-all duration-700 flex items-center justify-center gap-4 group active:scale-95">
               <Play className="w-4 h-4 md:w-5 md:h-5 text-zinc-600 group-hover:text-white transition-colors" />
               Watch Demo
             </button>
@@ -145,16 +145,16 @@ const Hero = () => {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-4 md:gap-6 text-[10px] text-zinc-700 font-black uppercase tracking-[0.3em]"
+            className="flex flex-wrap items-center gap-4 md:gap-6 text-[9px] md:text-[10px] text-zinc-700 font-black uppercase tracking-[0.2em] md:tracking-[0.3em]"
           >
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="w-4 h-4 text-[#00E5C0]" />
-              <span>No Credit Card Needed</span>
+            <div className="flex items-center gap-2 md:gap-3">
+              <ShieldCheck className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#00E5C0]" />
+              <span>No Credit Card</span>
             </div>
             <div className="w-1 h-1 bg-zinc-800 rounded-full hidden sm:block" />
-            <div className="flex items-center gap-3">
-              <Layers className="w-4 h-4 text-indigo-400" />
-              <span>Used by 50+ Companies</span>
+            <div className="flex items-center gap-2 md:gap-3">
+              <Layers className="w-3.5 h-3.5 md:w-4 md:h-4 text-indigo-400" />
+              <span>50+ Companies</span>
             </div>
           </motion.div>
         </motion.div>
