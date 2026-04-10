@@ -116,7 +116,7 @@ const Testimonials = () => {
         </motion.div>
 
         {/* Cinematic Proof Matrix */}
-        <div className="flex gap-8 px-8 overflow-x-auto pb-12 snap-x no-scrollbar">
+        <div className="flex gap-4 md:gap-8 px-6 md:px-8 overflow-x-auto pb-12 snap-x no-scrollbar">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
@@ -127,40 +127,40 @@ const Testimonials = () => {
                 delay: i * 0.1,
                 duration: 0.8,
               }}
-              className="min-w-[420px] snap-center bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] p-6 md:p-12 flex flex-col group hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 transition-all duration-700 shadow-3xl hover:-translate-y-4 cursor-default"
+              className="min-w-[280px] sm:min-w-[420px] max-w-[320px] sm:max-w-none snap-center bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[3rem] md:rounded-[4rem] p-8 md:p-12 flex flex-col group hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 transition-all duration-700 shadow-3xl hover:-translate-y-2 md:hover:-translate-y-4 cursor-default"
             >
-              <div className="flex justify-between items-start mb-10">
+              <div className="flex justify-between items-start mb-8 md:mb-10">
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((s) => (
                     <Star
                       key={s}
-                      className="w-4 h-4 text-[#00E5C0] fill-[#00E5C0]"
+                      className="w-3.5 h-3.5 md:w-4 h-4 text-[#00E5C0] fill-[#00E5C0]"
                     />
                   ))}
                 </div>
-                <div className="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-[9px] font-black text-zinc-700 uppercase tracking-widest group-hover:text-[#00E5C0] transition-colors duration-700">
+                <div className="px-4 md:px-5 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 text-[8px] md:text-[9px] font-black text-zinc-700 uppercase tracking-widest group-hover:text-[#00E5C0] transition-colors duration-700">
                   {t.metric}
                 </div>
               </div>
 
-              <div className="relative mb-12">
-                <Quote className="absolute -top-6 -left-6 w-12 h-12 text-white/5 group-hover:text-[#00E5C0]/10 transition-colors duration-1000" />
-                <p className="text-white text-xl font-black uppercase tracking-tighter leading-relaxed italic group-hover:text-zinc-200 transition-colors duration-700">
+              <div className="relative mb-8 md:mb-12">
+                <Quote className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-8 h-8 md:w-12 md:h-12 text-white/5 group-hover:text-[#00E5C0]/10 transition-colors duration-1000" />
+                <p className="text-white text-lg md:text-xl font-black uppercase tracking-tighter leading-relaxed italic group-hover:text-zinc-200 transition-colors duration-700">
                   "{t.quote}"
                 </p>
               </div>
 
-              <div className="mt-auto flex items-center gap-5 pt-8 border-t border-white/5">
-                <div className="w-16 h-16 rounded-[1.5rem] bg-zinc-950 border border-white/5 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
-                  <span className="text-xl font-black text-white">
+              <div className="mt-auto flex items-center gap-4 md:gap-5 pt-6 md:pt-8 border-t border-white/5">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-[1.2rem] md:rounded-[1.5rem] bg-zinc-950 border border-white/5 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
+                  <span className="text-lg font-black text-white">
                     {t.initials}
                   </span>
                 </div>
                 <div className="text-left space-y-1">
-                  <p className="text-lg font-black text-white uppercase tracking-tighter leading-none">
+                  <p className="text-base md:text-lg font-black text-white uppercase tracking-tighter leading-none">
                     {t.name}
                   </p>
-                  <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em] leading-none">
+                  <p className="text-[9px] md:text-[10px] text-zinc-700 font-black uppercase tracking-[0.3em] md:tracking-[0.4em] leading-none">
                     {t.title}
                   </p>
                 </div>
@@ -168,6 +168,7 @@ const Testimonials = () => {
             </motion.div>
           ))}
         </div>
+
 
         {/* Global Network Status */}
         <motion.div

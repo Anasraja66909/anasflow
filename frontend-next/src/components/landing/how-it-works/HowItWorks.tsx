@@ -120,7 +120,7 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Neural Onboarding Sequence */}
-        <div className="relative flex flex-col md:flex-row items-start justify-between gap-12 lg:gap-24 max-w-6xl mx-auto">
+        <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between gap-16 md:gap-12 lg:gap-24 max-w-6xl mx-auto">
           {/* Signal Pulse Line */}
           <div className="hidden md:block absolute top-[110px] left-[150px] right-[150px] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent -z-10" />
 
@@ -137,7 +137,7 @@ const HowItWorks = () => {
               className="flex-1 flex flex-col items-center text-center group cursor-default"
             >
               {/* Node Container */}
-              <div className="relative mb-12">
+              <div className="relative mb-8 md:mb-12 scale-75 sm:scale-90 md:scale-100">
                 <div className="absolute -inset-10 bg-white/[0.02] blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
                 <div className="w-56 h-56 transition-all duration-1000 flex flex-col items-center justify-center relative z-10">
@@ -161,16 +161,17 @@ const HowItWorks = () => {
 
               {/* Text Architecture */}
               <div className="space-y-4">
-                <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none group-hover:text-[#00E5C0] transition-colors duration-700">
+                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter leading-none group-hover:text-[#00E5C0] transition-colors duration-700">
                   {step.title}
                 </h3>
-                <p className="text-zinc-600 text-[16px] font-medium leading-relaxed italic max-w-[280px] group-hover:text-zinc-400 transition-colors duration-700">
+                <p className="text-zinc-600 text-[14px] md:text-[16px] font-medium leading-relaxed italic max-w-[280px] group-hover:text-zinc-400 transition-colors duration-700">
                   {step.desc}
                 </p>
               </div>
             </motion.div>
           ))}
         </div>
+
 
         {/* Global Connection Pulse */}
         <motion.div

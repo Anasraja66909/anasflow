@@ -190,25 +190,25 @@ const SupportedPlatforms = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
         >
           {platforms.map((p, idx) => (
             <motion.div
               key={idx}
               variants={itemVariants}
-              className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[3.5rem] p-6 md:p-12 flex flex-col items-center justify-center transition-all duration-700 relative group cursor-default shadow-3xl hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 hover:-translate-y-4`}
+              className={`bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-12 flex flex-col items-center justify-center transition-all duration-700 relative group cursor-default shadow-3xl hover:bg-zinc-900/40 hover:border-[#00E5C0]/20 hover:-translate-y-2 md:hover:-translate-y-4`}
             >
               {p.live && (
-                <div className="absolute top-8 right-8 flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-3xl bg-[#00E5C0]/5 border border-[#00E5C0]/20 text-[#00E5C0] text-[9px] uppercase font-black tracking-widest group-hover:bg-[#00E5C0]/10 transition-colors">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00E5C0] animate-pulse" />{" "}
-                  Live Node
+                <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full backdrop-blur-3xl bg-[#00E5C0]/5 border border-[#00E5C0]/20 text-[#00E5C0] text-[8px] md:text-[9px] uppercase font-black tracking-widest group-hover:bg-[#00E5C0]/10 transition-colors">
+                  <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-[#00E5C0] animate-pulse" />{" "}
+                  Live
                 </div>
               )}
 
-              <div className="w-24 h-24 bg-zinc-950 border border-white/5 rounded-[2rem] flex items-center justify-center mb-8 p-6 shadow-inner group-hover:scale-[1.1] transition-transform duration-700 relative overflow-hidden group-hover:border-[#00E5C0]/20">
+              <div className="w-16 h-16 md:w-24 md:h-24 bg-zinc-950 border border-white/5 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center mb-6 md:mb-8 p-4 md:p-6 shadow-inner group-hover:scale-[1.1] transition-transform duration-700 relative overflow-hidden group-hover:border-[#00E5C0]/20">
                 <div className="absolute inset-0 bg-[#00E5C0]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[30px] rounded-full" />
                 {p.name === "GHL" ? (
-                  <span className="font-black text-3xl tracking-tighter text-white relative z-10 group-hover:text-[#00E5C0] transition-colors">
+                  <span className="font-black text-xl md:text-3xl tracking-tighter text-white relative z-10 group-hover:text-[#00E5C0] transition-colors">
                     GHL
                   </span>
                 ) : p.name === "OpenAI" ? (
@@ -226,17 +226,18 @@ const SupportedPlatforms = () => {
                 )}
               </div>
 
-              <div className="space-y-2">
-                <h3 className="text-white font-black text-2xl uppercase tracking-tighter group-hover:text-[#00E5C0] transition-colors duration-700 leading-none">
+              <div className="space-y-1 md:space-y-2 text-center">
+                <h3 className="text-white font-black text-lg md:text-2xl uppercase tracking-tighter group-hover:text-[#00E5C0] transition-colors duration-700 leading-none">
                   {p.name}.
                 </h3>
-                <p className="text-zinc-700 text-[10px] font-black uppercase tracking-[0.4em] italic group-hover:text-zinc-500 transition-colors duration-700">
+                <p className="text-zinc-700 text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] italic group-hover:text-zinc-500 transition-colors duration-700">
                   {p.category}
                 </p>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
 
         {/* Global Statistics Pulse */}
         <motion.div
