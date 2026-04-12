@@ -23,6 +23,8 @@ import {
   Menu,
   X,
   Terminal,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -34,7 +36,7 @@ import NotificationDropdown from "@/components/dashboard/notifications/Notificat
 
 const navItems = [
   { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Connect Platforms", url: "/dashboard/connect", icon: Layers },
+  { title: "Connect Platforms", url: "/dashboard/platforms", icon: Layers },
   { title: "AI Automation Doctor", url: "/dashboard/ai-doctor", icon: Bot },
   {
     title: "Analytics & Optimization",
@@ -127,6 +129,47 @@ function ClientSwitcher() {
   );
 }
 
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    const isDarkMode = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setIsDark(isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    if (newDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-2 bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/10 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-[#00E5C0] transition-all group"
+      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+    >
+      {isDark ? (
+        <Sun className="w-4 h-4 transition-transform group-hover:rotate-45" />
+      ) : (
+        <Moon className="w-4 h-4 transition-transform group-hover:-rotate-12" />
+      )}
+    </button>
+  );
+}
+
 function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
   const { user } = useAuth();
   const router = useRouter();
@@ -153,7 +196,7 @@ function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
   };
 
   return (
-    <div className="h-16 border-b border-white/[0.07] bg-[hsl(224,45%,5%)]/90 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-4 md:px-6 text-white shadow-[0_1px_40px_rgba(0,0,0,0.5)]">
+    <div className="h-16 border-b border-white/5 bg-white/80 dark:bg-zinc-950/90 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-4 md:px-6 text-slate-900 dark:text-white shadow-sm">
       {/* Left: Brand & Hamburger */}
       <div className="flex items-center gap-2 md:gap-4 shrink-0">
         <button
@@ -185,7 +228,7 @@ function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
           <input
             type="text"
             placeholder="Search anything..."
-            className="w-full bg-black hover:bg-zinc-900 border border-white/10 rounded-lg py-1.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-[#00E5C0] focus:ring-1 focus:ring-[#00E5C0]/50 transition-all duration-300 placeholder:text-zinc-600"
+            className="w-full bg-slate-100 dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg py-1.5 pl-10 pr-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#00E5C0] focus:ring-1 focus:ring-[#00E5C0]/50 transition-all duration-300 placeholder:text-slate-400"
           />
         </div>
       </div>
@@ -199,6 +242,7 @@ function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
           </div>
         </div>
 
+        <ThemeToggle />
         <NotificationDropdown />
 
         <div className="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
@@ -322,7 +366,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gradient-to-b from-[hsl(224,48%,6%)] to-[hsl(224,44%,5%)] backdrop-blur-3xl pt-10 text-zinc-400 overflow-hidden" style={{boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.04)'}}>
+    <div className="flex-1 flex flex-col h-full bg-white dark:bg-gradient-to-b dark:from-[hsl(224,48%,6%)] dark:to-[hsl(224,44%,5%)] backdrop-blur-3xl pt-10 text-slate-600 dark:text-zinc-400 overflow-hidden" style={{boxShadow: 'inset -1px 0 0 rgba(0,0,0,0.05)'}}>
       <div className="flex-1 px-4 space-y-2 overflow-y-auto sidebar-scroll pb-10">
         <div className="px-5 mb-8 flex justify-between items-center">
           <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700">
@@ -357,9 +401,9 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
       <div className="p-6 border-t border-white/[0.06] pb-10 bg-[hsl(224,40%,5%)]/60 backdrop-blur-md">
         <Link
-          href="/dashboard/connect"
+          href="/dashboard/platforms"
           onClick={onClose}
-          className="w-full relative group/btn overflow-hidden bg-white text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] transition-all duration-700 flex items-center justify-center gap-3 hover:bg-[#00E5C0] hover:shadow-[0_0_30px_rgba(0,229,192,0.4)]"
+          className="w-full relative group/btn overflow-hidden bg-slate-900 dark:bg-white text-white dark:text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] transition-all duration-700 flex items-center justify-center gap-3 hover:bg-[#00E5C0] dark:hover:bg-[#00E5C0] hover:shadow-[0_0_30px_rgba(0,229,192,0.4)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
           <Plus className="w-4 h-4 transition-transform group-hover/btn:rotate-90 group-hover/btn:scale-125" />
@@ -375,7 +419,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ClientProvider>
-      <div className="min-h-screen w-full text-white font-sans selection:bg-[#00E5C0]/20 selection:text-white overflow-x-hidden" style={{background: 'radial-gradient(ellipse 70% 50% at 15% 0%, rgba(99,102,241,0.10) 0%, transparent 55%), radial-gradient(ellipse 55% 40% at 85% 90%, rgba(0,229,192,0.07) 0%, transparent 55%), hsl(224,45%,6%)'}}>
+      <div className="min-h-screen w-full text-slate-900 dark:text-white font-sans selection:bg-[#00E5C0]/20 selection:text-white overflow-x-hidden">
         <TopNav onMenuClick={() => setIsSidebarOpen(true)} />
 
         {/* Desktop Sidebar */}
@@ -409,10 +453,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         </AnimatePresence>
 
-        <main className="lg:ml-[280px] pt-16 min-h-screen relative" style={{background: 'transparent'}}>
-          {/* Ambient glow layers */}
-          <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-indigo-600/[0.06] blur-[120px] rounded-full pointer-events-none" />
-          <div className="fixed bottom-0 left-[280px] w-[500px] h-[500px] bg-[#00E5C0]/[0.04] blur-[120px] rounded-full pointer-events-none" />
+        <main className="lg:ml-[280px] pt-16 min-h-screen relative">
+          {/* Ambient glow layers - Subtle Indigo in Lite Mode */}
+          <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-indigo-500/[0.04] dark:bg-indigo-600/[0.06] blur-[120px] rounded-full pointer-events-none" />
+          <div className="fixed bottom-0 left-[280px] w-[500px] h-[500px] bg-[#00E5C0]/[0.03] dark:bg-[#00E5C0]/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
           <div className="p-4 md:p-8 pb-32 max-w-[1500px] mx-auto relative z-10 w-full">
             {children}

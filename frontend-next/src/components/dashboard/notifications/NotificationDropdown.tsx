@@ -67,7 +67,8 @@ export default function NotificationDropdown() {
     async function loadNotifications() {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:8000/alerts/system/", {
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+        const response = await fetch(`${baseUrl}/api/v1/alerts/system/`, {
           headers: token ? { Authorization: "Bearer " + token } : {},
         });
         if (!response.ok) return;

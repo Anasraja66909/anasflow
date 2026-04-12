@@ -9,7 +9,6 @@ from os.path import abspath, dirname
 sys.path.insert(0, abspath(dirname(dirname(__file__))))
 
 from app.models import Base
-from app.core.config import settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

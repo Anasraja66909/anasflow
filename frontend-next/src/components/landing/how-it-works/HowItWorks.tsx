@@ -168,9 +168,12 @@ const HowItWorks = () => {
                   <div className={`absolute inset-0 border rounded-full scale-100 group-hover:scale-110 group-hover:border-[#00E5C0]/20 transition-all duration-1000 ${
                     isDark ? "border-white/5" : "border-indigo-100"
                   }`} />
-                  <div className={`absolute inset-[20px] border rounded-full group-hover:rotate-180 transition-transform duration-[4s] linear infinite ${
-                    isDark ? "border-white/5" : "border-indigo-50"
-                  }`} />
+                  <div 
+                    style={{ transitionDuration: '4000ms' }}
+                    className={`absolute inset-[20px] border rounded-full group-hover:rotate-180 transition-transform linear infinite ${
+                      isDark ? "border-white/5" : "border-indigo-50"
+                    }`} 
+                  />
 
                   {/* Main App Container */}
                   <div className={`w-32 h-32 rounded-[2.5rem] backdrop-blur-[60px] border shadow-3xl flex items-center justify-center transition-all duration-700 group-hover:rotate-12 group-hover:scale-105 ${
