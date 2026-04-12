@@ -14,7 +14,7 @@ const faqCategories = [
     items: [
       {
         q: "What is AnasFlow?",
-        a: "AnasFlow is an Agency Command Center that unifies all your AI tool costs, automation workflows, and client ROI data into one powerful dashboard. Built for modern AI agencies.",
+        a: "AnasFlow is an all-in-one dashboard that tracks all your AI tool costs, automation usage, and client profit. It is built specifically for modern AI agencies.",
       },
       {
         q: "Is this exclusively for GoHighLevel agencies?",
@@ -68,7 +68,7 @@ const faqCategories = [
       },
       {
         q: "Do you offer an API or webhooks?",
-        a: "Yes. Agency and Pro plans include access to our REST API and configurable outbound webhooks for custom integrations and notifications.",
+        a: "Yes. Agency and Pro plans include API access and webhooks for custom integrations and notifications.",
       },
     ],
   },
@@ -87,7 +87,7 @@ export default function FAQPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 pb-16 bg-black text-center px-6 relative overflow-hidden">
+      <section className="pt-32 md:pt-48 pb-16 bg-black text-center px-6 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#00E5C0]/8 blur-[130px] pointer-events-none rounded-full" />
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-6">

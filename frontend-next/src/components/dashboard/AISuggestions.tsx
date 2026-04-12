@@ -76,11 +76,11 @@ export default function AISuggestions() {
           </div>
           <div className="space-y-2">
             <p className="text-xs font-black uppercase tracking-[0.4em] text-[#00E5C0] animate-pulse">
-              Neural Sync
+              Smart Sync
             </p>
             <p className="text-[11px] font-medium text-zinc-500 max-w-[200px] mx-auto leading-relaxed">
               Analyzing multi-platform usage patterns for optimization
-              vectors...
+              paths...
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function AISuggestions() {
               </span>
             </div>
             <h2 className="text-3xl font-black text-white tracking-tighter uppercase">
-              Auto-Healing Engine.
+              Auto-Fix Engine.
             </h2>
           </div>
           <div className="px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(239,68,68,0.1)] group/impact animate-bounce">
@@ -171,7 +171,7 @@ export default function AISuggestions() {
                       <div
                         className={`w-2 h-2 rounded-full ${suggestion.severity === "Critical" ? "bg-red-500 shadow-[0_0_10px_#ef4444]" : suggestion.severity === "Warning" ? "bg-orange-400" : "bg-blue-400"}`}
                       />
-                      {suggestion.severity} Protocol
+                      {suggestion.severity} Update
                     </span>
                     <span className="text-zinc-800">/</span>
                     <span>Direct API Integration</span>
@@ -200,8 +200,8 @@ export default function AISuggestions() {
                     <div className="pt-8 mt-4 border-t border-white/5 flex flex-col gap-5">
                       <div className="bg-white/[0.01] p-6 rounded-2xl border border-white/5 space-y-3">
                         <h4 className="text-[9px] text-zinc-600 uppercase font-black tracking-[0.3em] flex items-center gap-2">
-                          <AlertCircle className="w-3.5 h-3.5" /> Anomaly
-                          Detection
+                          <AlertCircle className="w-3.5 h-3.5" /> Issue
+                          Detected
                         </h4>
                         <p className="text-xs text-zinc-400 font-medium leading-relaxed">
                           {suggestion.reason}
@@ -219,7 +219,7 @@ export default function AISuggestions() {
 
                       <button className="mt-2 w-full bg-white text-black py-5 rounded-2xl text-[10px] uppercase font-black tracking-[0.3em] shadow-2xl hover:bg-[#00E5C0] hover:shadow-[#00E5C0]/40 transition-all duration-500 active:scale-[0.98] flex items-center justify-center gap-3 group/fix">
                         <Zap className="w-4 h-4 transition-transform group-hover/fix:scale-125" />
-                        {suggestion.fixActionLabel} Core
+                        {suggestion.fixActionLabel}
                       </button>
                     </div>
                   </motion.div>

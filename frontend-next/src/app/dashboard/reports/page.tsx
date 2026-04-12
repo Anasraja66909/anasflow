@@ -163,19 +163,18 @@ export default function ReportsPage() {
                 <Sparkles className="w-5 h-5 text-[#00E5C0] relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-                Value Transmission Hub
+                Client Report Center
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
-              Handshake{" "}
+              Savings{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Reports.
+                Summary.
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">
-              Consolidating high-fidelity ROI telemetry into professional
-              white-labeled intelligence. Transmit value directly to your
-              enterprise nodes.
+              Consolidating all your platform performance and savings into simple
+              reports. Send professional updates directly to your clients.
             </p>
           </div>
 
@@ -194,7 +193,7 @@ export default function ReportsPage() {
               className="px-10 py-6 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.3em] flex items-center gap-4 group disabled:opacity-30 shadow-2xl hover:shadow-[#00E5C0]/40"
             >
               <FileDown className="w-5 h-5 transition-transform group-hover:translate-y-2" />
-              {downloading ? "Compiling..." : "Export Asset PDF"}
+              {downloading ? "Downloading..." : "Download Report"}
             </button>
           </div>
         </motion.div>
@@ -206,21 +205,21 @@ export default function ReportsPage() {
         >
           {[
             {
-              label: "Reporting Context",
-              value: activeClientId ? activeClientName : "Global Hub",
+              label: "Report For",
+              value: activeClientId ? activeClientName : "All Clients",
               icon: Users,
               color: "text-white",
               bg: "bg-white/10",
             },
             {
-              label: "ROI Flux Index",
+              label: "Savings Ratio",
               value: roiData ? "3.5x" : "0.0x",
               icon: TrendingUp,
               color: "text-[#00E5C0]",
               bg: "bg-[#00E5C0]/10",
             },
             {
-              label: "Neural Savings",
+              label: "Total Savings",
               value: roiData
                 ? `$${roiData.summary.estimated_savings.toLocaleString()}`
                 : "$0",
@@ -229,7 +228,7 @@ export default function ReportsPage() {
               bg: "bg-indigo-500/10",
             },
             {
-              label: "Spend Telemetry",
+              label: "Monthly Cost",
               value: roiData
                 ? `$${roiData.summary.total_spend.toLocaleString()}`
                 : "$0",
@@ -274,15 +273,15 @@ export default function ReportsPage() {
               <div className="w-2 h-16 bg-[#00E5C0] rounded-full shadow-[0_0_20px_rgba(0,229,192,0.5)]" />
               <div className="space-y-1 text-left">
                 <h2 className="text-4xl font-black text-white tracking-tighter uppercase">
-                  Master Ledger<span className="text-[#00E5C0]">.</span>
+                  Service Details<span className="text-[#00E5C0]">.</span>
                 </h2>
                 <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em] ml-1">
-                  Unified ROI Diagnostic
+                  Full Performance History
                 </p>
               </div>
             </div>
             <div className="px-8 py-4 rounded-2xl border border-white/5 bg-black/40 text-zinc-500 font-black uppercase tracking-widest text-[11px]">
-              Active Cycle: {roiData?.date || "Current Orbit"}
+              Report Date: {roiData?.date || "Today"}
             </div>
           </div>
 
@@ -295,7 +294,7 @@ export default function ReportsPage() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-3xl font-black text-white tracking-tighter uppercase">
-                    Telemetry Offline.
+                    No Data Found.
                   </h3>
                   <p className="text-zinc-600 font-medium text-lg">
                     Pick a client to create and send their ROI report.
@@ -307,7 +306,7 @@ export default function ReportsPage() {
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[#00E5C0] to-transparent animate-pulse" />
                 <RefreshCw className="w-24 h-24 mx-auto animate-spin text-[#00E5C0]/40" />
                 <p className="text-zinc-500 font-black tracking-[0.5em] uppercase text-xs">
-                  Synchronizing Audit Signal
+                  Loading Client Data...
                 </p>
               </div>
             ) : (
@@ -315,16 +314,16 @@ export default function ReportsPage() {
                 <thead>
                   <tr className="bg-black/20 border-b border-white/5">
                     <th className="px-16 py-10 text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-                      Node Protocol
+                      Platform Source
                     </th>
                     <th className="px-16 py-10 text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-                      Operational Spend
+                      Total Cost
                     </th>
                     <th className="px-16 py-10 text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-                      Efficiency Yield
+                      Efficiency
                     </th>
                     <th className="px-16 py-10 text-right text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-                      Status
+                      Connection
                     </th>
                   </tr>
                 </thead>
@@ -344,7 +343,7 @@ export default function ReportsPage() {
                               {p.name}
                             </span>
                             <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.3em]">
-                              Authorized Link
+                              Verified Tool
                             </p>
                           </div>
                         </div>
@@ -360,7 +359,7 @@ export default function ReportsPage() {
                             ${p.savings.toLocaleString()}
                           </span>
                           <span className="text-[10px] text-[#00E5C0]/60 font-black uppercase tracking-[0.4em] mt-2">
-                            Active Profitability
+                            Monthly Performance
                           </span>
                         </div>
                       </td>
@@ -400,18 +399,17 @@ export default function ReportsPage() {
                     </span>
                   </div>
                   <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] uppercase">
-                    Dispatch <br />{" "}
+                    Send <br />{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                      Intelligence.
+                      Update.
                     </span>
                   </h2>
                   <p className="text-zinc-500 text-xl font-medium leading-relaxed max-w-xl">
-                    Establish a secure handshake with{" "}
+                    Send a direct email to{" "}
                     <span className="text-white font-black underline decoration-[#00E5C0] decoration-8">
                       {activeClientName}
                     </span>{" "}
-                    by transmitting this high-fidelity whitepaper directly to
-                    their neural inbox.
+                    with their full performance and savings report.
                   </p>
                 </div>
                 <div className="flex flex-col gap-8 w-full lg:w-[450px]">
@@ -420,14 +418,14 @@ export default function ReportsPage() {
                     className="w-full px-12 py-8 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40 flex items-center justify-center gap-6 text-[11px] uppercase tracking-[0.3em] group/send"
                   >
                     <Send className="w-5 h-5 transition-transform group-hover/send:-rotate-45 group-hover/send:scale-125" />
-                    Establish Transmission
+                    Send Performance Report
                   </button>
                   <button
                     onClick={handleDownloadPDF}
                     className="w-full px-12 py-8 bg-zinc-900/60 backdrop-blur-3xl text-white font-black rounded-[2rem] border border-white/5 hover:border-white/20 transition-all text-[11px] uppercase tracking-[0.3em] flex items-center justify-center gap-6 group/preview"
                   >
                     <FileText className="w-5 h-5 transition-transform group-hover/preview:scale-110" />
-                    Surgical PDF Preview
+                    Quick PDF Preview
                   </button>
                 </div>
               </div>
@@ -459,11 +457,11 @@ export default function ReportsPage() {
                   </div>
                   <div className="space-y-6">
                     <h3 className="text-5xl font-black text-white tracking-tighter uppercase leading-none">
-                      Confirm Signal.
+                      Send Email.
                     </h3>
                     <p className="text-zinc-600 font-medium text-xl leading-relaxed px-12">
-                      Initiating white-labeled ROI intelligence dispatch for
-                      node <strong>{activeClientName}</strong>.
+                      Sending performance and savings update for
+                      <strong> {activeClientName}</strong>.
                     </p>
                   </div>
                   <button
@@ -471,7 +469,7 @@ export default function ReportsPage() {
                     disabled={mailing}
                     className="w-full py-8 bg-white text-black font-black rounded-[2.5rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.4em] shadow-2xl disabled:opacity-30"
                   >
-                    {mailing ? "Synchronizing Hub..." : "Execute Transmission"}
+                    {mailing ? "Sending..." : "Send Now"}
                   </button>
                 </div>
               </motion.div>

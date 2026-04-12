@@ -325,40 +325,39 @@ export default function ConnectPlatformsPage() {
                 <Sparkles className="w-5 h-5 text-[#00E5C0] relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0] text-glow-teal">
-                Neural Ecosystem
+                Platform Hub
               </span>
             </div>
-            <h1 className="text-8xl md:text-9xl font-black text-white tracking-tighter mb-8 leading-[0.85] lg:max-w-2xl">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter mb-8 leading-[0.85] lg:max-w-2xl">
               Connect{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Your Pulse
+                Your Apps
               </span>
               .
             </h1>
-            <p className="text-zinc-500 text-xl font-medium leading-relaxed max-w-2xl">
-              Establish authorized proxy tunnels across 30+ enterprise services.
-              Monitor cost vectors, health signals, and AI intelligence from a
-              single neural command center.
+            <p className="text-zinc-500 text-sm md:text-xl font-medium leading-relaxed max-w-2xl">
+              Connect your favorite business tools securely in seconds. Monitor
+              costs, health status, and performance from one simple dashboard.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-6 w-full xl:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
             <div className="relative group w-full xl:w-[400px]">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 transition-colors group-focus-within:text-[#00E5C0]" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 transition-colors group-focus-within:text-[#00E5C0]" />
               <input
                 type="text"
-                placeholder="Search Protocols..."
+                placeholder="Search Platforms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-zinc-950/40 border border-white/5 rounded-3xl py-6 pl-16 pr-8 text-sm text-white focus:outline-none focus:border-[#00E5C0]/40 focus:ring-4 focus:ring-[#00E5C0]/5 transition-all backdrop-blur-3xl placeholder:text-zinc-800 font-black uppercase tracking-widest"
+                className="w-full bg-zinc-950/40 border border-white/5 rounded-2xl md:rounded-3xl py-4 md:py-6 pl-14 md:pl-16 pr-6 md:pr-8 text-xs md:text-sm text-white focus:outline-none focus:border-[#00E5C0]/40 focus:ring-4 focus:ring-[#00E5C0]/5 transition-all backdrop-blur-3xl placeholder:text-zinc-800 font-black uppercase tracking-widest"
               />
             </div>
             <button
               onClick={fetchConnections}
-              className="p-6 bg-zinc-950/40 border border-white/5 rounded-3xl text-zinc-600 hover:text-white hover:border-[#00E5C0]/30 transition-all backdrop-blur-3xl group"
+              className="p-4 md:p-6 bg-zinc-950/40 border border-white/5 rounded-2xl md:rounded-3xl text-zinc-600 hover:text-white hover:border-[#00E5C0]/30 transition-all backdrop-blur-3xl group"
             >
               <RefreshCw
-                className={`w-5 h-5 transition-transform duration-1000 group-hover:rotate-180 ${loading ? "animate-spin" : ""}`}
+                className={`w-4 h-4 md:w-5 md:h-5 transition-transform duration-1000 group-hover:rotate-180 ${loading ? "animate-spin" : ""}`}
               />
             </button>
           </div>
@@ -457,7 +456,7 @@ export default function ConnectPlatformsPage() {
                     ) : (
                       <Zap className="w-4 h-4" />
                     )}
-                    {isConnected ? "Trusted Link" : "Establish Proxy"}
+                    {isConnected ? "Trusted Link" : "Connect Tool"}
                   </button>
                 </div>
               </motion.div>
@@ -466,18 +465,17 @@ export default function ConnectPlatformsPage() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Neural Handshake Modal */}
       <AnimatePresence>
         {selectedPlatform && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/95 backdrop-blur-3xl overflow-y-auto">
+          <div className="fixed inset-0 z-[200] flex items-start md:items-center justify-center p-4 md:p-6 bg-black/95 backdrop-blur-3xl overflow-y-auto py-10">
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 50 }}
-              className="bg-zinc-950/90 border border-white/5 rounded-[4rem] w-full max-w-6xl shadow-[0_50px_200px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col lg:flex-row min-h-[700px]"
+              className="bg-zinc-950/90 border border-white/5 rounded-[2.5rem] md:rounded-[4rem] w-full max-w-6xl shadow-[0_50px_200px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col lg:flex-row relative"
             >
               {/* Auth Panel */}
-              <div className="flex-1 p-12 lg:p-20 border-r border-white/5 bg-white/[0.01]">
+              <div className="flex-1 p-8 md:p-12 lg:p-20 border-b lg:border-b-0 lg:border-r border-white/5 bg-white/[0.01]">
                 <div className="flex items-center gap-6 mb-16">
                   <img
                     src={`https://www.google.com/s2/favicons?domain=${selectedPlatform.domain}&sz=128`}
@@ -486,10 +484,10 @@ export default function ConnectPlatformsPage() {
                   />
                   <div>
                     <h2 className="text-4xl font-black text-white tracking-tighter">
-                      Secure <span className="text-[#00E5C0]">Vault</span>
+                      Connect <span className="text-[#00E5C0]">Securely</span>
                     </h2>
                     <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em] mt-2">
-                      Linking Protocol: {selectedPlatform.id}
+                      Linking Tool: {selectedPlatform.id}
                     </p>
                   </div>
                 </div>
@@ -552,11 +550,11 @@ export default function ConnectPlatformsPage() {
                 <div className="space-y-12 relative z-10">
                   <div className="space-y-4">
                     <span className="text-[10px] font-black text-[#00E5C0] uppercase tracking-[0.5em]">
-                      Establishing Link
+                      Setting up connection
                     </span>
                     <h3 className="text-4xl font-black text-white tracking-tighter leading-none">
-                      Secure <br />
-                      <span className="text-zinc-500 text-3xl">Handshake.</span>
+                      Linking <br />
+                      <span className="text-zinc-500 text-3xl">Now.</span>
                     </h3>
                   </div>
 
@@ -598,7 +596,7 @@ export default function ConnectPlatformsPage() {
                 <div className="flex items-center gap-4 text-zinc-700 p-8 border border-white/5 rounded-[2.5rem] bg-black/20 relative z-10">
                   <ShieldCheck className="w-5 h-5 text-indigo-400" />
                   <span className="text-[9px] font-black uppercase tracking-[0.3em]">
-                    AES-256 Pulse Security
+                    Secure Connection Active
                   </span>
                 </div>
               </div>

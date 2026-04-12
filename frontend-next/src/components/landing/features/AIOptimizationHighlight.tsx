@@ -46,7 +46,7 @@ const AIOptimizationHighlight = () => {
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
 
       <div className="max-w-screen-2xl mx-auto px-6 md:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-        {/* Left: High-Fidelity Neural Diagnostic Handset */}
+        {/* Left: Simple Analytics View */}
         <motion.div
           initial={{ opacity: 0, y: 50, rotateY: -15, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
@@ -65,7 +65,7 @@ const AIOptimizationHighlight = () => {
               <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-indigo-500/40 rounded-full ml-2 blur-[1px]" />
             </div>
 
-            {/* Neural Scanning Beam */}
+            {/* Status Scanning Beam */}
             <div
               className="absolute inset-x-0 h-40 bg-gradient-to-b from-transparent via-[#00E5C0]/20 to-transparent opacity-0 group-hover/phone:opacity-100 transition-opacity duration-700 z-30 pointer-events-none"
               style={{
@@ -80,7 +80,7 @@ const AIOptimizationHighlight = () => {
               }
             `}</style>
 
-            {/* App Logic Hub Interface */}
+            {/* System Dashboard Interface */}
             <div className="flex-1 flex flex-col bg-black/90 relative overflow-hidden">
               <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.05] pointer-events-none" />
 
@@ -91,11 +91,11 @@ const AIOptimizationHighlight = () => {
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-3.5 h-3.5 sm:w-4 h-4 text-[#00E5C0]" />
                       <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white">
-                        Neural Scan Active
+                        System Scan Active
                       </span>
                     </div>
                     <p className="text-[8px] sm:text-[9px] text-zinc-700 font-black uppercase tracking-widest">
-                      Polling 32 Diagnostic Nodes...
+                      Scanning all your connections...
                     </p>
                   </div>
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#00E5C0]/10 border border-[#00E5C0]/20 flex items-center justify-center animate-pulse">
@@ -116,10 +116,10 @@ const AIOptimizationHighlight = () => {
                       </div>
                       <div className="space-y-1">
                         <h4 className="text-white font-black text-base sm:text-lg tracking-tighter uppercase leading-none">
-                          Cloud Haiku Match.
+                          Savings Found.
                         </h4>
                         <p className="text-[8px] sm:text-[9px] text-[#00E5C0] font-black tracking-[0.4em] uppercase">
-                          Optimized Patch
+                          Quick Fix
                         </p>
                       </div>
                     </div>
@@ -130,7 +130,7 @@ const AIOptimizationHighlight = () => {
                     </span>
                   </div>
                   <button className="w-full py-4 sm:py-5 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] rounded-2xl hover:bg-[#00E5C0] transition-all duration-700 shadow-3xl">
-                    Apply Patch
+                    Fix Now
                   </button>
                 </div>
 
@@ -142,7 +142,7 @@ const AIOptimizationHighlight = () => {
                     </div>
                     <div className="space-y-1">
                       <h4 className="text-white font-black text-xs sm:text-sm tracking-widest uppercase">
-                        Merge Nodes
+                        Combine Tools
                       </h4>
                       <p className="text-[7px] sm:text-[8px] text-zinc-700 font-black tracking-widest uppercase">
                         Medium Confidence
@@ -161,7 +161,7 @@ const AIOptimizationHighlight = () => {
           </div>
         </motion.div>
 
-        {/* Right: High-Impact Intelligence Copy */}
+        {/* Right: Simple Insights */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -173,22 +173,16 @@ const AIOptimizationHighlight = () => {
             variants={itemVariants}
             className="flex items-center gap-4"
           >
-            <div className="w-10 h-10 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center relative group overflow-hidden">
-              <div className="absolute inset-0 bg-indigo-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
-              <Activity className="w-5 h-5 text-indigo-400 relative z-10" />
-            </div>
-            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-indigo-400/60">
-              Auto-Healing Engine // Signal Restoration
-            </span>
+              System Updates // Automatic Fixes
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-7xl xl:text-[90px] font-black tracking-tighter text-white leading-[1] md:leading-[0.85] uppercase break-words"
           >
-            Repair Before <br className="hidden lg:block" />
+            Fix Problems <br className="hidden lg:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-[#00E5C0] to-indigo-400">
-              Impact.
+              Early.
             </span>
           </motion.h2>
 
@@ -196,16 +190,16 @@ const AIOptimizationHighlight = () => {
             variants={itemVariants}
             className="text-lg md:text-2xl text-zinc-600 font-medium leading-relaxed italic max-w-xl"
           >
-            Stop losing hours trying to reconstruct why a client's workflow
-            evaporated. Our engine monitors your neural integrations 24/7.
+            Stop losing hours trying to figure out why a client's workflow
+            stopped working. Our system monitors your tools 24/7.
           </motion.p>
 
           <ul className="grid grid-cols-1 gap-4 sm:gap-6 pt-4">
             {[
-              "Instantly detect broken platform nodes.",
-              "Dispatch immediate 1-click liquid patches.",
+              "Instantly detect broken tool connections.",
+              "Apply 1-click fixes to stay online.",
               "Eliminate friction via 100% uptime.",
-              "Yield recovery of $400+ per client/mo.",
+              "Get more value from every client per month.",
             ].map((feat, i) => (
               <motion.li
                 key={i}

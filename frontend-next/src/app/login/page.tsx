@@ -78,7 +78,7 @@ export default function LoginPage() {
         toast.success("Welcome to AnasFlow Demo!");
         router.push("/dashboard");
       } else {
-        toast.error(errMsg || "Authentication Failed. Please try again.");
+        toast.error("Connection Error. Authentication Failed. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -132,13 +132,13 @@ export default function LoginPage() {
               <ShieldCheck className="w-5 h-5 text-[#00E5C0]" />
             </div>
             <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-              Secure Access Protocol
+              Secure Login
             </span>
           </div>
           <h1 className="text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-8">
-            Resume <br />{" "}
+            Welcome <br />{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-              Command.
+              Back.
             </span>
           </h1>
           <p className="text-zinc-500 text-xl font-medium leading-relaxed max-w-md">
@@ -149,7 +149,7 @@ export default function LoginPage() {
           <div className="pt-12 space-y-6">
             {[
               { label: "End-to-End Encryption", icon: Lock },
-              { label: "Neural Identity Verification", icon: Command },
+              { label: "Secure User Identity", icon: Command },
               { label: "Always Ready to Use", icon: Zap },
             ].map((feature, i) => (
               <div key={i} className="flex items-center gap-4 group">

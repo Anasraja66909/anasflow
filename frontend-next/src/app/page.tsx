@@ -47,7 +47,13 @@ const Footer = dynamic(() => import("@/components/landing/layout/Footer"), {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-black selection:bg-[#00E5C0]/30 selection:text-white">
+    <div
+      className="min-h-screen selection:bg-indigo-200 selection:text-indigo-900"
+      style={{
+        background:
+          "linear-gradient(160deg, #eef2ff 0%, #fafbff 35%, #f0fdf9 100%)",
+      }}
+    >
       {/* Synchronous High-Priority Elements */}
       <Navbar />
       <Hero />

@@ -140,7 +140,7 @@ export default function AlertsPage() {
                 <Signal className="w-5 h-5 text-red-500 relative z-10 animate-pulse" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-red-500">
-                Neural Diagnostic Stream
+                System Security Updates
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black text-white tracking-tighter mb-8 leading-[0.85] lg:max-w-2xl">
@@ -150,9 +150,9 @@ export default function AlertsPage() {
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium leading-relaxed max-w-2xl">
-              Real-time synchronization with 30+ enterprise nodes. Our
-              diagnostic engine scans for cost anomalies, API failures, and rate
-              limit exceptions every 60 seconds.
+              Real-time monitoring for all your active platform connections. Our
+              system checks for errors, connection failures, and budget limits
+              every 60 seconds.
             </p>
           </div>
 
@@ -189,7 +189,7 @@ export default function AlertsPage() {
               border: "border-orange-500/10",
             },
             {
-              label: "Live Nodes",
+              label: "Active Tools",
               value: String(alerts.length > 0 ? 12 : 0),
               icon: Activity,
               color: "text-indigo-400",
@@ -197,7 +197,7 @@ export default function AlertsPage() {
               border: "border-indigo-500/10",
             },
             {
-              label: "Stability Index",
+              label: "Overall Health",
               value: `${healthScore}%`,
               icon: ShieldCheck,
               color: "text-[#00E5C0]",
@@ -233,7 +233,7 @@ export default function AlertsPage() {
           <div className="flex items-center gap-3 pr-6 border-r border-white/5 mr-2">
             <Filter className="w-4 h-4 text-zinc-700" />
             <span className="text-[10px] font-black uppercase text-zinc-700 tracking-[0.3em]">
-              Filter Stream:
+              Sort By:
             </span>
           </div>
           {["all", "critical", "warning", "info"].map((f) => (
@@ -266,10 +266,10 @@ export default function AlertsPage() {
                 <CheckCircle2 className="w-10 h-10 text-[#00E5C0]" />
               </div>
               <h3 className="text-4xl font-black text-white tracking-tighter mb-4 leading-none">
-                All Nodes Stable.
+                All Systems Running.
               </h3>
               <p className="text-zinc-500 text-lg font-medium">
-                No diagnostic anomalies detected in the current pulse cycle.
+                No issues detected in the current check.
               </p>
             </motion.div>
           ) : (
@@ -299,7 +299,7 @@ export default function AlertsPage() {
                           <span
                             className={`text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full border ${style.border} ${style.color}`}
                           >
-                            {alert.level} Signal
+                            {alert.level} Message
                           </span>
                           <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em]">
                             Source: {alert.type || "System Node"}
@@ -320,18 +320,18 @@ export default function AlertsPage() {
                         <div className="flex items-center gap-2">
                           <Terminal className="w-3.5 h-3.5 text-zinc-700" />
                           <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">
-                            Diagnostic Code: #AF-
+                            Error ID: #AF-
                             {(alert.id || "").substring(0, 6)}
                           </span>
                         </div>
                         <button className="text-[10px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.3em] transition-colors ml-auto">
-                          Request Debug Dump
+                          Show Details
                         </button>
                         <button
                           onClick={() => setDismissed([...dismissed, alert.id])}
                           className="text-[10px] font-black text-red-500/60 hover:text-red-500 uppercase tracking-[0.3em] transition-colors"
                         >
-                          Acknowledge & Clear
+                          Mark as Read
                         </button>
                       </div>
                     </div>
@@ -353,12 +353,12 @@ export default function AlertsPage() {
         </div>
         <div>
           <h4 className="text-xl font-black text-white tracking-tighter mb-2">
-            Omni-Channel Synchronization Active.
+            Automatic Monitoring Active.
           </h4>
           <p className="text-zinc-500 font-medium leading-relaxed max-w-3xl">
-            Our synchronization protocols scan all connected platform APIs every
-            60 seconds. Critical anomalies trigger instant neural alerts across
-            your dashboard and connected Slack/Email channels.
+            Our system checks all connected apps every
+            60 seconds. Any errors will trigger instant alerts across
+            your dashboard and your email.
           </p>
         </div>
         <button className="ml-auto px-10 py-5 bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] rounded-[1.5rem] hover:bg-zinc-200 transition-all shadow-2xl">

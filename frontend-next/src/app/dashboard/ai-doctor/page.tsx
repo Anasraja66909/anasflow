@@ -142,7 +142,7 @@ export default function AIDoctorPage() {
                 <Bot className="w-5 h-5 text-indigo-400 relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Neural Diagnostic Center
+                AI Help Center
               </span>
             </div>
             <h1 className="text-7xl font-black tracking-tighter text-white leading-[0.85] uppercase">
@@ -155,7 +155,7 @@ export default function AIDoctorPage() {
           <div className="flex items-center gap-4 px-6 py-3 bg-zinc-950/40 backdrop-blur-3xl border border-white/5 rounded-2xl shadow-xl">
             <div className="w-2 h-2 bg-[#00E5C0] rounded-full animate-pulse shadow-[0_0_10px_#00E5C0]" />
             <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em]">
-              Subsystem Diagnostics Online
+              AI Support Online
             </span>
           </div>
         </motion.div>
@@ -172,10 +172,10 @@ export default function AIDoctorPage() {
               <div className="flex items-center justify-between mb-10 relative z-10">
                 <div className="space-y-1 text-left">
                   <h2 className="font-black text-white text-2xl uppercase tracking-tighter">
-                    Issue Ledger.
+                    Automation Issues.
                   </h2>
                   <p className="text-[10px] text-zinc-700 font-black tracking-[0.4em] uppercase">
-                    Failed Automations
+                    Failed Tasks
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
@@ -190,7 +190,7 @@ export default function AIDoctorPage() {
                       <CheckCircle2 className="w-10 h-10 text-[#00E5C0]/40" />
                     </div>
                     <p className="text-zinc-700 text-[10px] font-black uppercase tracking-[0.4em]">
-                      Protocols nominal.
+                        All systems running.
                     </p>
                   </div>
                 ) : (
@@ -252,7 +252,7 @@ export default function AIDoctorPage() {
                 <div className="flex items-center gap-6">
                   <ShieldCheck className="w-5 h-5 text-[#00E5C0] shadow-[0_0_10px_#00E5C0]" />
                   <span className="text-[11px] font-black text-zinc-500 tracking-[0.5em] uppercase">
-                    Neural Pulse Protocol • V4.2 High-Fidelity Diagnostic
+                    Security Check • High-Accuracy Analysis
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -270,11 +270,10 @@ export default function AIDoctorPage() {
                   </div>
                   <div className="space-y-6 max-w-xl">
                     <h3 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      Diagnostic Terminal.
+                      Fixing Tool.
                     </h3>
                     <p className="text-zinc-600 text-xl font-medium leading-relaxed italic">
-                      Select an active pulse failure from the ledger to initiate
-                      deep neural reconstruction.
+                      Select a failed task to see how the AI can fix it for you.
                     </p>
                   </div>
                 </div>
@@ -288,7 +287,7 @@ export default function AIDoctorPage() {
                       </span>
                     </div>
                     <h2 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      Neural Reconstruct
+                      Fix Problem
                       <span className="text-[#00E5C0]">.</span>
                     </h2>
                   </div>
@@ -310,12 +309,11 @@ export default function AIDoctorPage() {
 
                           <div className="space-y-6 text-center">
                             <h3 className="text-4xl font-black text-white uppercase tracking-tighter">
-                              Authorization Key.
+                              Verification Key.
                             </h3>
                             <p className="text-zinc-600 font-medium text-lg leading-relaxed italic">
-                              Reconstructing failure vectors requires deep
-                              telemetry scan access. No client PII is exposed
-                              during transit. Proceed with neural scan.
+                              Finding the problem requires scanning the error logs.
+                              Your personal data is always protected.
                             </p>
                           </div>
 
@@ -338,10 +336,10 @@ export default function AIDoctorPage() {
                               />
                               <div className="space-y-1 text-left">
                                 <span className="text-[11px] text-white font-black uppercase tracking-[0.4em]">
-                                  Establish Secure Link
+                                  Scan Error Logs
                                 </span>
                                 <p className="text-[10px] text-zinc-700 font-black uppercase tracking-widest leading-none">
-                                  Protocol Handshake / Node:{" "}
+                                  Task Handshake / Tool:{" "}
                                   {selectedIssue.platform}
                                 </p>
                               </div>
@@ -353,7 +351,7 @@ export default function AIDoctorPage() {
                               className="w-full py-8 bg-white text-black font-black rounded-[2rem] disabled:opacity-30 transition-all duration-700 uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:bg-[#00E5C0] hover:shadow-[#00E5C0]/50 flex items-center justify-center gap-6 group/btn"
                             >
                               <Zap className="w-6 h-6 transition-transform group-hover/btn:scale-125 group-hover/btn:rotate-12" />
-                              Execute Diagnostic Pulse
+                              Find Solution
                             </button>
                           </div>
                         </div>
@@ -380,14 +378,14 @@ export default function AIDoctorPage() {
                       </div>
                       <div className="space-y-6 text-center">
                         <p className="text-[#00E5C0] font-black text-sm uppercase tracking-[0.8em] animate-pulse">
-                          Neural Reconstruct in Progress
+                          AI Analyzing the Problem
                         </p>
                         <div className="flex flex-col items-center gap-2">
                           <span className="text-zinc-700 font-black text-[10px] uppercase tracking-widest animate-shimmer">
                             Mapping Failed Platform Vector...
                           </span>
                           <span className="text-zinc-800 font-black text-[9px] uppercase tracking-[0.5em]">
-                            Establishing Correction Logic
+                            Building the Fix
                           </span>
                         </div>
                       </div>
@@ -410,10 +408,10 @@ export default function AIDoctorPage() {
                             </div>
                             <div className="space-y-1">
                               <h4 className="text-red-400 text-[11px] font-black uppercase tracking-[0.4em]">
-                                Root Cause Matrix
+                                Root Cause
                               </h4>
                               <p className="text-white text-xl font-black uppercase tracking-tighter italic">
-                                Vector Disruption Identified
+                                Found the Issue
                               </p>
                             </div>
                           </div>
@@ -429,10 +427,10 @@ export default function AIDoctorPage() {
                             </div>
                             <div className="space-y-1">
                               <h4 className="text-[#00E5C0] text-[11px] font-black uppercase tracking-[0.4em]">
-                                Neural Correction
+                                AI Fixing Plan
                               </h4>
                               <p className="text-white text-xl font-black uppercase tracking-tighter italic">
-                                Optimization Logic Verified
+                                Verified Solution
                               </p>
                             </div>
                           </div>
@@ -451,7 +449,7 @@ export default function AIDoctorPage() {
                             </div>
                             <div className="space-y-1 text-left">
                               <span className="text-[11px] font-black text-white uppercase tracking-[0.4em]">
-                                Reconstruction Blueprint
+                                AI Fix Result
                               </span>
                               <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest">
                                 Calculated Vector Offset: 14.2ms
@@ -469,7 +467,7 @@ export default function AIDoctorPage() {
                             <div className="flex items-center gap-4">
                               <div className="w-1.5 h-8 bg-red-500 rounded-full" />
                               <span className="text-[11px] text-red-500 font-black tracking-[0.4em] uppercase">
-                                Failed Flux State
+                                Failed Task Data
                               </span>
                             </div>
                             <pre className="font-mono text-[12px] text-zinc-600 overflow-x-auto custom-scrollbar p-10 bg-black/60 rounded-[2.5rem] border border-red-500/10 leading-relaxed italic shadow-inner min-h-[300px]">
@@ -481,7 +479,7 @@ export default function AIDoctorPage() {
                             <div className="flex items-center gap-4">
                               <div className="w-1.5 h-8 bg-[#00E5C0] rounded-full" />
                               <span className="text-[11px] text-[#00E5C0] font-black tracking-[0.4em] uppercase">
-                                Proposed Reconstruction
+                                Proposed Solution
                               </span>
                             </div>
                             <pre className="font-mono text-[12px] text-[#00E5C0] overflow-x-auto custom-scrollbar p-10 bg-white/[0.01] rounded-[2.5rem] border border-[#00E5C0]/20 leading-relaxed italic shadow-inner min-h-[300px] text-glow-teal">
@@ -502,7 +500,7 @@ export default function AIDoctorPage() {
                           <p className="text-white font-black text-5xl tracking-tighter leading-none uppercase">
                             {analysisResult.estimated_savings}{" "}
                             <span className="text-indigo-400 font-black text-2xl tracking-[0.2em] ml-4 opacity-40">
-                              ROI RECLAIM
+                              SAVINGS FOUND
                             </span>
                           </p>
                         </div>
@@ -523,7 +521,7 @@ export default function AIDoctorPage() {
                             ) : (
                               <Zap className="w-6 h-6 transition-transform group-hover/fix:scale-125 group-hover/fix:rotate-12" />
                             )}
-                            Execute Liquid Patch Injection
+                            Apply Fix Now
                           </button>
                         )}
                       </div>

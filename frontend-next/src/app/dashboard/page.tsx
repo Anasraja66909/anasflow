@@ -259,13 +259,13 @@ export default function DashboardOverview() {
                 Dashboard Overview
               </span>
             </div>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[1] md:leading-[0.85] break-words">
-              System{" "}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-black tracking-tighter text-white leading-[1] md:leading-[0.85] break-words">
+              Account{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Oversight.
+                Overview.
               </span>
             </h1>
-            <p className="text-zinc-500 text-base md:text-xl font-medium max-w-2xl leading-relaxed">
+            <p className="text-zinc-500 text-sm md:text-xl font-medium max-w-2xl leading-relaxed">
               {activeClientId
                 ? "Viewing metrics for selected client."
                 : "All your connected platforms and costs in one place."}
@@ -294,12 +294,12 @@ export default function DashboardOverview() {
           <div className="flex flex-col items-start xl:items-end gap-6">
             <button
               onClick={fetchAllData}
-              className="group relative flex items-center gap-4 bg-white text-black px-8 md:px-10 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2rem] font-black text-[10px] md:text-[11px] uppercase tracking-widest hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40 overflow-hidden w-full sm:w-auto justify-center"
+              className="group relative flex items-center gap-4 bg-white text-black px-6 md:px-10 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2rem] font-black text-[9px] md:text-[11px] uppercase tracking-widest hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl hover:shadow-[#00E5C0]/40 overflow-hidden w-full sm:w-auto justify-center"
             >
               <RefreshCw
                 className={`w-4 h-4 md:w-5 md:h-5 transition-transform duration-1000 ${loading ? "animate-spin" : "group-hover:rotate-180"}`}
               />
-              {loading ? "Loading..." : "Refresh"}
+              {loading ? "Loading..." : "Refresh Status"}
               <div className="absolute inset-x-0 bottom-0 h-1 bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
             </button>
           </div>
@@ -346,7 +346,7 @@ export default function DashboardOverview() {
             colorClass={{ bg: "bg-[#F59E0B]/10", icon: "text-[#F59E0B]" }}
           />
           <KpiCard
-            title="ROI Index"
+            title="Investment Value"
             value={loading ? "..." : `$${data?.roi?.toLocaleString() || "0"}`}
             subtext={{ highlight: "Value generated", normal: "" }}
             icon={Zap}
@@ -660,7 +660,7 @@ export default function DashboardOverview() {
                 <div className="absolute -top-10 -right-10 w-48 h-48 bg-white/30 blur-[60px] rounded-full animate-pulse" />
                 <div className="relative z-10 text-left">
                   <h3 className="font-black text-3xl text-black tracking-tighter mb-4">
-                    Neural ROI Report<span className="text-white">.</span>
+                    Investment Report<span className="text-white">.</span>
                   </h3>
                   <p className="text-sm text-black/60 font-semibold mb-10 leading-relaxed max-w-[240px]">
                     Export unified value metrics and ROI visualizations for

@@ -82,7 +82,7 @@ export default function WhiteLabelSettingsPage() {
       }
     } catch (err) {
       console.error("Failed to fetch branding settings", err);
-      toast.error("Telemetry Interruption.");
+      toast.error("Connection Error.");
     } finally {
       setLoading(false);
     }
@@ -125,15 +125,15 @@ export default function WhiteLabelSettingsPage() {
       );
 
       if (res.ok) {
-        toast.success("Identity Reconstructed.", {
-          description: "Global branding parameters have been synchronized.",
+        toast.success("Branding Saved.", {
+          description: "Your agency identity has been updated.",
         });
         fetchSettings();
       } else {
         toast.error("Transmission Failed.");
       }
     } catch (err) {
-      toast.error("Surgical Interruption.");
+      toast.error("Error Saving.");
     } finally {
       setSaving(false);
     }
@@ -154,7 +154,7 @@ export default function WhiteLabelSettingsPage() {
           </div>
         </div>
         <p className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.6em] animate-pulse">
-          Establishing Identity Sync
+          Updating Identity
         </p>
       </div>
     );
@@ -185,7 +185,7 @@ export default function WhiteLabelSettingsPage() {
                 <Sparkles className="w-5 h-5 text-[#00E5C0] relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-                Corporate Identity Architecture
+                Your Agency Branding
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85] uppercase">
@@ -195,15 +195,14 @@ export default function WhiteLabelSettingsPage() {
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-3xl leading-relaxed italic">
-              Command your agency's visual broadcast across all client
-              touchpoints and automated ROI whitepapers. Establishing
-              world-class authority.
+              Control your agency's branding across all client
+              reports and emails. Look professional and build trust.
             </p>
           </div>
           <div className="px-8 py-4 bg-zinc-950/40 backdrop-blur-[40px] border border-white/5 rounded-2xl flex items-center gap-4 shadow-2xl">
             <div className="w-2 h-2 bg-[#00E5C0] rounded-full shadow-[0_0_10px_#00E5C0] animate-pulse" />
             <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-              Global Identity Link Active
+              Branding Active
             </span>
           </div>
         </motion.div>
@@ -227,10 +226,10 @@ export default function WhiteLabelSettingsPage() {
                 </div>
                 <div className="space-y-1">
                   <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                    Identity Hub.
+                    Agency Details.
                   </h2>
                   <p className="text-[11px] text-zinc-700 font-black tracking-[0.4em] uppercase">
-                    Core Corporate Parameters
+                    Setup Your Company Branding
                   </p>
                 </div>
               </div>
@@ -238,7 +237,7 @@ export default function WhiteLabelSettingsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
                 <div className="space-y-4">
                   <label className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
-                    Legal Entity Signature
+                    Company Name
                   </label>
                   <div className="relative group/input">
                     <input
@@ -258,7 +257,7 @@ export default function WhiteLabelSettingsPage() {
                 </div>
                 <div className="space-y-4">
                   <label className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
-                    Master Support Node
+                    Support Email
                   </label>
                   <div className="relative group/input">
                     <Mail className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-800 pointer-events-none group-focus-within/input:text-indigo-400" />
@@ -293,10 +292,10 @@ export default function WhiteLabelSettingsPage() {
                 </div>
                 <div className="space-y-1">
                   <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                    Neural Spectrum.
+                    Branding Options.
                   </h2>
                   <p className="text-[11px] text-zinc-700 font-black tracking-[0.4em] uppercase">
-                    Visual Transmission Layer
+                    Define Your Visual Identity
                   </p>
                 </div>
               </div>
@@ -305,7 +304,7 @@ export default function WhiteLabelSettingsPage() {
                 {/* Media Archive zone */}
                 <div className="space-y-6 w-full 2xl:w-fit">
                   <label className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
-                    Master Logotype Asset
+                    Agency Logo
                   </label>
                   <div className="flex flex-col sm:flex-row items-center gap-10">
                     <div className="w-40 h-40 rounded-[2.5rem] bg-zinc-900 border border-white/5 flex items-center justify-center overflow-hidden relative group/upload shadow-inner">
@@ -339,7 +338,7 @@ export default function WhiteLabelSettingsPage() {
                         onClick={() => fileInputRef.current?.click()}
                         className="px-10 py-5 rounded-2xl bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#00E5C0] transition-all duration-700 shadow-2xl"
                       >
-                        Update Identity Asset
+                        Upload Logo
                       </button>
                       <p className="text-[10px] font-black text-zinc-800 uppercase tracking-widest leading-relaxed">
                         MAX 2MB / PNG-SVG / RATIO 1:1 REQ.
@@ -351,7 +350,7 @@ export default function WhiteLabelSettingsPage() {
                 {/* Spectral Hub */}
                 <div className="space-y-6 flex-1 w-full">
                   <label className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
-                    Primary Flux Chromatic
+                    Primary Brand Color
                   </label>
                   <div className="flex items-center gap-8 bg-black/40 p-5 rounded-[2.5rem] border border-white/5 shadow-inner hover:bg-black transition-all">
                     <div
@@ -399,10 +398,10 @@ export default function WhiteLabelSettingsPage() {
             >
               <div className="text-right hidden sm:block">
                 <p className="text-[10px] text-zinc-800 font-black uppercase tracking-[0.4em]">
-                  Node Sync Pending Approval
+                  Sync Status: Ready
                 </p>
                 <p className="text-sm font-black text-zinc-600 italic">
-                  Parameters locked in tactical buffer
+                  Save to apply changes
                 </p>
               </div>
               <button
@@ -415,7 +414,7 @@ export default function WhiteLabelSettingsPage() {
                 ) : (
                   <Save className="w-6 h-6 transition-transform group-hover/save:scale-125" />
                 )}
-                {saving ? "Transmitting..." : "Establish Global Branding"}
+                {saving ? "Saving..." : "Save Branding Settings"}
               </button>
             </motion.div>
           </div>
@@ -428,12 +427,12 @@ export default function WhiteLabelSettingsPage() {
             <div className="sticky top-12 space-y-12">
               <div className="flex items-center justify-between">
                 <h3 className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.5em] flex items-center gap-4">
-                  <Eye className="w-5 h-5" /> Neural Live Preview
+                  <Eye className="w-5 h-5" /> Live Preview
                 </h3>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_10px_red] animate-pulse" />
                   <span className="text-[9px] font-black text-zinc-800 uppercase tracking-[0.3em]">
-                    Master Render
+                    Email & Report Template
                   </span>
                 </div>
               </div>
@@ -451,13 +450,13 @@ export default function WhiteLabelSettingsPage() {
                 >
                   <div className="space-y-4 text-left">
                     <p className="text-[11px] font-black text-zinc-300 tracking-[0.4em] uppercase leading-none">
-                      High Fidelity ROI Intelligence
+                      Professional AI Performance Report
                     </p>
                     <h4
                       className="text-5xl font-black leading-none uppercase tracking-tighter"
                       style={{ color: settings.primary_color }}
                     >
-                      {settings.company_name || "Strategic Hub"}
+                      {settings.company_name || "Your Agency"}
                     </h4>
                   </div>
                   <div className="w-24 h-24 bg-zinc-50 rounded-[2rem] flex items-center justify-center overflow-hidden shadow-inner border border-zinc-100 p-4">
@@ -510,7 +509,7 @@ export default function WhiteLabelSettingsPage() {
 
                   <div className="pt-20 mt-20 border-t-4 border-zinc-100 flex flex-col gap-6">
                     <p className="text-[11px] text-zinc-400 uppercase font-black tracking-[0.5em] leading-none">
-                      Security Node Handshake
+                      Contact Support
                     </p>
                     <p
                       className="text-lg font-black text-zinc-800 truncate underline decoration-8 underline-offset-8 decoration-zinc-100 hover:decoration-4 transition-all"
@@ -528,7 +527,7 @@ export default function WhiteLabelSettingsPage() {
                   <div className="flex items-center gap-3">
                     <Terminal className="w-3 h-3 text-zinc-300" />
                     <span className="text-[9px] font-black text-zinc-300 uppercase tracking-[0.4em]">
-                      AnasFlow Master Render v4.2
+                      AnasFlow Report Engine v4.2
                     </span>
                   </div>
                   <div

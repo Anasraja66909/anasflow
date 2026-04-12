@@ -33,6 +33,18 @@ const itemVariants = {
 };
 
 const Problems = () => {
+  const [isDark, setIsDark] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   const problems = [
     {
       icon: Layers,
@@ -69,10 +81,14 @@ const Problems = () => {
   ];
 
   return (
-    <section className="py-16 md:py-32 bg-black relative overflow-hidden border-t border-white/5">
+    <section className={`py-16 md:py-32 relative overflow-hidden border-t transition-colors duration-500 ${
+      isDark ? "bg-black border-white/5" : "bg-white border-red-100/50"
+    }`}>
       {/* Background Pain Pulse */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[1000px] h-[300px] md:h-[400px] bg-red-500/5 blur-[100px] md:blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
+      <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[1000px] h-[300px] md:h-[400px] blur-[100px] md:blur-[160px] rounded-full pointer-events-none transition-colors ${
+        isDark ? "bg-red-500/5" : "bg-red-500/10"
+      }`} />
+      <div className={`absolute inset-0 bg-[url('/grid.svg')] bg-center pointer-events-none ${isDark ? "opacity-[0.02]" : "opacity-[0.03]"}`} />
 
       <div className="max-w-screen-2xl mx-auto px-6 md:px-8 relative z-10">
         <motion.div
@@ -86,28 +102,38 @@ const Problems = () => {
             variants={itemVariants}
             className="flex items-center gap-4"
           >
-            <div className="w-10 h-10 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-center relative group overflow-hidden">
+            <div className={`w-10 h-10 border rounded-xl flex items-center justify-center relative group overflow-hidden transition-all ${
+              isDark ? "bg-red-500/10 border-red-500/20" : "bg-red-50 border-red-200"
+            }`}>
               <div className="absolute inset-0 bg-red-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
-              <ShieldAlert className="w-5 h-5 text-red-400 relative z-10" />
+              <ShieldAlert className="w-5 h-5 text-red-500 relative z-10" />
             </div>
-            <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-red-500/60">
+            <span className={`text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] ${
+              isDark ? "text-red-500/60" : "text-red-600"
+            }`}>
               The Real Problems
             </span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-7xl xl:text-[90px] font-black tracking-tighter text-white leading-[1] md:leading-[0.9] uppercase break-words"
+            className={`text-4xl sm:text-5xl lg:text-7xl xl:text-[90px] font-black tracking-tighter leading-[1] md:leading-[0.9] uppercase break-words transition-colors ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
           >
             Managing <br className="hidden lg:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-zinc-400 to-zinc-800">
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${
+              isDark ? "from-red-500 via-zinc-400 to-zinc-800" : "from-red-600 via-red-400 to-slate-400"
+            }`}>
               AI is Hard.
             </span>
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-2xl text-zinc-600 max-w-3xl font-medium leading-relaxed italic"
+            className={`text-lg md:text-2xl max-w-3xl font-medium leading-relaxed italic transition-colors ${
+              isDark ? "text-zinc-600" : "text-slate-500"
+            }`}
           >
             Most agencies don't know where their money goes. Every new tool you
             add makes costs harder to control and track.
@@ -125,25 +151,41 @@ const Problems = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-10 flex flex-col items-start gap-8 md:gap-10 group transition-all duration-700 hover:bg-zinc-900/40 hover:border-red-500/20 cursor-default shadow-3xl hover:-translate-y-2 md:hover:-translate-y-4"
+              className={`backdrop-blur-[60px] border rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-10 flex flex-col items-start gap-8 md:gap-10 group transition-all duration-700 cursor-default shadow-3xl hover:-translate-y-2 md:hover:-translate-y-4 ${
+                isDark 
+                  ? "bg-zinc-950/40 border-white/5 hover:bg-zinc-900/40 hover:border-red-500/20" 
+                  : "bg-white/60 border-red-100 hover:bg-white hover:border-red-400/50 hover:shadow-red-50"
+              }`}
             >
               <div className="w-full flex justify-between items-start">
                 <div
-                  className={`p-5 rounded-2xl bg-zinc-900 border border-white/5 group-hover:${item.accent} group-hover:border-red-500/20 transition-all duration-700`}
+                  className={`p-5 rounded-2xl border transition-all duration-700 ${
+                    isDark 
+                      ? "bg-zinc-900 border-white/5 group-hover:bg-red-500/10 group-hover:border-red-500/20" 
+                      : "bg-red-50 border-red-100 group-hover:bg-red-100 group-hover:border-red-200"
+                  }`}
                 >
                   <item.icon
-                    className={`w-6 h-6 ${item.color} group-hover:scale-110 transition-transform duration-700`}
+                    className={`w-6 h-6 transition-transform duration-700 group-hover:scale-110 ${
+                      isDark ? item.color : "text-red-600"
+                    }`}
                   />
                 </div>
-                <span className="text-[10px] font-black text-zinc-800 uppercase tracking-widest leading-none mt-2">
+                <span className={`text-[10px] font-black uppercase tracking-widest leading-none mt-2 transition-colors ${
+                  isDark ? "text-zinc-800" : "text-red-200"
+                }`}>
                   {item.label}
                 </span>
               </div>
               <div className="space-y-4 text-left">
-                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter leading-none group-hover:text-red-500 transition-colors duration-700">
+                <h3 className={`text-2xl md:text-3xl font-black uppercase tracking-tighter leading-none transition-colors duration-700 ${
+                  isDark ? "text-white group-hover:text-red-500" : "text-slate-900 group-hover:text-red-600"
+                }`}>
                   {item.title}
                 </h3>
-                <p className="text-zinc-600 text-base md:text-lg font-medium leading-relaxed italic group-hover:text-zinc-400 transition-colors duration-700">
+                <p className={`text-base md:text-lg font-medium leading-relaxed italic transition-colors duration-700 ${
+                  isDark ? "text-zinc-600 group-hover:text-zinc-400" : "text-slate-500 group-hover:text-slate-700"
+                }`}>
                   {item.desc}
                 </p>
               </div>

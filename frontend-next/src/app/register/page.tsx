@@ -16,6 +16,7 @@ import {
   Mail,
   Briefcase,
   PlusCircle,
+  Terminal,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -73,7 +74,6 @@ export default function RegisterPage() {
       toast.success("Account created! Welcome to AnasFlow.");
       router.push("/dashboard");
     } catch (err: any) {
-      // Demo mode: if backend is not available, create a local demo session
       const errMsg = err?.message || "";
       if (
         errMsg.includes("fetch") ||
@@ -83,7 +83,6 @@ export default function RegisterPage() {
         errMsg.toLowerCase().includes("load") ||
         errMsg.toLowerCase().includes("connect")
       ) {
-        // Backend not available - enter demo mode
         const demoUser = { id: "demo-" + Date.now(), email, full_name: name };
         localStorage.setItem("demo_user", JSON.stringify(demoUser));
         localStorage.setItem("demo_mode", "true");
@@ -98,21 +97,21 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-6 relative overflow-hidden selection:bg-[#00E5C0]/30 selection:text-black">
-      {/* Immersive Background Architecture */}
-      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-indigo-600/5 blur-[150px] rounded-full pointer-events-none animate-pulse" />
+    <div className="min-h-screen bg-black flex items-center justify-center p-4 md:p-10 relative overflow-hidden selection:bg-[#00E5C0]/30 selection:text-white">
+      {/* Immersive Background Architecture (Dark) */}
+      <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#00E5C0]/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.05] pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] pointer-events-none" />
 
-      {/* Floating Logo */}
+      {/* Responsive Logo Container */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="absolute top-12 left-12 z-50"
+        className="fixed top-8 left-8 md:top-12 md:left-12 z-50"
       >
-        <Link href="/" className="flex items-center gap-4 group">
-          <div className="relative w-12 h-12 shrink-0 transition-transform group-hover:scale-110">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 shrink-0 transition-transform group-hover:scale-110">
             <Image
               src="/logo.png"
               alt="AnasFlow Logo"
@@ -121,7 +120,7 @@ export default function RegisterPage() {
               priority
             />
           </div>
-          <span className="text-2xl font-black tracking-tighter text-zinc-900">
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-white">
             AnasFlow<span className="text-[#00E5C0]">.</span>
           </span>
         </Link>
@@ -132,43 +131,43 @@ export default function RegisterPage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-7xl relative z-10 flex flex-col lg:flex-row-reverse gap-12 items-center"
+        className="w-full max-w-7xl relative z-10 flex flex-col lg:flex-row-reverse gap-12 lg:gap-20 items-center justify-center pt-24 lg:pt-0"
       >
-        {/* Right Side: Dramatic Narrative */}
+        {/* Right Side: Narrative (Desktop Only) */}
         <motion.div
           variants={itemVariants}
-          className="flex-1 text-left space-y-8 hidden lg:block"
+          className="flex-1 text-left space-y-10 hidden lg:block"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-[#00E5C0]/10 border border-[#00E5C0]/20 rounded-xl flex items-center justify-center">
-              <PlusCircle className="w-5 h-5 text-[#00E5C0]" />
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-indigo-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
+              <Terminal className="w-5 h-5 text-indigo-400 relative z-10" />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#00E5C0]">
-              Initial Handshake Protocol
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-indigo-400">
+              User Account Setup
             </span>
           </div>
-          <h1 className="text-8xl xl:text-9xl font-black text-zinc-900 tracking-tighter leading-[0.85] mb-8">
-            Generate <br />{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-500 to-zinc-300">
-              Identity.
+          <h1 className="text-8xl xl:text-9xl font-black text-white tracking-tighter leading-[0.85]">
+            Join <br />{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-700">
+              AnasFlow.
             </span>
           </h1>
           <p className="text-zinc-500 text-xl font-medium leading-relaxed max-w-md">
-            Establish your agency node. Unlock full-spectrum cost intelligence
-            and holographic ROI reporting for your clients.
+            Create your agency account. Track all your AI costs and generate professional PDF reports for 50+ platforms.
           </p>
 
-          <div className="pt-12 space-y-6">
+          <div className="pt-8 space-y-6">
             {[
-              { label: "Neural Account Generation", icon: Command },
-              { label: "ROI Vector Verification", icon: Sparkles },
-              { label: "Omni-Channel Activation", icon: Zap },
+              { label: "1-Click Tool Connecting", icon: Command },
+              { label: "Accurate Profit Tracking", icon: Sparkles },
+              { label: "Free Automated Reports", icon: Zap },
             ].map((feature, i) => (
               <div key={i} className="flex items-center gap-4 group">
-                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center group-hover:border-[#00E5C0]/40 transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center group-hover:border-[#00E5C0]/40 transition-colors shadow-2xl">
                   <feature.icon className="w-3.5 h-3.5 text-zinc-600 group-hover:text-[#00E5C0]" />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 group-hover:text-zinc-200 transition-colors">
                   {feature.label}
                 </span>
               </div>
@@ -176,76 +175,76 @@ export default function RegisterPage() {
           </div>
         </motion.div>
 
-        {/* Left Side: The Glass Form */}
+        {/* Left Side: Premium Glass Form */}
         <motion.div
           variants={itemVariants}
-          className="w-full lg:w-[500px] bg-white/80 backdrop-blur-[60px] border border-zinc-100 rounded-[4rem] p-10 md:p-14 shadow-[0_50px_200px_rgba(0,0,0,0.1)] relative overflow-hidden"
+          className="w-full max-w-[540px] bg-black/40 backdrop-blur-3xl border border-white/5 rounded-[3rem] p-8 md:p-14 shadow-[0_50px_200px_rgba(0,0,0,0.4)] relative overflow-hidden group/card"
         >
-          {/* Subtle Accent Glows inside the card */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-600/5 blur-[80px] rounded-full pointer-events-none" />
+          {/* Subtle Glow inside the card */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
 
-          <div className="relative z-10 space-y-10">
+          <div className="relative z-10 space-y-12">
             <div className="text-left space-y-4">
-              <h2 className="text-5xl font-black text-zinc-900 tracking-tighter">
+              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-none">
                 Sign Up<span className="text-[#00E5C0]">.</span>
               </h2>
-              <p className="text-sm text-zinc-500 font-medium">
-                Create your account in just a few seconds.
+              <p className="text-sm text-zinc-500 font-bold uppercase tracking-widest">
+                Create your account in seconds
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-6">
                 {/* Full Name */}
-                <div className="space-y-2.5">
-                  <label className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] ml-2">
-                    Your Name
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
+                    Full Name
                   </label>
-                  <div className="relative group">
-                    <Briefcase className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-700 group-focus-within:text-[#00E5C0] transition-colors" />
+                  <div className="relative group/input">
+                    <User className="absolute left-6 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-zinc-700 group-focus-within/input:text-[#00E5C0] transition-colors" />
                     <input
                       type="text"
-                      placeholder="John Doe"
+                      placeholder="Enter full name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium"
+                      className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-[1.5rem] px-8 py-5 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/10 focus:border-[#00E5C0]/40 transition-all placeholder:text-zinc-700 font-bold"
                     />
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="space-y-2.5">
-                  <label className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] ml-2">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
                     Email Address
                   </label>
-                  <div className="relative group">
-                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-700 group-focus-within:text-[#00E5C0] transition-colors" />
+                  <div className="relative group/input">
+                    <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-zinc-700 group-focus-within/input:text-[#00E5C0] transition-colors" />
                     <input
                       type="email"
-                      placeholder="admin@youragency.com"
+                      placeholder="admin@agency.app"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium"
+                      className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-[1.5rem] px-8 py-5 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/10 focus:border-[#00E5C0]/40 transition-all placeholder:text-zinc-700 font-bold"
                     />
                   </div>
                 </div>
 
                 {/* Password */}
-                <div className="space-y-2.5">
-                  <label className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] ml-2">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
                     Password
                   </label>
-                  <div className="relative group">
-                    <Lock className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-700 group-focus-within:text-[#00E5C0] transition-colors" />
+                  <div className="relative group/input">
+                    <Lock className="absolute left-6 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-zinc-700 group-focus-within/input:text-[#00E5C0] transition-colors" />
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-zinc-50 border border-zinc-100 text-zinc-900 text-sm rounded-[1.5rem] px-6 py-4 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/5 focus:border-[#00E5C0]/30 transition-all placeholder:text-zinc-400 font-medium font-mono tracking-[0.3em]"
+                      className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-[1.5rem] px-8 py-5 pl-14 focus:outline-none focus:ring-4 focus:ring-[#00E5C0]/10 focus:border-[#00E5C0]/40 transition-all placeholder:text-zinc-700 font-black tracking-widest"
                     />
                     <button
                       type="button"
@@ -266,27 +265,27 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-zinc-900 text-white font-black text-[11px] uppercase tracking-[0.3em] py-6 rounded-[1.5rem] mt-4 transition-all shadow-2xl hover:bg-[#00E5C0] hover:text-black hover:scale-[1.02] active:scale-95 disabled:opacity-50 group"
+                className="w-full bg-white text-black font-black text-[11px] uppercase tracking-[0.4em] py-6 rounded-[1.5rem] mt-6 transition-all shadow-2xl hover:bg-[#00E5C0] hover:scale-[1.02] active:scale-95 disabled:opacity-50 group flex items-center justify-center gap-3"
               >
                 {loading ? (
-                  <RefreshCw className="w-5 h-5 animate-spin mx-auto" />
+                  <RefreshCw className="w-5 h-5 animate-spin" />
                 ) : (
-                  <div className="flex items-center justify-center gap-3">
-                    Create My Account
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <>
+                    Create Account
+                    <ArrowRight className="w-4.5 h-4.5 transition-transform group-hover:translate-x-1" />
+                  </>
                 )}
               </button>
             </form>
 
-            <div className="pt-6 border-t border-white/5 space-y-6">
-              <p className="text-center text-[11px] font-black tracking-widest uppercase text-zinc-600">
-                Already have an account?{" "}
+            <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-4">
+              <p className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-700">
+                Already part of the network?{" "}
                 <Link
                   href="/login"
-                  className="text-[#00E5C0] hover:text-[#00ffd6] transition-colors"
+                  className="text-[#00E5C0] hover:text-white transition-colors ml-2"
                 >
-                  Sign In
+                  Login Now
                 </Link>
               </p>
             </div>

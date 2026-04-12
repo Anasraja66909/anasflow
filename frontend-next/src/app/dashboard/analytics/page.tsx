@@ -77,19 +77,18 @@ export default function AnalyticsPage() {
                 <Activity className="w-5 h-5 text-indigo-400 relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Strategic Intelligence Hub
+                Growth & Insights Center
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
-              Neural{" "}
+              Business{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Analytics.
+                Insights.
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-3xl leading-relaxed">
-              Uncovering actionable growth vectors and optimizing operational
-              throughput through a multi-layered neural diagnostic engine.
-              Establish your ROI baseline.
+              Find simple ways to grow your business and improve performance
+              using our AI-powered analysis tools. See how much you can save.
             </p>
           </div>
         </motion.div>
@@ -121,7 +120,7 @@ export default function AnalyticsPage() {
                     Impact Projection
                   </h3>
                   <p className="text-[10px] text-zinc-700 font-black tracking-widest uppercase ml-0.5">
-                    Neural Flux Horizon
+                    Optimization Forecast
                   </p>
                 </div>
                 <div className="w-12 h-12 rounded-2xl bg-[#00E5C0]/10 border border-[#00E5C0]/20 flex items-center justify-center">
@@ -192,7 +191,7 @@ export default function AnalyticsPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="bg-black/40 rounded-[2rem] p-8 border border-white/5 hover:border-white/10 transition-all group/stat">
                   <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.2em] mb-3">
-                    Base Latency
+                    Current Cost
                   </p>
                   <p className="text-3xl font-black text-zinc-500 group-hover:text-white transition-colors">
                     $1,075
@@ -200,7 +199,7 @@ export default function AnalyticsPage() {
                 </div>
                 <div className="bg-[#00E5C0]/5 rounded-[2rem] p-8 border border-[#00E5C0]/20 hover:bg-[#00E5C0]/10 transition-all group/target">
                   <p className="text-[10px] text-[#00E5C0] font-black uppercase tracking-[0.2em] mb-3">
-                    Target Node
+                    Goal Savings
                   </p>
                   <p className="text-3xl font-black text-[#00E5C0] group-hover:scale-105 transition-transform origin-left text-glow-teal">
                     $865
@@ -223,17 +222,17 @@ export default function AnalyticsPage() {
 
                 <div className="space-y-4">
                   <h2 className="text-4xl font-black text-white tracking-tighter leading-none">
-                    Execute Plan.
+                    Take Action.
                   </h2>
                   <p className="text-[11px] text-indigo-100/60 font-black tracking-[0.4em] uppercase leading-relaxed">
-                    Request Neural Injection
+                    Improve Your Performance
                   </p>
                 </div>
 
                 <div className="space-y-4 px-6">
                   {[
-                    { t: "No Downtime Protocol", i: ShieldCheck },
-                    { t: "24h Rapid Integration", i: Clock },
+                    { t: "Safe Integration", i: ShieldCheck },
+                    { t: "Fast 24h Setup", i: Clock },
                   ].map((item, idx) => (
                     <div
                       key={idx}
@@ -249,7 +248,7 @@ export default function AnalyticsPage() {
 
                 <button className="w-full bg-white text-black py-7 px-10 rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.3em] transition-all duration-700 active:scale-[0.98] shadow-2xl hover:shadow-white/20 flex items-center justify-center gap-4 group/btn hover:bg-[#00E5C0]">
                   <Mail className="w-5 h-5 transition-transform group-hover/btn:scale-125" />
-                  Initiate Expert Audit
+                  Talk to an Expert
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
                 </button>
               </div>

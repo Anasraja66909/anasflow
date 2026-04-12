@@ -77,7 +77,7 @@ const PLANS = [
     name: "Starter",
     price: 29,
     priceYearly: 279,
-    desc: "Perfect for single agency founders establishing their neural footprint.",
+    desc: "Perfect for single founders establishing their online presence.",
     clients: "5",
     platforms: "3",
     aiDoctor: "$4.99/fix",
@@ -88,7 +88,7 @@ const PLANS = [
     name: "Agency",
     price: 79,
     priceYearly: 759,
-    desc: "Surgical scaling for professional automation teams.",
+    desc: "Advanced tools for professional automation teams.",
     badge: "Most Popular",
     clients: "25",
     platforms: "Unlimited",
@@ -102,7 +102,7 @@ const PLANS = [
     name: "Pro",
     price: 199,
     priceYearly: 1909,
-    desc: "Enterprise intelligence & wide-spectrum ROI telemetry.",
+    desc: "Complete agency tools with advanced reporting and tracking.",
     clients: "100+",
     platforms: "Unlimited",
     aiDoctor: "Unlimited",
@@ -170,7 +170,7 @@ export default function PremiumBillingPage() {
       setUsage(usData.usage);
     } catch (err) {
       console.error(err);
-      toast.error("Telemetry Refused.");
+      toast.error("Connection failed.");
     } finally {
       setLoading(false);
     }
@@ -191,7 +191,7 @@ export default function PremiumBillingPage() {
           </div>
         </div>
         <p className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.6em] animate-pulse leading-none">
-          Establishing Financial Handshake
+          Setting up your Secure Account
         </p>
       </div>
     );
@@ -222,7 +222,7 @@ export default function PremiumBillingPage() {
                 <Signal className="w-5 h-5 text-indigo-400 relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Economic Oversight Center
+                Billing & Subscription
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
@@ -232,9 +232,7 @@ export default function PremiumBillingPage() {
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-3xl leading-relaxed">
-              Orchestrating your agency's economic trajectory with
-              professional-grade telemetry and unlimited neural reconstruction
-              protocols.
+              Managing your agency's growth with professional tools and unlimited automation support.
             </p>
           </div>
 
@@ -295,17 +293,17 @@ export default function PremiumBillingPage() {
                   <div className="space-y-8 mb-20 text-left">
                     {[
                       {
-                        lbl: "Client Entities",
+                        lbl: "Clients",
                         val: plan.clients,
                         icon: Users,
                       },
                       {
-                        lbl: "Platform Nodes",
+                        lbl: "Platforms",
                         val: plan.platforms,
                         icon: Layers,
                       },
                       {
-                        lbl: "AI Dr. Extractions",
+                        lbl: "AI Doctor Fixes",
                         val: plan.aiDoctor,
                         icon: Bot,
                       },
@@ -355,10 +353,10 @@ export default function PremiumBillingPage() {
             </div>
             <div className="space-y-2">
               <h2 className="text-4xl font-black text-white tracking-tighter uppercase leading-none">
-                Capability Matrix<span className="text-[#00E5C0]">.</span>
+                Plan Comparison<span className="text-[#00E5C0]">.</span>
               </h2>
               <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                Consolidated Feature Access Ledger
+                Complete Feature List
               </p>
             </div>
           </div>
@@ -368,7 +366,7 @@ export default function PremiumBillingPage() {
               <thead>
                 <tr className="border-b border-white/5 bg-black/40">
                   <th className="px-16 py-12 text-[11px] font-black text-zinc-600 uppercase tracking-[0.5em]">
-                    Neural Feature Node
+                    Feature Details
                   </th>
                   <th className="px-16 py-12 text-[11px] font-black text-white uppercase tracking-[0.5em] text-center">
                     Starter
@@ -441,10 +439,10 @@ export default function PremiumBillingPage() {
             <div className="flex items-center justify-between relative z-10">
               <div className="space-y-2">
                 <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
-                  Neural Capacity<span className="text-indigo-400">.</span>
+                  Usage Limits<span className="text-indigo-400">.</span>
                 </h3>
                 <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                  Resource Utilization Pulse
+                  Resource Usage Tracking
                 </p>
               </div>
               <Link
@@ -458,14 +456,14 @@ export default function PremiumBillingPage() {
             <div className="space-y-16 relative z-10">
               {[
                 {
-                  lbl: "Managed Partner Entities",
+                  lbl: "Current Clients",
                   used: usage?.clients?.used || 0,
                   limit: usage?.clients?.limit || 0,
                   color: "bg-indigo-500",
                   glow: "shadow-[0_0_20px_rgba(99,102,241,0.4)]",
                 },
                 {
-                  lbl: "Active Neural Automations",
+                  lbl: "Active Automations",
                   used: usage?.automations?.used || 0,
                   limit: usage?.automations?.limit || 0,
                   color: "bg-[#00E5C0]",
@@ -497,7 +495,7 @@ export default function PremiumBillingPage() {
                         </div>
                       </div>
                       <span className="text-[11px] font-black text-zinc-800 uppercase tracking-widest bg-white/[0.02] px-4 py-2 rounded-full border border-white/5">
-                        {pct}% LOAD
+                        {pct}% USED
                       </span>
                     </div>
                     <div className="h-4 bg-black/60 rounded-full overflow-hidden border border-white/5 shadow-inner p-1">
@@ -530,7 +528,7 @@ export default function PremiumBillingPage() {
               <div className="px-8 py-3 bg-black/40 border border-white/5 rounded-2xl flex items-center gap-4 backdrop-blur-2xl shadow-xl">
                 <div className="w-2 h-2 bg-[#00E5C0] rounded-full animate-ping shadow-[0_0_15px_#00E5C0]" />
                 <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.5em]">
-                  Linked Protocol Verified
+                  Card Verified
                 </span>
               </div>
             </div>
@@ -542,7 +540,7 @@ export default function PremiumBillingPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-10">
                 <div className="space-y-2">
                   <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                    Corporate Entity Pulse
+                    Account Information
                   </p>
                   <p className="text-sm font-black text-zinc-500 uppercase tracking-widest">
                     Expires {paymentMethods[0]?.exp_month || "01"}/
@@ -552,10 +550,10 @@ export default function PremiumBillingPage() {
                 <div className="hidden sm:block w-px h-10 bg-white/[0.05] rounded-full" />
                 <div className="space-y-2">
                   <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                    Vault Type Identity
+                    Payment Method
                   </p>
                   <p className="text-sm font-black text-zinc-500 uppercase tracking-widest">
-                    VISA MASTER_EXPORT
+                    VISA MASTERCARD
                   </p>
                 </div>
               </div>
@@ -564,7 +562,7 @@ export default function PremiumBillingPage() {
             <div className="flex flex-col sm:flex-row items-end sm:items-center justify-between pt-16 border-t border-white/5 gap-12 relative z-10">
               <div className="space-y-3 text-left w-full sm:w-auto">
                 <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                  Settlement Balance
+                  Current Balance
                 </p>
                 <p className="text-6xl font-black text-white tracking-tighter leading-none">
                   ${overview?.amount_due || "0.00"}
@@ -572,7 +570,7 @@ export default function PremiumBillingPage() {
               </div>
               <button className="w-full sm:w-fit px-12 py-8 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:shadow-[#00E5C0]/40 flex items-center justify-center gap-4 group/btn">
                 <Shield className="w-5 h-5 transition-transform group-hover/btn:scale-110" />
-                Update Hub
+                Update Payment
               </button>
             </div>
           </motion.div>

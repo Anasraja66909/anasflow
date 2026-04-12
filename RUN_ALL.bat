@@ -1,5 +1,5 @@
 @echo off
-cd /d c:\anasflow-complete\frontend-next
+cd /d "%~dp0frontend-next"
 start npm run dev
-cd /d c:\anasflow-complete\backend
+cd /d "%~dp0backend"
 start python app/main.py

@@ -20,7 +20,11 @@ import {
   CreditCard,
   HelpCircle,
   Sparkles,
+  Menu,
+  X,
+  Terminal,
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -123,7 +127,7 @@ function ClientSwitcher() {
   );
 }
 
-function TopNav() {
+function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
   const { user } = useAuth();
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -149,25 +153,33 @@ function TopNav() {
   };
 
   return (
-    <div className="h-16 border-b border-white/10 bg-black/80 backdrop-blur-md fixed top-0 w-full z-50 flex items-center justify-between px-6 text-white shadow-sm">
-      {/* Left: Brand */}
-      <div className="flex items-center gap-3 shrink-0">
-        <div className="relative w-8 h-8 shrink-0">
-          <Image
-            src="/logo.png"
-            alt="AnasFlow Logo"
-            fill
-            className="object-contain drop-shadow-[0_0_8px_rgba(0,229,192,0.4)]"
-            priority
-          />
-        </div>
-        <span className="font-bold tracking-tight text-xl text-white">
-          AnasFlow
-        </span>
+    <div className="h-16 border-b border-white/[0.07] bg-[hsl(224,45%,5%)]/90 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-4 md:px-6 text-white shadow-[0_1px_40px_rgba(0,0,0,0.5)]">
+      {/* Left: Brand & Hamburger */}
+      <div className="flex items-center gap-2 md:gap-4 shrink-0">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 hover:bg-zinc-900 rounded-lg transition-colors border border-white/5 mr-1"
+        >
+          <Menu className="w-5 h-5 text-white" />
+        </button>
+        <Link href="/" className="flex items-center gap-2 md:gap-3 shrink-0">
+          <div className="relative w-7 h-7 md:w-8 md:h-8 shrink-0">
+            <Image
+              src="/logo.png"
+              alt="AnasFlow Logo"
+              fill
+              className="object-contain drop-shadow-[0_0_8px_rgba(0,229,192,0.4)]"
+              priority
+            />
+          </div>
+          <span className="font-bold tracking-tight text-lg md:text-xl text-white">
+            AnasFlow
+          </span>
+        </Link>
       </div>
 
-      {/* Center: Search */}
-      <div className="flex-1 flex justify-center px-6">
+      {/* Center: Search (Hidden on smaller mobile) */}
+      <div className="flex-1 hidden md:flex justify-center px-6">
         <div className="relative w-full max-w-md group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 transition-colors group-focus-within:text-white" />
           <input
@@ -179,10 +191,9 @@ function TopNav() {
       </div>
 
       {/* Right: Actions & Profile */}
-      <div className="flex items-center gap-4 shrink-0 justify-end">
+      <div className="flex items-center gap-2 md:gap-4 shrink-0 justify-end">
         <div className="hidden md:flex items-center gap-4">
           <ClientSwitcher />
-
           <div className="px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[10px] uppercase tracking-widest font-bold whitespace-nowrap">
             Pro Plan
           </div>
@@ -190,23 +201,15 @@ function TopNav() {
 
         <NotificationDropdown />
 
-        <Link
-          href="/dashboard/help"
-          className="text-zinc-400 hover:text-white p-1.5 rounded-md hover:bg-zinc-900 transition-colors"
-          title="Help Center"
-        >
-          <HelpCircle className="w-5 h-5" />
-        </Link>
-
         <div className="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
 
         {/* Profile Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-3 hover:bg-zinc-900 p-1.5 pr-2 rounded-lg transition-all group"
+            className="flex items-center gap-2 md:gap-3 hover:bg-zinc-900 p-1 md:p-1.5 md:pr-2 rounded-lg transition-all group"
           >
-            <Avatar className="w-8 h-8 border border-white/10 bg-black">
+            <Avatar className="w-7 h-7 md:w-8 md:h-8 border border-white/10 bg-black">
               <AvatarFallback className="text-xs bg-black text-white font-medium">
                 {user?.full_name
                   ? user.full_name
@@ -219,11 +222,11 @@ function TopNav() {
               </AvatarFallback>
             </Avatar>
             <span className="hidden sm:block text-sm font-medium text-white whitespace-nowrap truncate max-w-[140px]">
-              {user?.full_name || "My Account"}
+              {user?.full_name || "Account"}
             </span>
             <ChevronDown
               className={
-                "w-4 h-4 hidden sm:block transition-transform duration-200 " +
+                "w-3 h-3 hidden sm:block transition-transform duration-200 " +
                 (dropdownOpen ? "rotate-180 text-white" : "text-zinc-500")
               }
             />
@@ -231,7 +234,7 @@ function TopNav() {
 
           {dropdownOpen && (
             <div className="absolute right-0 top-full mt-2 w-56 bg-zinc-950 border border-white/10 rounded-xl shadow-2xl shadow-black/60 overflow-hidden z-50">
-              <div className="px-4 py-3 border-b border-white/5">
+              <div className="px-4 py-3 border-b border-white/5 bg-zinc-900/50">
                 <p className="text-sm font-bold text-white truncate">
                   {user?.full_name || "AnasFlow User"}
                 </p>
@@ -248,14 +251,16 @@ function TopNav() {
                   <User className="w-4 h-4 text-zinc-500" />
                   My Profile
                 </Link>
-                <Link
-                  href="/dashboard/billing"
-                  onClick={() => setDropdownOpen(false)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  <CreditCard className="w-4 h-4 text-zinc-500" />
-                  Billing &amp; Plan
-                </Link>
+                <div className="md:hidden">
+                  <Link
+                    href="/dashboard/billing"
+                    onClick={() => setDropdownOpen(false)}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-white/5 transition-colors"
+                  >
+                    <CreditCard className="w-4 h-4 text-zinc-500" />
+                    Billing
+                  </Link>
+                </div>
               </div>
               <div className="border-t border-white/5 py-1">
                 <button
@@ -274,7 +279,7 @@ function TopNav() {
   );
 }
 
-function AppSidebar() {
+function SidebarContent({ onClose }: { onClose?: () => void }) {
   const pathname = usePathname();
 
   const linkClass = (url: string) => {
@@ -317,17 +322,26 @@ function AppSidebar() {
   };
 
   return (
-    <div className="w-[280px] border-r border-white/5 bg-zinc-950/60 backdrop-blur-3xl fixed top-16 bottom-0 left-0 flex flex-col pt-10 hidden lg:flex text-zinc-400 z-40 overflow-hidden shadow-2xl">
+    <div className="flex-1 flex flex-col h-full bg-gradient-to-b from-[hsl(224,48%,6%)] to-[hsl(224,44%,5%)] backdrop-blur-3xl pt-10 text-zinc-400 overflow-hidden" style={{boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.04)'}}>
       <div className="flex-1 px-4 space-y-2 overflow-y-auto sidebar-scroll pb-10">
-        <div className="px-5 mb-8">
+        <div className="px-5 mb-8 flex justify-between items-center">
           <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700">
-            Navigation Matrix
+            Main Menu
           </span>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="lg:hidden p-1.5 hover:bg-white/5 rounded-full transition-colors"
+            >
+              <X className="w-4 h-4 text-zinc-600" />
+            </button>
+          )}
         </div>
         {navItems.map((item) => (
           <Link
             key={item.title}
             href={item.url}
+            onClick={onClose}
             className={linkClass(item.url)}
           >
             <div className="relative">
@@ -341,9 +355,10 @@ function AppSidebar() {
         ))}
       </div>
 
-      <div className="p-6 border-t border-white/5 pb-10 bg-black/20 backdrop-blur-md">
+      <div className="p-6 border-t border-white/[0.06] pb-10 bg-[hsl(224,40%,5%)]/60 backdrop-blur-md">
         <Link
           href="/dashboard/connect"
+          onClick={onClose}
           className="w-full relative group/btn overflow-hidden bg-white text-black py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] transition-all duration-700 flex items-center justify-center gap-3 hover:bg-[#00E5C0] hover:shadow-[0_0_30px_rgba(0,229,192,0.4)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
@@ -356,16 +371,50 @@ function AppSidebar() {
 }
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <ClientProvider>
-      <div className="min-h-screen w-full bg-black text-white font-sans selection:bg-[#00E5C0]/20 selection:text-white">
-        <TopNav />
-        <AppSidebar />
-        <main className="lg:ml-[280px] pt-16 min-h-screen bg-black relative">
-          {/* Subtle Global Background Glow */}
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#00E5C0]/[0.01] pointer-events-none blur-[140px] rounded-full" />
+      <div className="min-h-screen w-full text-white font-sans selection:bg-[#00E5C0]/20 selection:text-white overflow-x-hidden" style={{background: 'radial-gradient(ellipse 70% 50% at 15% 0%, rgba(99,102,241,0.10) 0%, transparent 55%), radial-gradient(ellipse 55% 40% at 85% 90%, rgba(0,229,192,0.07) 0%, transparent 55%), hsl(224,45%,6%)'}}>
+        <TopNav onMenuClick={() => setIsSidebarOpen(true)} />
 
-          <div className="p-4 md:p-8 pb-32 max-w-[1500px] mx-auto relative z-10">
+        {/* Desktop Sidebar */}
+        <div className="hidden lg:flex w-[280px] fixed top-16 bottom-0 left-0 z-40 border-r border-white/5">
+          <SidebarContent />
+        </div>
+
+        {/* Mobile Sidebar (Drawer) */}
+        <AnimatePresence>
+          {isSidebarOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsSidebarOpen(false)}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
+              />
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed top-0 bottom-0 left-0 w-[300px] z-[70] lg:hidden shadow-2xl"
+              >
+                <SidebarContent onClose={() => setIsSidebarOpen(false)} />
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+        <main className="lg:ml-[280px] pt-16 min-h-screen relative" style={{background: 'transparent'}}>
+          {/* Ambient glow layers */}
+          <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-indigo-600/[0.06] blur-[120px] rounded-full pointer-events-none" />
+          <div className="fixed bottom-0 left-[280px] w-[500px] h-[500px] bg-[#00E5C0]/[0.04] blur-[120px] rounded-full pointer-events-none" />
+
+          <div className="p-4 md:p-8 pb-32 max-w-[1500px] mx-auto relative z-10 w-full">
             {children}
           </div>
         </main>

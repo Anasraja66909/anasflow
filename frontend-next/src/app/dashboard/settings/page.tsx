@@ -57,7 +57,7 @@ const PLANS = [
     name: "Starter",
     price: 29,
     priceYearly: 279,
-    desc: "Perfect for single agency founders establishing their neural footprint.",
+    desc: "Perfect for single agency founders establishing their online presence.",
     color: "border-white/10",
     accent: "text-zinc-500",
     features: ["Up to 5 Clients", "3 Integrations", "Cost Tracking"],
@@ -69,7 +69,7 @@ const PLANS = [
     price: 79,
     priceYearly: 759,
     badge: "Most Popular",
-    desc: "Surgical scaling for professional automation teams.",
+    desc: "Advanced tools for professional automation teams.",
     color: "border-[#00E5C0]/40",
     accent: "text-[#00E5C0]",
     features: [
@@ -85,7 +85,7 @@ const PLANS = [
     name: "Pro",
     price: 199,
     priceYearly: 1909,
-    desc: "Enterprise intelligence & wide-spectrum ROI telemetry.",
+    desc: "Complete agency tools with advanced reporting and tracking.",
     color: "border-indigo-500/40",
     accent: "text-indigo-400",
     features: [
@@ -101,7 +101,7 @@ const PLANS = [
     id: "enterprise",
     name: "Enterprise",
     price: null,
-    desc: "Bespoke infrastructure for global operational scale.",
+    desc: "Custom solutions for global operational scale.",
     color: "border-white/10",
     accent: "text-zinc-400",
     features: [
@@ -175,8 +175,8 @@ export default function SettingsPage() {
   }
 
   const handleSave = (type: string) => {
-    toast.success("Preferences Synchronized.", {
-      description: `${type} parameters have been locked into the master ledger.`,
+    toast.success("Settings Saved.", {
+      description: `${type} changes have been updated successfully.`,
     });
   };
 
@@ -234,7 +234,7 @@ export default function SettingsPage() {
               <Terminal className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
             </div>
             <span className="text-[11px] font-black uppercase tracking-[0.5em] text-zinc-600">
-              Command Center Protocol
+              Account Management
             </span>
           </div>
           <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85] uppercase">
@@ -263,7 +263,7 @@ export default function SettingsPage() {
               <tab.icon
                 className={`w-4 h-4 transition-transform ${activeTab === tab.id ? "scale-110" : "group-hover:scale-110"}`}
               />
-              {tab.id}
+              {tab.id === "Billing" ? "Plan & Billing" : tab.id}
             </button>
           ))}
         </motion.div>
@@ -289,44 +289,44 @@ export default function SettingsPage() {
                           <Crown className="w-6 h-6 text-[#00E5C0]" />
                         </div>
                         <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                          Agency Engine.
+                          Current Plan.
                         </h2>
                         <span className="px-5 py-2 bg-[#00E5C0]/20 text-[#00E5C0] border border-[#00E5C0]/40 rounded-full text-[10px] font-black uppercase tracking-widest shadow-inner">
-                          Operational
+                          Active
                         </span>
                       </div>
                       <p className="text-zinc-600 text-lg font-medium italic">
-                        Next Settlement:{" "}
+                        Next Payment:{" "}
                         <span className="text-white font-black">
                           {currentPlan.next_billing_date}
                         </span>{" "}
-                        • ${currentPlan.amount_due} Liquid Extraction
+                        • ${currentPlan.amount_due}
                       </p>
                     </div>
                     <button className="px-10 py-6 bg-zinc-900 border border-white/5 text-zinc-500 hover:text-white rounded-[1.75rem] text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center gap-4 group/inv">
                       <Receipt className="w-4 h-4 transition-transform group-hover/inv:-rotate-12" />
-                      Audit Invoices
+                      View Invoices
                     </button>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
                     {[
                       {
-                        label: "Partner Entities",
+                        label: "Total Clients",
                         used: usage?.clients_used || 0,
                         limit: usage?.clients_limit || 0,
                         icon: Users,
                         color: "bg-indigo-500",
                       },
                       {
-                        label: "Platform Nodes",
+                        label: "Active Apps",
                         used: usage?.platforms_used || 0,
                         limit: usage?.platforms_limit || 0,
                         icon: Layers,
                         color: "bg-[#00E5C0]",
                       },
                       {
-                        label: "RECONSTRUCTION FIXES",
+                        label: "AI FIXES USED",
                         used: usage?.ai_doctor_fixes_used || 0,
                         limit: usage?.ai_doctor_fixes_limit || 0,
                         icon: Bot,
@@ -375,10 +375,10 @@ export default function SettingsPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-2">
                     <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                      Expansion Protocols.
+                      Choose Your Plan.
                     </h2>
                     <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                      Select Engine Scale
+                      Upgrade Options
                     </p>
                   </div>
                   <div className="flex items-center gap-2 bg-zinc-950/40 backdrop-blur-3xl border border-white/5 p-2 rounded-full">
@@ -503,10 +503,10 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      Identity Profile.
+                      User Profile.
                     </h3>
                     <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                      Synchronizing Master Node
+                      Manage Your Personal Information
                     </p>
                   </div>
                 </div>
@@ -520,13 +520,13 @@ export default function SettingsPage() {
                       icon: Users,
                     },
                     {
-                      label: "Strategic Entity",
+                      label: "Organization Name",
                       value: profile.company,
                       key: "company",
                       icon: Globe,
                     },
                     {
-                      label: "Neural Timezone",
+                      label: "Your Timezone",
                       value: profile.timezone,
                       key: "timezone",
                       icon: Activity,
@@ -563,7 +563,7 @@ export default function SettingsPage() {
                   className="px-16 py-8 bg-white text-black font-black rounded-[2.5rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.4em] shadow-2xl relative z-10 flex items-center justify-center gap-6 group/btn"
                 >
                   <Save className="w-6 h-6 transition-transform group-hover/btn:scale-110" />
-                  Apply Parameters
+                  Save Changes
                 </button>
               </div>
             </motion.div>
@@ -584,10 +584,10 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      Security Vault.
+                      Security Settings.
                     </h3>
                     <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                      Protocol Authorization Hub
+                      Protect Your Account
                     </p>
                   </div>
                 </div>
@@ -595,7 +595,7 @@ export default function SettingsPage() {
                 <div className="space-y-12 relative z-10">
                   <div className="space-y-4">
                     <label className="text-[10px] font-black text-zinc-700 uppercase tracking-[0.4em] ml-2">
-                      Session Dissolve Interval
+                      Log Out After Inactivity
                     </label>
                     <div className="relative group/input">
                       <Key className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-800 transition-colors group-focus-within/input:text-[#00E5C0]" />
@@ -620,7 +620,7 @@ export default function SettingsPage() {
                         Multi-Factor Authentication
                       </span>
                       <p className="text-[10px] text-zinc-700 font-black uppercase tracking-widest leading-none">
-                        Require liquid key on next identification cycle
+                        Require second step when logging in
                       </p>
                     </div>
                   </label>
@@ -631,7 +631,7 @@ export default function SettingsPage() {
                   className="px-16 py-8 bg-white text-black font-black rounded-[2.5rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.4em] shadow-2xl relative z-10 flex items-center justify-center gap-6 group/btn"
                 >
                   <ShieldCheck className="w-6 h-6 transition-transform group-hover/btn:scale-110" />
-                  Lock Protocol
+                  Update Security
                 </button>
               </div>
             </motion.div>
@@ -652,10 +652,10 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      Audit Alerts.
+                      Notifications.
                     </h3>
                     <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                      Notification Dispatch Controls
+                      Manage Your Email Alerts
                     </p>
                   </div>
                 </div>
@@ -663,18 +663,18 @@ export default function SettingsPage() {
                 <div className="space-y-8 relative z-10">
                   {[
                     {
-                      t: "Neural Critical Pulse",
-                      d: "Emergency platform downtime & protocol failures",
+                      t: "Critical System Alerts",
+                      d: "Instant notify on platform downtime or failures",
                       icon: AlertCircle,
                     },
                     {
-                      t: "Weekly Telemetry Export",
-                      d: "Consolidated ROI intelligence delivered every 168 hours",
+                      t: "Weekly Performance Report",
+                      d: "Get a summary of your savings every week",
                       icon: FileText,
                     },
                     {
-                      t: "Optimization Signals",
-                      d: "AI Doctor suggestions for operational yield improvements",
+                      t: "AI Optimization Tips",
+                      d: "AI suggestions on how to improve your performance",
                       icon: Sparkles,
                     },
                   ].map((pref, idx) => (
@@ -707,7 +707,7 @@ export default function SettingsPage() {
                   className="px-16 py-8 bg-white text-black font-black rounded-[2.5rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.4em] shadow-2xl relative z-10 flex items-center justify-center gap-6 group/btn"
                 >
                   <Save className="w-6 h-6 transition-transform group-hover/btn:scale-110" />
-                  Lock Dispatch Plan
+                  Save Preferences
                 </button>
               </div>
             </motion.div>

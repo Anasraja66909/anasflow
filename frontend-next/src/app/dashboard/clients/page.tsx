@@ -69,7 +69,7 @@ export default function ClientsPage() {
       }
     } catch (e) {
       console.error(e);
-      toast.error("Handshake Refused.");
+      toast.error("Connection failed.");
     } finally {
       setLoading(false);
     }
@@ -89,17 +89,17 @@ export default function ClientsPage() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        toast.success("Identity Verified.", {
-          description: "New partner node registered successfully.",
+        toast.success("Client Saved.", {
+          description: "New client has been added successfully.",
         });
         setShowForm(false);
         setForm({ name: "", company_name: "", email: "", website: "" });
         fetchClients();
       } else {
-        toast.error("Initialization Failed.");
+        toast.error("Failed to add client.");
       }
     } catch {
-      toast.error("Transmission Interruption.");
+      toast.error("Connection error.");
     } finally {
       setSaving(false);
     }
@@ -144,19 +144,18 @@ export default function ClientsPage() {
                 <Terminal className="w-5 h-5 text-indigo-400 relative z-10" />
               </div>
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Directory Master Protocol
+                Client Manager
               </span>
             </div>
             <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
-              Partner{" "}
+              Client{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Directory.
+                List.
               </span>
             </h1>
             <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">
-              Orchestrate your enterprise partnerships and monitor
-              cross-platform ROI telemetry for {clients.length} active nodes.
-              Establishing high-fidelity command.
+              Manage all your clients in one place and track their
+              performance across all platforms. You have {clients.length} active clients.
             </p>
           </div>
 
@@ -165,7 +164,7 @@ export default function ClientsPage() {
             className="px-12 py-7 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 text-[11px] uppercase tracking-[0.4em] flex items-center gap-6 group shadow-2xl hover:shadow-[#00E5C0]/40"
           >
             <Plus className="w-6 h-6 transition-transform group-hover:rotate-90 group-hover:scale-125" />
-            Establish Node
+            Add New Client
           </button>
         </motion.div>
 
@@ -194,7 +193,7 @@ export default function ClientsPage() {
                 <RefreshCw className="w-10 h-10 text-indigo-500/40 animate-spin" />
               </div>
               <p className="text-[11px] font-black text-zinc-700 uppercase tracking-[0.6em] animate-pulse">
-                Scanning Master Ledger Protocol
+                Loading Client List
               </p>
             </motion.div>
           ) : filtered.length === 0 ? (
@@ -208,8 +207,8 @@ export default function ClientsPage() {
               </div>
               <h3 className="text-5xl font-black text-white tracking-tighter uppercase mb-6">
                 {clients.length === 0
-                  ? "Void Directory."
-                  : "Identity Not Found."}
+                  ? "Empty List."
+                  : "No Matches Found."}
               </h3>
               <p className="text-zinc-600 font-medium text-lg max-w-lg mx-auto mb-16 px-10">
                 No clients added yet. Create a new client to get started.
@@ -219,7 +218,7 @@ export default function ClientsPage() {
                   onClick={() => setShowForm(true)}
                   className="px-12 py-7 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:shadow-[#00E5C0]/40"
                 >
-                  Register First Protocol
+                  Add Your First Client
                 </button>
               )}
             </motion.div>
@@ -278,7 +277,7 @@ export default function ClientsPage() {
                       <div className="flex items-center gap-3">
                         <Clock className="w-3.5 h-3.5 text-zinc-800" />
                         <span className="text-[10px] font-black text-zinc-800 uppercase tracking-[0.3em]">
-                          Established{" "}
+                          Added on{" "}
                           {c.created_at
                             ? new Date(c.created_at).toLocaleDateString()
                             : "Master Orbit"}
@@ -321,10 +320,10 @@ export default function ClientsPage() {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-5xl font-black text-white tracking-tighter uppercase leading-none">
-                      New Node<span className="text-[#00E5C0]">.</span>
+                      Add Client<span className="text-[#00E5C0]">.</span>
                     </h3>
                     <p className="text-[11px] text-zinc-600 font-black uppercase tracking-[0.5em]">
-                      Establishing Handshake Protocol
+                      Create a New Partner Profile
                     </p>
                   </div>
                 </div>
@@ -341,21 +340,21 @@ export default function ClientsPage() {
                       },
                       {
                         key: "company_name",
-                        label: "Strategic Entity",
+                        label: "Company Name",
                         placeholder: "e.g. Black Mesa Corp.",
                         required: false,
                         icon: Globe,
                       },
                       {
                         key: "email",
-                        label: "Transmission Node",
+                        label: "Email Address",
                         placeholder: "e.g. elena@vance.com",
                         required: false,
                         icon: Mail,
                       },
                       {
                         key: "website",
-                        label: "Domain Link",
+                        label: "Website URL",
                         placeholder: "e.g. blackmesa.com",
                         required: false,
                         icon: Search,
@@ -400,7 +399,7 @@ export default function ClientsPage() {
                       onClick={() => setShowForm(false)}
                       className="text-[11px] font-black text-zinc-700 hover:text-white uppercase tracking-[0.4em] transition-colors"
                     >
-                      Abort Signal
+                      Cancel
                     </button>
                   </div>
                 </form>

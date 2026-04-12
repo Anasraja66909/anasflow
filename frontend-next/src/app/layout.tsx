@@ -23,7 +23,7 @@ export default function RootLayout({
     "1234567890-mockclientid.apps.googleusercontent.com";
 
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="" suppressHydrationWarning>
       <body
         className={`${inter.className} bg-background text-foreground antialiased min-h-screen selection:bg-primary/30 selection:text-primary-foreground`}
         suppressHydrationWarning
