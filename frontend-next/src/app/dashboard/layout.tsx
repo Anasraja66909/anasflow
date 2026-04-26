@@ -196,7 +196,7 @@ function TopNav({ onMenuClick }: { onMenuClick: () => void }) {
   };
 
   return (
-    <div className="h-16 border-b border-white/5 bg-white/80 dark:bg-zinc-950/90 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-4 md:px-6 text-slate-900 dark:text-white shadow-sm">
+    <div className="h-16 border-b border-white/5 bg-white/80 dark:bg-zinc-950/90 backdrop-blur-xl fixed top-0 w-full z-40 flex items-center justify-between px-4 md:px-6 text-slate-900 dark:text-white shadow-sm">
       {/* Left: Brand & Hamburger */}
       <div className="flex items-center gap-2 md:gap-4 shrink-0">
         <button
@@ -366,7 +366,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-white dark:bg-gradient-to-b dark:from-[hsl(224,48%,6%)] dark:to-[hsl(224,44%,5%)] backdrop-blur-3xl pt-10 text-slate-600 dark:text-zinc-400 overflow-hidden" style={{boxShadow: 'inset -1px 0 0 rgba(0,0,0,0.05)'}}>
+    <div className="flex-1 flex flex-col h-full bg-white dark:bg-gradient-to-b dark:from-[hsl(224,48%,6%)] dark:to-[hsl(224,44%,5%)] pt-10 text-slate-600 dark:text-zinc-400 overflow-hidden" style={{boxShadow: 'inset -1px 0 0 rgba(0,0,0,0.05)'}}>
       <div className="flex-1 px-4 space-y-2 overflow-y-auto sidebar-scroll pb-10">
         <div className="px-5 mb-8 flex justify-between items-center">
           <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700">
@@ -423,7 +423,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <TopNav onMenuClick={() => setIsSidebarOpen(true)} />
 
         {/* Desktop Sidebar */}
-        <div className="hidden lg:flex w-[280px] fixed top-16 bottom-0 left-0 z-40 border-r border-white/5">
+        <div className="hidden lg:flex w-[280px] fixed top-16 bottom-0 left-0 z-30 border-r border-white/5">
           <SidebarContent />
         </div>
 

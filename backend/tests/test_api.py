@@ -1,4 +1,3 @@
-import pytest
 
 def test_read_main(client):
     """Test the root endpoint."""

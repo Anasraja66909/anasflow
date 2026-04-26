@@ -1,17 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip as RechartsTooltip,
-  LineChart,
-  Line,
 } from "recharts";
 import {
   Zap,
@@ -20,33 +18,27 @@ import {
   Mail,
   ArrowRight,
   TrendingDown,
-  Sparkles,
   Activity,
-  Signal,
-  Terminal,
-  ShieldAlert,
 } from "lucide-react";
 import AISuggestions from "@/components/dashboard/AISuggestions";
 
-// Senior Dev Standard: Unified motion variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8 },
+    transition: { duration: 0.5 },
   },
 };
 
-// Mock data for cost projection
 const projectionData = [
   { name: "Week 1", Current: 230, Optimized: 230 },
   { name: "Week 2", Current: 245, Optimized: 200 },
@@ -56,203 +48,174 @@ const projectionData = [
 
 export default function AnalyticsPage() {
   return (
-    <div className="min-h-screen pb-32">
-      {/* Immersive Background Architecture */}
-      <div className="fixed top-0 right-0 w-[50%] h-[50%] bg-[#00E5C0]/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="fixed bottom-0 left-0 w-[50%] h-[50%] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
-
+    <div className="max-w-7xl mx-auto pb-24 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-white">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 space-y-24"
+        className="space-y-8"
       >
-        {/* Aggressive Header */}
-        <motion.div variants={itemVariants} className="pt-12">
-          <div className="max-w-4xl space-y-12">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                <div className="absolute inset-0 bg-indigo-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
-                <Activity className="w-5 h-5 text-indigo-400 relative z-10" />
-              </div>
-              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Growth & Insights Center
-              </span>
-            </div>
-            <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
-              Business{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Insights.
-              </span>
+        {/* Header */}
+        <motion.div variants={itemVariants} className="pt-8">
+          <div className="max-w-3xl space-y-3">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Business Insights
             </h1>
-            <p className="text-zinc-500 text-xl font-medium max-w-3xl leading-relaxed">
+            <p className="text-slate-500 dark:text-zinc-400 text-sm md:text-base leading-relaxed">
               Find simple ways to grow your business and improve performance
               using our AI-powered analysis tools. See how much you can save.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 min-w-0">
-          {/* Left Column: AI Suggestions (Neural Diagnostic Core) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          {/* Left Column: AI Suggestions */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 flex flex-col min-h-[800px] relative overflow-hidden"
+            className="lg:col-span-2 flex flex-col min-h-[600px]"
           >
-            <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="relative z-10 h-full">
-              <AISuggestions />
-            </div>
+            <AISuggestions />
           </motion.div>
 
           {/* Right Column: Predictive Models & CTA */}
-          <div className="space-y-12 flex flex-col relative">
+          <div className="space-y-6 flex flex-col">
+            
             {/* Projected Impact Matrix */}
             <motion.div
               variants={itemVariants}
-              className="bg-zinc-950/40 backdrop-blur-[40px] border border-white/5 rounded-[3.5rem] p-12 shadow-2xl relative overflow-hidden group"
+              className="bg-white dark:bg-[#0c0f17] border border-slate-200 dark:border-white/10 rounded-2xl p-6 shadow-sm"
             >
-              <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#00E5C0]/5 blur-[100px] rounded-full group-hover:opacity-20 transition-opacity" />
-
-              <div className="flex justify-between items-center mb-16">
-                <div className="space-y-1 text-left">
-                  <h3 className="text-2xl font-black tracking-tighter text-white uppercase">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Impact Projection
                   </h3>
-                  <p className="text-[10px] text-zinc-700 font-black tracking-widest uppercase ml-0.5">
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
                     Optimization Forecast
                   </p>
                 </div>
-                <div className="w-12 h-12 rounded-2xl bg-[#00E5C0]/10 border border-[#00E5C0]/20 flex items-center justify-center">
-                  <TrendingDown className="w-6 h-6 text-[#00E5C0] group-hover:scale-110 transition-transform" />
+                <div className="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
+                  <TrendingDown className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
               </div>
 
-              <div className="h-[280px] w-full mb-12 relative">
+              <div className="h-[220px] w-full mb-8">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart
                     data={projectionData}
-                    margin={{ top: 10, right: 10, left: -25, bottom: 0 }}
+                    margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                   >
                     <CartesianGrid
                       strokeDasharray="3 3"
                       vertical={false}
-                      stroke="rgba(255,255,255,0.03)"
+                      className="stroke-slate-200 dark:stroke-zinc-800"
                     />
                     <XAxis
                       dataKey="name"
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: "#3f3f46", fontSize: 10, fontWeight: 900 }}
-                      dy={15}
+                      className="text-xs font-medium fill-slate-400 dark:fill-zinc-500"
+                      dy={10}
                     />
                     <YAxis
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: "#3f3f46", fontSize: 10, fontWeight: 900 }}
+                      className="text-xs font-medium fill-slate-400 dark:fill-zinc-500"
                       tickFormatter={(val) => `$${val}`}
                     />
                     <RechartsTooltip
                       contentStyle={{
-                        backgroundColor: "rgba(9, 9, 11, 0.98)",
-                        border: "1px solid rgba(255, 255, 255, 0.05)",
-                        borderRadius: "2rem",
-                        backdropFilter: "blur(20px)",
-                        padding: "24px",
+                        backgroundColor: "var(--tooltip-bg, #18181b)",
+                        border: "1px solid var(--tooltip-border, rgba(255,255,255,0.1))",
+                        borderRadius: "8px",
+                        color: "white"
                       }}
-                      itemStyle={{
-                        color: "#fff",
-                        fontWeight: 900,
-                        fontSize: "13px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                      }}
+                      itemStyle={{ color: "white", fontSize: "14px", fontWeight: "bold" }}
                     />
                     <Line
                       type="monotone"
                       dataKey="Current"
-                      stroke="#27272a"
-                      strokeWidth={3}
+                      stroke="#94a3b8" /* slate-400 */
+                      strokeWidth={2}
                       dot={{ r: 0 }}
-                      strokeDasharray="8 8"
+                      strokeDasharray="4 4"
                     />
                     <Line
                       type="monotone"
                       dataKey="Optimized"
-                      stroke="#00E5C0"
-                      strokeWidth={6}
-                      dot={{ r: 8, fill: "#00E5C0", strokeWidth: 0 }}
-                      activeDot={{ r: 10, stroke: "#09090b", strokeWidth: 4 }}
+                      stroke="#10b981" /* emerald-500 */
+                      strokeWidth={3}
+                      dot={{ r: 4, fill: "#10b981", strokeWidth: 0 }}
+                      activeDot={{ r: 6, stroke: "#fff", strokeWidth: 2 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-black/40 rounded-[2rem] p-8 border border-white/5 hover:border-white/10 transition-all group/stat">
-                  <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.2em] mb-3">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-50 dark:bg-white/[0.02] rounded-xl p-4 border border-slate-100 dark:border-white/5">
+                  <p className="text-xs text-slate-500 dark:text-zinc-500 font-semibold mb-1">
                     Current Cost
                   </p>
-                  <p className="text-3xl font-black text-zinc-500 group-hover:text-white transition-colors">
+                  <p className="text-xl font-bold text-slate-700 dark:text-zinc-300">
                     $1,075
                   </p>
                 </div>
-                <div className="bg-[#00E5C0]/5 rounded-[2rem] p-8 border border-[#00E5C0]/20 hover:bg-[#00E5C0]/10 transition-all group/target">
-                  <p className="text-[10px] text-[#00E5C0] font-black uppercase tracking-[0.2em] mb-3">
+                <div className="bg-emerald-50 dark:bg-emerald-500/5 rounded-xl p-4 border border-emerald-100 dark:border-emerald-500/20">
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-1">
                     Goal Savings
                   </p>
-                  <p className="text-3xl font-black text-[#00E5C0] group-hover:scale-105 transition-transform origin-left text-glow-teal">
+                  <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300">
                     $865
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Strategic Execution CTA */}
+            {/* CTA */}
             <motion.div
               variants={itemVariants}
-              className="bg-gradient-to-br from-indigo-500 to-indigo-900 rounded-[4rem] p-12 shadow-[0_50px_100px_rgba(0,0,0,0.5)] text-center relative overflow-hidden group flex-1 flex flex-col justify-center min-h-[450px]"
+              className="bg-indigo-600 rounded-2xl p-8 text-center flex-1 flex flex-col justify-center min-h-[300px] shadow-sm"
             >
-              <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/20 opacity-20 rounded-full blur-[80px] group-hover:scale-125 transition-transform duration-1000 animate-pulse pointer-events-none"></div>
-
-              <div className="relative z-10 space-y-12">
-                <div className="w-24 h-24 mx-auto bg-white/10 backdrop-blur-2xl rounded-[2.5rem] flex items-center justify-center border border-white/20 shadow-3xl group-hover:rotate-6 transition-transform duration-700">
-                  <Zap className="w-10 h-10 text-white" />
+              <div className="space-y-6">
+                <div className="w-16 h-16 mx-auto bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
+                  <Zap className="w-8 h-8 text-white" />
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-4xl font-black text-white tracking-tighter leading-none">
-                    Take Action.
+                <div className="space-y-2">
+                  <h2 className="text-2xl font-bold text-white tracking-tight">
+                    Take Action
                   </h2>
-                  <p className="text-[11px] text-indigo-100/60 font-black tracking-[0.4em] uppercase leading-relaxed">
-                    Improve Your Performance
+                  <p className="text-sm font-medium text-indigo-100">
+                    Improve Your Performance Today
                   </p>
                 </div>
 
-                <div className="space-y-4 px-6">
+                <div className="space-y-3 px-2">
                   {[
                     { t: "Safe Integration", i: ShieldCheck },
                     { t: "Fast 24h Setup", i: Clock },
                   ].map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-4 bg-black/20 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/5"
+                      className="flex items-center justify-center gap-3 bg-black/10 px-4 py-2.5 rounded-lg border border-white/10"
                     >
-                      <item.i className="w-4 h-4 text-[#00E5C0]" />
-                      <span className="text-[11px] font-black uppercase tracking-widest text-white/80">
+                      <item.i className="w-4 h-4 text-emerald-300" />
+                      <span className="text-xs font-bold text-white uppercase tracking-wider">
                         {item.t}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <button className="w-full bg-white text-black py-7 px-10 rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.3em] transition-all duration-700 active:scale-[0.98] shadow-2xl hover:shadow-white/20 flex items-center justify-center gap-4 group/btn hover:bg-[#00E5C0]">
-                  <Mail className="w-5 h-5 transition-transform group-hover/btn:scale-125" />
+                <button className="w-full bg-white text-indigo-600 py-3 mt-2 rounded-lg font-bold text-sm transition-colors hover:bg-slate-50 flex items-center justify-center gap-2">
+                  <Mail className="w-4 h-4" />
                   Talk to an Expert
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
                 </button>
               </div>
             </motion.div>
+
           </div>
         </div>
       </motion.div>

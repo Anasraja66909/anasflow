@@ -1,73 +1,38 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   CreditCard,
-  ExternalLink,
-  FileText,
   CheckCircle2,
-  Calendar,
-  Layers,
   Users,
+  Layers,
   Bot,
-  Activity,
-  AlertTriangle,
   Shield,
-  Wallet,
   Zap,
   XCircle,
-  ArrowRight,
   Settings,
-  RefreshCw,
-  Signal,
-  Sparkles,
-  Terminal,
+  Wallet,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
 
-// Dynamically import Recharts to improve initial load
-const ResponsiveContainer = dynamic(
-  () => import("recharts").then((mod) => mod.ResponsiveContainer),
-  { ssr: false },
-);
-const BarChart = dynamic(() => import("recharts").then((mod) => mod.BarChart), {
-  ssr: false,
-});
-const Bar = dynamic(() => import("recharts").then((mod) => mod.Bar), {
-  ssr: false,
-});
-const XAxis = dynamic(() => import("recharts").then((mod) => mod.XAxis), {
-  ssr: false,
-});
-const YAxis = dynamic(() => import("recharts").then((mod) => mod.YAxis), {
-  ssr: false,
-});
-const Tooltip = dynamic(() => import("recharts").then((mod) => mod.Tooltip), {
-  ssr: false,
-});
-const Cell = dynamic(() => import("recharts").then((mod) => mod.Cell), {
-  ssr: false,
-});
-
-// Senior Dev Standard: Unified motion variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8 },
+    transition: { duration: 0.5 },
   },
 };
 
@@ -78,10 +43,9 @@ const PLANS = [
     price: 29,
     priceYearly: 279,
     desc: "Perfect for single founders establishing their online presence.",
-    clients: "5",
-    platforms: "3",
-    aiDoctor: "$4.99/fix",
-    color: "border-white/10",
+    clients: "5 active clients",
+    platforms: "3 integrations",
+    aiDoctor: "Pay-as-you-go fixes",
   },
   {
     id: "agency",
@@ -90,12 +54,10 @@ const PLANS = [
     priceYearly: 759,
     desc: "Advanced tools for professional automation teams.",
     badge: "Most Popular",
-    clients: "25",
-    platforms: "Unlimited",
-    aiDoctor: "10 free/mo",
-    color: "border-[#00E5C0]/40",
-    accent: "text-[#00E5C0]",
-    glow: "shadow-[0_0_30px_rgba(0,229,192,0.15)]",
+    clients: "25 active clients",
+    platforms: "Unlimited integrations",
+    aiDoctor: "10 free fixes/month",
+    isPopular: true,
   },
   {
     id: "pro",
@@ -103,53 +65,28 @@ const PLANS = [
     price: 199,
     priceYearly: 1909,
     desc: "Complete agency tools with advanced reporting and tracking.",
-    clients: "100+",
-    platforms: "Unlimited",
-    aiDoctor: "Unlimited",
-    color: "border-indigo-500/40",
-    accent: "text-indigo-400",
-    glow: "shadow-[0_0_30px_rgba(99,102,241,0.15)]",
+    clients: "100+ active clients",
+    platforms: "Unlimited integrations",
+    aiDoctor: "Unlimited fixes",
   },
 ];
 
 const COMPARISON = [
-  {
-    feature: "Multi-Tenant Clients",
-    starter: "5",
-    agency: "25",
-    pro: "Unlimited",
-  },
-  {
-    feature: "Global Platform Library",
-    starter: "3",
-    agency: "Unlimited",
-    pro: "Unlimited",
-  },
-  {
-    feature: "AI Automation Doctor",
-    starter: "Pay-as-you-go",
-    agency: "10 Monthly",
-    pro: "Unlimited",
-  },
-  {
-    feature: "Team Collaborators",
-    starter: "1",
-    agency: "5",
-    pro: "Unlimited",
-  },
+  { feature: "Multi-Tenant Clients", starter: "5", agency: "25", pro: "Unlimited" },
+  { feature: "Global Platform Library", starter: "3", agency: "Unlimited", pro: "Unlimited" },
+  { feature: "AI Automation Doctor", starter: "Pay-as-you-go", agency: "10 Monthly", pro: "Unlimited" },
+  { feature: "Team Collaborators", starter: "1", agency: "5", pro: "Unlimited" },
   { feature: "White-Label Reports", starter: false, agency: true, pro: true },
   { feature: "API Access (Webhook)", starter: false, agency: false, pro: true },
 ];
 
-export default function PremiumBillingPage() {
+export default function BillingPage() {
   const [loading, setLoading] = useState(true);
   const [overview, setOverview] = useState<any>(null);
   const [invoices, setInvoices] = useState<any[]>([]);
   const [paymentMethods, setPaymentMethods] = useState<any[]>([]);
   const [usage, setUsage] = useState<any>(null);
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
-    "monthly",
-  );
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
 
   useEffect(() => {
     fetchData();
@@ -170,7 +107,7 @@ export default function PremiumBillingPage() {
       setUsage(usData.usage);
     } catch (err) {
       console.error(err);
-      toast.error("Connection failed.");
+      toast.error("Failed to load billing information.");
     } finally {
       setLoading(false);
     }
@@ -178,151 +115,109 @@ export default function PremiumBillingPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen space-y-12 relative overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.03] to-transparent pointer-events-none" />
-        <div className="relative w-32 h-32">
-          <div className="absolute inset-0 rounded-full border-t-4 border-[#00E5C0] animate-spin shadow-[0_0_30px_rgba(0,229,192,0.3)]" />
-          <div
-            className="absolute inset-4 rounded-full border-r-4 border-indigo-500 animate-spin"
-            style={{ animationDirection: "reverse", animationDuration: "1.5s" }}
-          />
-          <div className="absolute inset-0 m-auto flex items-center justify-center bg-zinc-900 rounded-full w-20 h-20 shadow-inner">
-            <Wallet className="w-8 h-8 text-white animate-pulse" />
-          </div>
-        </div>
-        <p className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.6em] animate-pulse leading-none">
-          Setting up your Secure Account
-        </p>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+        <div className="w-8 h-8 border-2 border-[#00E5C0] border-t-transparent rounded-full animate-spin" />
+        <p className="text-sm text-zinc-400 font-medium tracking-wide">Loading billing details...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pb-40">
-      {/* Immersive Background Architecture */}
-      <div className="fixed top-0 right-0 w-[50%] h-[50%] bg-indigo-500/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="fixed bottom-0 left-0 w-[50%] h-[50%] bg-[#00E5C0]/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.02] pointer-events-none" />
-
+    <div className="max-w-6xl mx-auto pb-24 px-4 sm:px-6 lg:px-8">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 space-y-24"
+        className="space-y-16"
       >
-        {/* Aggressive Header */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col xl:flex-row xl:items-end justify-between gap-12 pt-12"
-        >
-          <div className="max-w-4xl space-y-12 text-left">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                <div className="absolute inset-0 bg-indigo-500/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
-                <Signal className="w-5 h-5 text-indigo-400 relative z-10" />
-              </div>
-              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-400">
-                Billing & Subscription
-              </span>
-            </div>
-            <h1 className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
-              Agency{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-zinc-800">
-                Scaling.
-              </span>
+        {/* Header Section */}
+        <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-8">
+          <div className="max-w-2xl space-y-4 text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Plans & Billing
             </h1>
-            <p className="text-zinc-500 text-xl font-medium max-w-3xl leading-relaxed">
-              Managing your agency's growth with professional tools and unlimited automation support.
+            <p className="text-slate-500 dark:text-zinc-400 text-base leading-relaxed">
+              Manage your agency's subscription, view billing history, and monitor your usage limits seamlessly.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-zinc-950/40 backdrop-blur-[40px] border border-white/5 p-2 rounded-[2.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
+          <div className="inline-flex items-center p-1 bg-slate-100 dark:bg-zinc-900/80 border border-slate-200 dark:border-white/10 rounded-xl">
             <button
               onClick={() => setBillingCycle("monthly")}
-              className={`px-12 py-6 rounded-[2rem] text-[11px] uppercase font-black tracking-[0.3em] transition-all duration-700 ${billingCycle === "monthly" ? "bg-white text-black shadow-3xl" : "text-zinc-600 hover:text-white"}`}
+              className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                billingCycle === "monthly"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-sm"
+                  : "text-slate-500 dark:text-zinc-400 hover:text-slate-700 dark:hover:text-zinc-200"
+              }`}
             >
               Monthly
             </button>
             <button
               onClick={() => setBillingCycle("yearly")}
-              className={`px-12 py-6 rounded-[2rem] text-[11px] uppercase font-black tracking-[0.3em] transition-all duration-700 ${billingCycle === "yearly" ? "bg-[#00E5C0] text-black shadow-3xl shadow-[#00E5C0]/40" : "text-zinc-600 hover:text-white"}`}
+              className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 ${
+                billingCycle === "yearly"
+                  ? "bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-sm"
+                  : "text-slate-500 dark:text-zinc-400 hover:text-slate-700 dark:hover:text-zinc-200"
+              }`}
             >
-              Yearly <span className="ml-2 opacity-60">SAVE 20%</span>
+              Yearly
+              <span className="px-2 py-0.5 rounded text-[10px] uppercase tracking-wider bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 font-bold">
+                Save 20%
+              </span>
             </button>
           </div>
         </motion.div>
 
-        {/* Pricing Matrix */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PLANS.map((plan) => {
             const isCurrent = overview?.current_plan === plan.id;
-            const price =
-              billingCycle === "yearly" ? plan.priceYearly : plan.price;
+            const price = billingCycle === "yearly" ? plan.priceYearly : plan.price;
+            
             return (
               <motion.div
                 key={plan.id}
                 variants={itemVariants}
-                className={`relative bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4.5rem] p-12 flex flex-col justify-between overflow-hidden group/plan transition-all duration-700 hover:bg-zinc-900/40 shadow-[0_50px_150px_rgba(0,0,0,0.6)] ${plan.glow || ""} ${isCurrent ? "ring-2 ring-[#00E5C0]" : ""}`}
+                className={`relative bg-white dark:bg-[#0c0f17] border rounded-2xl p-8 flex flex-col justify-between overflow-hidden transition-shadow duration-300 ${
+                  plan.isPopular 
+                    ? "border-indigo-500/50 shadow-xl shadow-indigo-500/5 dark:shadow-none" 
+                    : "border-slate-200 dark:border-white/10 shadow-sm"
+                }`}
               >
-                {plan.badge && (
-                  <div className="absolute top-12 right-12 px-6 py-2 bg-[#00E5C0] text-black text-[10px] font-black uppercase tracking-[0.4em] rounded-full shadow-[0_0_20px_rgba(0,229,192,0.5)] z-20 animate-pulse">
+                {plan.isPopular && (
+                  <div className="absolute top-0 right-0 px-4 py-1.5 bg-indigo-500 text-white text-[11px] font-bold uppercase tracking-widest rounded-bl-xl z-20">
                     {plan.badge}
                   </div>
                 )}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 blur-[120px] rounded-full pointer-events-none opacity-0 group-hover/plan:opacity-100 transition-opacity duration-1000" />
-
-                <div className="relative z-10 text-left">
-                  <h3
-                    className={`text-5xl font-black mb-4 uppercase tracking-tighter ${plan.accent || "text-white"}`}
-                  >
-                    {plan.name}.
+                
+                <div className="relative z-10 text-left flex-1">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                    {plan.name}
                   </h3>
-                  <p className="text-zinc-600 text-[12px] font-medium leading-relaxed mb-16 max-w-[280px]">
+                  <p className="text-slate-500 dark:text-zinc-400 text-sm leading-relaxed mb-6 h-10">
                     {plan.desc}
                   </p>
 
-                  <div className="flex items-baseline gap-4 mb-20 group-hover/plan:translate-x-2 transition-transform duration-700">
-                    <span className="text-8xl font-black text-white tracking-tighter">
+                  <div className="flex items-baseline gap-1 mb-8">
+                    <span className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                       ${price}
                     </span>
-                    <span className="text-zinc-700 font-black uppercase tracking-[0.5em] text-[10px]">
-                      /{billingCycle === "yearly" ? "ANNUAL" : "MONTH"}
+                    <span className="text-slate-500 dark:text-zinc-500 font-medium text-sm">
+                      /{billingCycle === "yearly" ? "year" : "month"}
                     </span>
                   </div>
 
-                  <div className="space-y-8 mb-20 text-left">
+                  <div className="space-y-4 mb-8 text-left">
                     {[
-                      {
-                        lbl: "Clients",
-                        val: plan.clients,
-                        icon: Users,
-                      },
-                      {
-                        lbl: "Platforms",
-                        val: plan.platforms,
-                        icon: Layers,
-                      },
-                      {
-                        lbl: "AI Doctor Fixes",
-                        val: plan.aiDoctor,
-                        icon: Bot,
-                      },
+                      { lbl: plan.clients, icon: Users },
+                      { lbl: plan.platforms, icon: Layers },
+                      { lbl: plan.aiDoctor, icon: Bot },
                     ].map((feat, fidx) => (
-                      <div
-                        key={fidx}
-                        className="flex items-center gap-6 group/feat"
-                      >
-                        <div className="w-14 h-14 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center transition-all group-hover/feat:bg-white/5 group-hover/feat:border-white/10 shadow-inner">
-                          <feat.icon className="w-6 h-6 text-zinc-600 group-hover/feat:text-white transition-colors" />
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-xl font-black text-white leading-none mb-2">
-                            {feat.val}
-                          </span>
-                          <span className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                            {feat.lbl}
-                          </span>
-                        </div>
+                      <div key={fidx} className="flex items-center gap-3">
+                        <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${plan.isPopular ? "text-indigo-500" : "text-emerald-500"}`} />
+                        <span className="text-sm text-slate-700 dark:text-zinc-300">
+                          {feat.lbl}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -330,183 +225,134 @@ export default function PremiumBillingPage() {
 
                 <button
                   disabled={isCurrent}
-                  className={`w-full py-8 rounded-[2rem] font-black text-[11px] uppercase tracking-[0.4em] transition-all duration-700 flex items-center justify-center gap-6 relative overflow-hidden group/btn ${isCurrent ? "bg-zinc-900/50 text-zinc-700 cursor-not-allowed border border-white/5" : "bg-white text-black hover:bg-[#00E5C0] hover:shadow-[0_0_40px_rgba(0,229,192,0.5)] shadow-2xl"}`}
+                  className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                    isCurrent 
+                      ? "bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-zinc-500 cursor-not-allowed border border-transparent" 
+                      : plan.isPopular
+                        ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-md"
+                        : "bg-slate-900 dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-slate-200"
+                  }`}
                 >
-                  {isCurrent ? (
-                    <Shield className="w-5 h-5" />
-                  ) : (
-                    <Zap className="w-5 h-5 transition-transform group-hover/btn:scale-125 group-hover/btn:rotate-12" />
-                  )}
-                  {isCurrent ? "Current Plan" : "Upgrade"}
+                  {isCurrent ? "Current Plan" : "Upgrade to " + plan.name}
                 </button>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Capability Ledger */}
-        <motion.div variants={itemVariants} className="space-y-12">
-          <div className="flex items-center gap-6 text-left">
-            <div className="w-14 h-14 rounded-3xl bg-[#00E5C0]/10 border border-[#00E5C0]/20 flex items-center justify-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[#00E5C0]/20 blur-xl group-hover:scale-150 transition-transform duration-1000" />
-              <Shield className="w-7 h-7 text-[#00E5C0] relative z-10" />
-            </div>
-            <div className="space-y-2">
-              <h2 className="text-4xl font-black text-white tracking-tighter uppercase leading-none">
-                Plan Comparison<span className="text-[#00E5C0]">.</span>
-              </h2>
-              <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                Complete Feature List
-              </p>
-            </div>
+        {/* Feature Comparison Table */}
+        <motion.div variants={itemVariants} className="space-y-6">
+          <div className="text-left space-y-1">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Compare features</h2>
+            <p className="text-sm text-slate-500 dark:text-zinc-400">Detailed breakdown of everything included in our plans.</p>
           </div>
 
-          <div className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4rem] overflow-hidden shadow-2xl relative">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b border-white/5 bg-black/40">
-                  <th className="px-16 py-12 text-[11px] font-black text-zinc-600 uppercase tracking-[0.5em]">
-                    Feature Details
-                  </th>
-                  <th className="px-16 py-12 text-[11px] font-black text-white uppercase tracking-[0.5em] text-center">
-                    Starter
-                  </th>
-                  <th className="px-16 py-12 text-[11px] font-black text-[#00E5C0] uppercase tracking-[0.5em] text-center bg-[#00E5C0]/[0.02]">
-                    Agency
-                  </th>
-                  <th className="px-16 py-12 text-[11px] font-black text-indigo-400 uppercase tracking-[0.5em] text-center">
-                    Pro
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/[0.03]">
-                {COMPARISON.map((row, idx) => (
-                  <tr
-                    key={idx}
-                    className="hover:bg-white/[0.02] transition-all duration-500 group/row"
-                  >
-                    <td className="px-16 py-10">
-                      <span className="text-xl font-black text-zinc-500 uppercase tracking-tighter group-hover/row:text-white transition-colors">
-                        {row.feature}
-                      </span>
-                    </td>
-                    <td className="px-16 py-10 text-center font-black text-zinc-700 text-sm italic">
-                      {row.starter === true ? (
-                        <CheckCircle2 className="w-8 h-8 text-zinc-800 mx-auto" />
-                      ) : row.starter === false ? (
-                        <XCircle className="w-8 h-8 text-zinc-900 mx-auto" />
-                      ) : (
-                        row.starter
-                      )}
-                    </td>
-                    <td className="px-16 py-10 text-center font-black text-[#00E5C0] bg-[#00E5C0]/[0.01]">
-                      {row.agency === true ? (
-                        <div className="w-10 h-10 rounded-full bg-[#00E5C0]/10 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(0,229,192,0.2)]">
-                          <CheckCircle2 className="w-6 h-6 text-[#00E5C0]" />
-                        </div>
-                      ) : row.agency === false ? (
-                        <XCircle className="w-8 h-8 text-zinc-900 mx-auto opacity-30" />
-                      ) : (
-                        row.agency
-                      )}
-                    </td>
-                    <td className="px-16 py-10 text-center font-black text-indigo-400 text-sm">
-                      {row.pro === true ? (
-                        <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(99,102,241,0.2)]">
-                          <CheckCircle2 className="w-6 h-6 text-indigo-400" />
-                        </div>
-                      ) : row.pro === false ? (
-                        <XCircle className="w-8 h-8 text-zinc-900 mx-auto opacity-30" />
-                      ) : (
-                        row.pro
-                      )}
-                    </td>
+          <div className="bg-white dark:bg-zinc-950/40 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-max">
+                <thead>
+                  <tr className="border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20">
+                    <th className="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider w-2/5">
+                      Features
+                    </th>
+                    <th className="px-6 py-4 text-xs font-bold text-slate-700 dark:text-zinc-300 uppercase tracking-wider text-center w-1/5">
+                      Starter
+                    </th>
+                    <th className="px-6 py-4 text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider text-center bg-indigo-50 dark:bg-indigo-500/5 w-1/5">
+                      Agency
+                    </th>
+                    <th className="px-6 py-4 text-xs font-bold text-slate-700 dark:text-zinc-300 uppercase tracking-wider text-center w-1/5">
+                      Pro
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-white/5">
+                  {COMPARISON.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
+                      <td className="px-6 py-4">
+                        <span className="text-sm font-medium text-slate-700 dark:text-zinc-300">
+                          {row.feature}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {row.starter === true ? (
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
+                        ) : row.starter === false ? (
+                          <span className="block w-4 h-0.5 bg-slate-300 dark:bg-zinc-700 mx-auto rounded-full" />
+                        ) : (
+                          <span className="text-sm font-medium text-slate-600 dark:text-zinc-400">{row.starter}</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center bg-indigo-50/50 dark:bg-indigo-500/[0.02]">
+                        {row.agency === true ? (
+                          <CheckCircle2 className="w-5 h-5 text-indigo-500 mx-auto" />
+                        ) : row.agency === false ? (
+                          <span className="block w-4 h-0.5 bg-slate-300 dark:bg-zinc-700 mx-auto rounded-full" />
+                        ) : (
+                          <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300">{row.agency}</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {row.pro === true ? (
+                          <CheckCircle2 className="w-5 h-5 text-slate-700 dark:text-white mx-auto" />
+                        ) : row.pro === false ? (
+                          <span className="block w-4 h-0.5 bg-slate-300 dark:bg-zinc-700 mx-auto rounded-full" />
+                        ) : (
+                          <span className="text-sm font-medium text-slate-600 dark:text-zinc-400">{row.pro}</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </motion.div>
 
-        {/* Global Financial Control Hub */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
-          {/* Neural Capacity Hub */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4.5rem] p-16 space-y-16 shadow-2xl relative group/usage transition-all duration-700 hover:border-indigo-500/10 overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="flex items-center justify-between relative z-10">
-              <div className="space-y-2">
-                <h3 className="text-3xl font-black text-white uppercase tracking-tighter">
-                  Usage Limits<span className="text-indigo-400">.</span>
+        {/* Payment & Usage Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left">
+          
+          {/* Usage Widget */}
+          <motion.div variants={itemVariants} className="bg-white dark:bg-[#0c0f17] border border-slate-200 dark:border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm">
+            <div className="flex items-center justify-between mb-8">
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-indigo-500" /> Usage Limits
                 </h3>
-                <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                  Resource Usage Tracking
+                <p className="text-sm text-slate-500 dark:text-zinc-400">
+                  Monitor your account resources based on your current plan.
                 </p>
               </div>
               <Link
                 href="/dashboard/settings"
-                className="w-16 h-16 rounded-[1.5rem] bg-white/[0.02] border border-white/10 flex items-center justify-center text-zinc-700 hover:text-white hover:bg-white/5 transition-all shadow-inner"
+                className="w-10 h-10 rounded-lg border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-colors"
+                title="Usage Settings"
               >
-                <Settings className="w-7 h-7" />
+                <Settings className="w-5 h-5" />
               </Link>
             </div>
 
-            <div className="space-y-16 relative z-10">
+            <div className="space-y-6">
               {[
-                {
-                  lbl: "Current Clients",
-                  used: usage?.clients?.used || 0,
-                  limit: usage?.clients?.limit || 0,
-                  color: "bg-indigo-500",
-                  glow: "shadow-[0_0_20px_rgba(99,102,241,0.4)]",
-                },
-                {
-                  lbl: "Active Automations",
-                  used: usage?.automations?.used || 0,
-                  limit: usage?.automations?.limit || 0,
-                  color: "bg-[#00E5C0]",
-                  glow: "shadow-[0_0_20px_rgba(0,229,192,0.4)]",
-                },
+                { lbl: "Current Clients", used: usage?.clients?.used || 0, limit: usage?.clients?.limit || 15, color: "bg-indigo-500" },
+                { lbl: "Active Integrations", used: usage?.automations?.used || 0, limit: usage?.automations?.limit || 5, color: "bg-emerald-500" },
               ].map((u, ui) => {
-                const pct =
-                  u.limit === -1
-                    ? 100
-                    : Math.min(100, Math.round((u.used / u.limit) * 100));
+                const pct = u.limit === -1 ? 0 : Math.min(100, Math.round((u.used / u.limit) * 100));
                 return (
-                  <div key={ui} className="space-y-8">
+                  <div key={ui} className="space-y-3">
                     <div className="flex justify-between items-end">
-                      <div className="space-y-3">
-                        <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em]">
-                          {u.lbl}
-                        </span>
-                        <div className="flex items-center gap-4">
-                          <div
-                            className={`w-3 h-3 rounded-full ${u.color} animate-pulse ${u.glow}`}
-                          />
-                          <span className="text-5xl font-black text-white tracking-tighterLeading-[0.8]">
-                            {u.used}
-                            <span className="text-zinc-800 font-black mx-3 select-none">
-                              /
-                            </span>
-                            {u.limit === -1 ? "∞" : u.limit}
-                          </span>
-                        </div>
-                      </div>
-                      <span className="text-[11px] font-black text-zinc-800 uppercase tracking-widest bg-white/[0.02] px-4 py-2 rounded-full border border-white/5">
-                        {pct}% USED
+                      <span className="text-sm font-semibold text-slate-700 dark:text-zinc-300">{u.lbl}</span>
+                      <span className="text-sm font-medium text-slate-500 dark:text-zinc-400">
+                        {u.used} / {u.limit === -1 ? "Unlimited" : u.limit}
                       </span>
                     </div>
-                    <div className="h-4 bg-black/60 rounded-full overflow-hidden border border-white/5 shadow-inner p-1">
+                    <div className="h-2 bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${pct}%` }}
-                        transition={{ duration: 1.5 }}
-                        className={`h-full rounded-full ${u.color} ${u.glow} relative`}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-transparent animate-shimmer" />
-                      </motion.div>
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className={`h-full rounded-full ${u.color}`}
+                      />
                     </div>
                   </div>
                 );
@@ -514,82 +360,52 @@ export default function PremiumBillingPage() {
             </div>
           </motion.div>
 
-          {/* Liquid Financial Slate */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-zinc-950/40 backdrop-blur-[60px] border border-white/5 rounded-[4.5rem] p-16 flex flex-col justify-between shadow-2xl relative overflow-hidden group/card hover:border-[#00E5C0]/10 transition-all duration-700"
-          >
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-[#00E5C0]/[0.03] via-transparent to-transparent pointer-events-none rounded-[4.5rem] blur-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000" />
-
-            <div className="flex items-center justify-between relative z-10">
-              <div className="w-20 h-20 bg-white/[0.05] border border-white/10 rounded-[2rem] flex items-center justify-center shadow-inner group-hover/card:rotate-[15deg] transition-transform duration-1000">
-                <CreditCard className="w-10 h-10 text-white" />
+          {/* Payment Method Widget */}
+          <motion.div variants={itemVariants} className="bg-white dark:bg-indigo-950/20 border border-slate-200 dark:border-indigo-500/20 rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-sm">
+            <div className="flex items-center justify-between mb-8">
+               <div className="space-y-1">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <CreditCard className="w-5 h-5 text-indigo-500" /> Payment Method
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-zinc-400">
+                  Manage your billing details and invoices.
+                </p>
               </div>
-              <div className="px-8 py-3 bg-black/40 border border-white/5 rounded-2xl flex items-center gap-4 backdrop-blur-2xl shadow-xl">
-                <div className="w-2 h-2 bg-[#00E5C0] rounded-full animate-ping shadow-[0_0_15px_#00E5C0]" />
-                <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.5em]">
-                  Card Verified
+              <div className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-lg flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
+                  Active
                 </span>
               </div>
             </div>
 
-            <div className="space-y-6 relative z-10 pt-12">
-              <p className="text-5xl md:text-6xl font-black text-white tracking-[0.25em] uppercase transition-all duration-1000 group-hover/card:tracking-[0.3em] font-mono select-none">
-                •••• {paymentMethods[0]?.last4 || "4242"}
-              </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-10">
-                <div className="space-y-2">
-                  <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                    Account Information
-                  </p>
-                  <p className="text-sm font-black text-zinc-500 uppercase tracking-widest">
-                    Expires {paymentMethods[0]?.exp_month || "01"}/
-                    {paymentMethods[0]?.exp_year || "28"}
-                  </p>
-                </div>
-                <div className="hidden sm:block w-px h-10 bg-white/[0.05] rounded-full" />
-                <div className="space-y-2">
-                  <p className="text-[10px] text-zinc-700 font-black uppercase tracking-[0.4em]">
-                    Payment Method
-                  </p>
-                  <p className="text-sm font-black text-zinc-500 uppercase tracking-widest">
-                    VISA MASTERCARD
-                  </p>
-                </div>
+            <div className="bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-white/5 rounded-xl p-5 mb-6 flex items-center gap-4">
+              <div className="w-12 h-8 rounded bg-white shadow-sm border border-slate-200 flex flex-col items-center justify-center text-[8px] font-black tracking-wider text-slate-800 select-none">
+                VISA
+              </div>
+              <div>
+                <p className="text-base font-medium text-slate-800 dark:text-zinc-200 font-mono">
+                  •••• •••• •••• {paymentMethods[0]?.last4 || "4242"}
+                </p>
+                <p className="text-xs text-slate-500 dark:text-zinc-500 mt-1">
+                  Expires {paymentMethods[0]?.exp_month || "01"}/{paymentMethods[0]?.exp_year || "28"}
+                </p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-end sm:items-center justify-between pt-16 border-t border-white/5 gap-12 relative z-10">
-              <div className="space-y-3 text-left w-full sm:w-auto">
-                <p className="text-[11px] text-zinc-700 font-black uppercase tracking-[0.5em]">
-                  Current Balance
-                </p>
-                <p className="text-6xl font-black text-white tracking-tighter leading-none">
-                  ${overview?.amount_due || "0.00"}
-                </p>
+            <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-white/10">
+              <div className="space-y-1">
+                 <p className="text-sm text-slate-500 dark:text-zinc-400">Next billing date</p>
+                 <p className="text-base font-semibold text-slate-900 dark:text-white">May 01, 2026</p>
               </div>
-              <button className="w-full sm:w-fit px-12 py-8 bg-white text-black font-black rounded-[2rem] hover:bg-[#00E5C0] transition-all duration-700 uppercase tracking-[0.4em] text-[11px] shadow-2xl hover:shadow-[#00E5C0]/40 flex items-center justify-center gap-4 group/btn">
-                <Shield className="w-5 h-5 transition-transform group-hover/btn:scale-110" />
-                Update Payment
+              <button className="px-5 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white text-sm font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-white/10 transition-colors">
+                Update payment
               </button>
             </div>
           </motion.div>
+          
         </div>
       </motion.div>
-
-      <style jsx global>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-        .animate-shimmer {
-          animation: shimmer 2s infinite linear;
-        }
-      `}</style>
     </div>
   );
 }

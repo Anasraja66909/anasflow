@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8 },
+    transition: { duration: 0.5 },
   },
 };
 
@@ -44,47 +44,43 @@ export const KpiCard = ({
 }: KpiCardProps) => (
   <motion.div
     variants={itemVariants}
-    className="relative group overflow-hidden bg-zinc-950/40 backdrop-blur-3xl border border-white/5 rounded-[2.5rem] p-8 transition-all duration-700 hover:bg-zinc-900/60 hover:border-white/10 shadow-2xl hover:shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
+    className="bg-white dark:bg-[#0c0f17] border border-slate-200 dark:border-white/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
   >
-    {/* Dynamic Background Glow */}
-    <div
-      className={`absolute -top-24 -right-24 w-48 h-48 blur-[100px] rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-1000 ${colorClass.bg}`}
-    />
-
-    <div className="flex justify-between items-start mb-6 relative z-10">
-      <div className="space-y-1">
-        <h3 className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] ml-0.5">
-          {title}
-        </h3>
-        <div className="h-0.5 w-8 bg-zinc-800 group-hover:w-12 group-hover:bg-[#00E5C0] transition-all duration-500 rounded-full"></div>
-      </div>
-      <div
-        className={`p-4 rounded-2xl border border-white/5 ${colorClass.bg} shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}
-      >
-        <Icon className={`w-5 h-5 ${colorClass.icon}`} />
+    <div className="flex justify-between items-start mb-4">
+      <h3 className="text-sm font-semibold text-slate-500 dark:text-zinc-400">
+        {title}
+      </h3>
+      <div className={`p-2.5 rounded-xl ${colorClass.bg}`}>
+        <Icon className={`w-4 h-4 ${colorClass.icon}`} />
       </div>
     </div>
 
     {loading ? (
-      <div className="h-10 md:h-12 w-24 md:w-32 bg-slate-100 dark:bg-white/5 animate-pulse rounded-2xl mb-4"></div>
+      <div className="h-8 w-24 bg-slate-100 dark:bg-white/5 animate-pulse rounded-lg mb-2"></div>
     ) : (
-      <div className="relative mb-6 overflow-visible">
-        <p
-          className={`text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold tracking-tight relative z-10 transition-colors duration-500 whitespace-nowrap ${highlightText ? highlightClass : "text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-[#6366F1] group-hover:to-[#00E5C0] dark:group-hover:from-white dark:group-hover:to-zinc-500"}`}
-        >
-          {value}
-        </p>
-      </div>
+      <p
+        className={`text-2xl sm:text-3xl font-bold tracking-tight mb-2 ${
+          highlightText ? highlightClass : "text-slate-900 dark:text-white"
+        }`}
+      >
+        {value}
+      </p>
     )}
 
-    <div className="flex flex-wrap items-center gap-3 group/sub relative z-10">
-      <div
-        className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.1em] ${highlightClass ? `${highlightClass} bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10` : "text-slate-500 dark:text-zinc-500 bg-slate-100 dark:bg-zinc-900/50"}`}
-      >
-        {SubIcon && <SubIcon className="w-3 h-3 animate-pulse" />}
-        <span>{subtext.highlight || "verified"}</span>
-      </div>
-      <span className="text-[9px] text-slate-400 dark:text-zinc-600 font-black uppercase tracking-widest leading-tight flex-1 min-w-[100px]">
+    <div className="flex items-center gap-2 mt-auto pt-2">
+      {subtext.highlight && (
+        <span
+          className={`flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md ${
+            highlightClass
+              ? `${highlightClass} bg-slate-50 dark:bg-white/5`
+              : "text-slate-600 dark:text-zinc-300 bg-slate-100 dark:bg-zinc-800"
+          }`}
+        >
+          {SubIcon && <SubIcon className="w-3 h-3" />}
+          {subtext.highlight}
+        </span>
+      )}
+      <span className="text-xs text-slate-500 dark:text-zinc-500 font-medium whitespace-nowrap">
         {subtext.normal}
       </span>
     </div>
