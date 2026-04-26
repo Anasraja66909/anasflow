@@ -150,8 +150,8 @@ export const ConnectionModal = ({
   const modalContent = (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop  */}
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6">
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -166,8 +166,9 @@ export const ConnectionModal = ({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="relative w-full max-w-2xl bg-white dark:bg-[#0c0f17] border border-slate-200 dark:border-white/10 rounded-3xl shadow-2xl flex flex-col my-auto"
-            style={{ 
+            className="relative w-full max-w-xl bg-white dark:bg-[#0c0f17] border border-slate-200 dark:border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            style={{
+              maxHeight: "calc(100vh - 2rem)",
               boxShadow: `0 20px 40px -10px ${platform.color}15, 0 0 0 1px ${platform.color}10 inset`
             }}
           >
@@ -229,7 +230,7 @@ export const ConnectionModal = ({
             </div>
 
             {/* Body */}
-            <div className="px-6 sm:px-8 py-6 relative z-10 flex-1">
+            <div className="px-6 sm:px-8 py-6 relative z-10 flex-1 overflow-y-auto min-h-0">
               {isOAuth ? (
                 /* ─── OAuth Flow ─── */
                 <div className="space-y-6">
