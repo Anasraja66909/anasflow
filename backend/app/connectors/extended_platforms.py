@@ -107,3 +107,39 @@ create_stub_connector(
 create_stub_connector(
     "power_automate", "Power Automate", "oauth2", "https://api.flow.microsoft.com"
 )
+
+# =====================================================================
+# Groq AI - Real connector with live API validation
+# =====================================================================
+@ConnectorRegistry.register("groq")
+class GroqConnector(BaseConnector):
+    platform_name = "groq"
+    base_url = "https://api.groq.com"
+    auth_type = "api_key"
+
+    def get_auth_headers(self):
+        return {"Authorization": f"Bearer {self.connection_data.get('api_key', '')}"}
+
+    async def validate_connection(self) -> bool:
+        import httpx
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                r = await client.get(
+                    "https://api.groq.com/openai/v1/models",
+                    headers=self.get_auth_headers(),
+                )
+            return r.status_code == 200
+        except Exception:
+            return False
+
+    async def fetch_usage(self, start_date=None, end_date=None) -> UsageData:
+        return UsageData(
+            platform=self.platform_name,
+            organization_id=self.organization_id,
+            connection_id=self.connection_id,
+            total_cost_usd=0.0,
+            last_synced_at=datetime.utcnow(),
+        )
+
+    async def handle_webhook(self, payload, signature=None) -> UsageData:
+        return await self.fetch_usage()

@@ -272,6 +272,7 @@ async def validate_connection(
         "elevenlabs": "https://api.elevenlabs.io/v1/user",
         "cohere": "https://api.cohere.ai/v1/check-api-key",
         "heygen": "https://api.heygen.com/v1/user.info",
+        "groq": "https://api.groq.com/openai/v1/models",
     }
 
     endpoint = validation_endpoints.get(platform_type)

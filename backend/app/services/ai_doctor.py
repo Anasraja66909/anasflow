@@ -1,55 +1,51 @@
 import json
-from typing import Dict, Any
-from openai import OpenAI
+from typing import Dict, Any, List
 from loguru import logger
-from ..core.config import settings
-
-
-# Senior Developer Standard: Secure lazy-loading of AI client
-def _get_ai_client() -> OpenAI:
-    api_key = getattr(settings, "OPENAI_API_KEY", None)
-    if not api_key:
-        return None
-    return OpenAI(api_key=api_key)
+from .llm_service import LLMService
 
 
 async def analyze_workflow_error(
     platform: str, error_logs: str, workflow_structure: str
 ) -> Dict[str, Any]:
     """
-    Executes a high-fidelity AI-driven diagnostic on automation node failures.
-    Resolves root causes and generates optimized workflow structures.
+    Executes a high-fidelity multi-agent diagnostic on automation node failures using Groq.
+    Uses sequential reasoning to identify root causes and generate optimized fixes.
     """
-    client = _get_ai_client()
-
-    if not client:
-        # High-Fidelity Fallback Protocol for Local/Vaulted Nodes
-        logger.warning(
-            "OPENAI_API_KEY not established. Executing simulated AI diagnostic sequence."
-        )
-        return {
-            "root_cause": "Diagnostic sequence detected a missing 'email' field in the incoming request payload at the primary Webhook node.",
-            "confidence_score": "94%",
-            "suggested_fix": "Deploy an 'Existence Check' (IF) node targeting 'payload.email' before the CRM synchronization node.",
-            "optimized_workflow": '{"nodes": [{"type": "webhook"}, {"type": "IF", "condition": "exists(email)"}, {"type": "crm"}]}',
-            "estimated_savings": "2.5 hours/month",
-        }
-
-    # Senior Developer System Prompt Architecture
-    system_prompt = (
-        "You are an Elite Enterprise Integrations Architect. "
-        "Your objective is to diagnose strict workflow errors across SaaS platforms (n8n, Zapier, GoHighLevel). "
-        "Provide surgical precision in your root cause analysis."
+    
+    # 1. Diagnostic Agent (llama3-70b-8192) - High Reasoning
+    diagnostic_messages = [
+        {"role": "system", "content": "You are an Elite Integration Debugger. Analyze the logs to find the EXACT point of failure."},
+        {"role": "user", "content": f"Platform: {platform}\nLogs: {error_logs}\nWorkflow: {workflow_structure}"}
+    ]
+    
+    diagnostic_result = await LLMService.call(
+        model="llama-3.3-70b-versatile",
+        messages=diagnostic_messages,
+        temperature=0.2,
+        max_tokens=2000
     )
-
-    user_prompt = f"""
-    NODE DIAGNOSTIC REQUEST: {platform.upper()}
+    root_cause_analysis = diagnostic_result["content"]
     
-    TELEMETRY LOGS:
-    {error_logs}
+    # 2. Architect Agent (llama-3.1-8b-instant) - Fast Structural Proposals
+    architect_messages = [
+        {"role": "system", "content": "You are a Workflow Architect. Propose a structural remediation based on the provided diagnostic."},
+        {"role": "user", "content": f"Diagnostic: {root_cause_analysis}\nWorkflow: {workflow_structure}"}
+    ]
     
-    CURRENT WORKFLOW TOPOLOGY:
-    {workflow_structure}
+    architect_result = await LLMService.call(
+        model="llama-3.1-8b-instant",
+        messages=architect_messages,
+        temperature=0.4,
+        max_tokens=2000
+    )
+    remediation_proposal = architect_result["content"]
+    
+    # 3. Synthesizer Agent (llama3-70b-8192) - Final JSON Formatting
+    synthesizer_prompt = f"""
+    Based on the following analysis, generate a final surgical JSON object.
+    
+    DIAGNOSTIC: {root_cause_analysis}
+    PROPOSED FIX: {remediation_proposal}
     
     OUTPUT SPECIFICATION:
     Return a surgical JSON object (no markdown, no backticks).
@@ -58,31 +54,49 @@ async def analyze_workflow_error(
         "confidence_score": "percentage string",
         "suggested_fix": "Linear step-by-step remediation",
         "optimized_workflow": "Stringified JSON of the remediated topology",
-        "estimated_savings": "Time/Cost ROI metric"
+        "estimated_savings": "Time/Cost ROI metric",
+        "telemetry": {{
+            "total_latency": "total_seconds",
+            "total_cost": "total_dollars",
+            "agents": ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+        }}
     }}
     """
-
+    
+    final_result = await LLMService.call(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": synthesizer_prompt}],
+        temperature=0.1,
+        response_format={"type": "json_object"}
+    )
+    
     try:
-        # Senior Developer Choice: Use high-reasoning model for surgical diagnostics
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
-            ],
-            temperature=0.1,  # Low temperature for deterministic diagnostics
-            response_format={"type": "json_object"},
+        data = json.loads(final_result["content"])
+        
+        # Add cumulative telemetry
+        total_latency = (
+            diagnostic_result["usage"]["latency"] + 
+            architect_result["usage"]["latency"] + 
+            final_result["usage"]["latency"]
         )
-
-        result_text = response.choices[0].message.content.strip()
-        return json.loads(result_text)
-
+        total_cost = (
+            diagnostic_result["usage"]["cost"] + 
+            architect_result["usage"]["cost"] + 
+            final_result["usage"]["cost"]
+        )
+        
+        data["telemetry"]["total_latency"] = f"{total_latency:.2f}s"
+        data["telemetry"]["total_cost"] = f"${total_cost:.6f}"
+        
+        return data
+        
     except Exception as e:
-        logger.error(f"AI Diagnostic Node Failure: {e}")
+        logger.error(f"Failed to parse final AI Doctor response: {e}")
         return {
-            "root_cause": "Diagnostic resolution failure at the AI layer.",
+            "root_cause": "Diagnostic sequence failed during synthesis.",
             "confidence_score": "0%",
-            "suggested_fix": "Initiate manual trace on error telemetry.",
+            "suggested_fix": "Manual review required.",
             "optimized_workflow": workflow_structure,
             "estimated_savings": "0 hours",
+            "telemetry": {"error": str(e)}
         }

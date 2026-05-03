@@ -42,6 +42,7 @@ const SUPPORTED_PLATFORMS = [
   { id: "claude", name: "Claude AI", category: "AI Models", authType: "api_key", domain: "anthropic.com", color: "#d97757", description: "Safe, helpful, and honest AI by Anthropic." },
   { id: "gemini", name: "Gemini", category: "AI Models", authType: "api_key", domain: "google.com", color: "#4285f4", description: "Google's multimodal AI model family." },
   { id: "mistral", name: "Mistral AI", category: "AI Models", authType: "api_key", domain: "mistral.ai", color: "#ff7000", description: "Frontier, open-weight AI models." },
+  { id: "groq", name: "Groq", category: "AI Models", authType: "api_key", domain: "groq.com", color: "#f55036", description: "Ultra-fast AI inference platform for real-time applications." },
   { id: "perplexity", name: "Perplexity AI", category: "AI Models", authType: "api_key", domain: "perplexity.ai", color: "#20b2aa", description: "AI-powered answer engine with real-time web search." },
   { id: "cohere", name: "Cohere", category: "AI Models", authType: "api_key", domain: "cohere.ai", color: "#39e09b", description: "Enterprise AI for text understanding and generation." },
   { id: "aws_bedrock", name: "AWS Bedrock", category: "AI Models", authType: "api_key", domain: "amazon.com", color: "#ff9900", description: "Access foundation models via AWS." },
