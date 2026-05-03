@@ -25,47 +25,19 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Platform Registry — All supported integrations
 // ============================================================================
 const SUPPORTED_PLATFORMS = [
-  // CRM
+  // OAuth Platforms
   { id: "gohighlevel", name: "GoHighLevel", category: "CRM", authType: "oauth2", domain: "gohighlevel.com", color: "#00E5C0", description: "All-in-one CRM and marketing automation platform for agencies." },
-  { id: "hubspot", name: "HubSpot", category: "CRM", authType: "oauth2", domain: "hubspot.com", color: "#ff7a59", description: "Sales, marketing, and service CRM software." },
-  { id: "salesforce", name: "Salesforce", category: "CRM", authType: "oauth2", domain: "salesforce.com", color: "#00a1e0", description: "World's leading customer relationship management platform." },
-  { id: "zoho_crm", name: "Zoho CRM", category: "CRM", authType: "oauth2", domain: "zoho.com", color: "#e42527", description: "Comprehensive CRM for sales and marketing teams." },
-  // Automation
   { id: "zapier", name: "Zapier", category: "Automation", authType: "oauth2", domain: "zapier.com", color: "#ff4f00", description: "Connect 6,000+ apps and automate workflows without code." },
-  { id: "n8n", name: "n8n", category: "Automation", authType: "api_key", domain: "n8n.io", color: "#ff6d5a", description: "Fair-code workflow automation — self-hosted or cloud." },
-  { id: "make", name: "Make", category: "Automation", authType: "api_key", domain: "make.com", color: "#7347ff", description: "Visual platform to build, run and automate workflows." },
-  { id: "power_automate", name: "Power Automate", category: "Automation", authType: "oauth2", domain: "microsoft.com", color: "#0078d4", description: "Microsoft's intelligent process automation platform." },
-  { id: "pipedream", name: "Pipedream", category: "Automation", authType: "api_key", domain: "pipedream.com", color: "#3c82f6", description: "Connect APIs and build automations with code." },
-  { id: "activepieces", name: "Activepieces", category: "Automation", authType: "api_key", domain: "activepieces.com", color: "#6d4aff", description: "Open-source automation for self-hosters and teams." },
-  // AI Models
+  { id: "hubspot", name: "HubSpot", category: "CRM", authType: "oauth2", domain: "hubspot.com", color: "#ff7a59", description: "Sales, marketing, and service CRM software." },
+  { id: "stripe", name: "Stripe", category: "Commerce", authType: "oauth2", domain: "stripe.com", color: "#635bff", description: "Online payment processing and billing infrastructure." },
+  { id: "slack", name: "Slack", category: "Workspace", authType: "oauth2", domain: "slack.com", color: "#4a154b", description: "Team communication and collaboration hub." },
+  
+  // API Key Platforms
   { id: "openai", name: "OpenAI", category: "AI Models", authType: "api_key", domain: "openai.com", color: "#74aa9c", description: "Advanced AI models including GPT-4o and DALL-E." },
   { id: "claude", name: "Claude AI", category: "AI Models", authType: "api_key", domain: "anthropic.com", color: "#d97757", description: "Safe, helpful, and honest AI by Anthropic." },
-  { id: "gemini", name: "Gemini", category: "AI Models", authType: "api_key", domain: "google.com", color: "#4285f4", description: "Google's multimodal AI model family." },
-  { id: "mistral", name: "Mistral AI", category: "AI Models", authType: "api_key", domain: "mistral.ai", color: "#ff7000", description: "Frontier, open-weight AI models." },
   { id: "groq", name: "Groq", category: "AI Models", authType: "api_key", domain: "groq.com", color: "#f55036", description: "Ultra-fast AI inference platform for real-time applications." },
-  { id: "perplexity", name: "Perplexity AI", category: "AI Models", authType: "api_key", domain: "perplexity.ai", color: "#20b2aa", description: "AI-powered answer engine with real-time web search." },
-  { id: "cohere", name: "Cohere", category: "AI Models", authType: "api_key", domain: "cohere.ai", color: "#39e09b", description: "Enterprise AI for text understanding and generation." },
-  { id: "aws_bedrock", name: "AWS Bedrock", category: "AI Models", authType: "api_key", domain: "amazon.com", color: "#ff9900", description: "Access foundation models via AWS." },
-  { id: "azure_openai", name: "Azure OpenAI", category: "AI Models", authType: "api_key", domain: "azure.microsoft.com", color: "#0078d4", description: "OpenAI models deployed on Azure infrastructure." },
-  { id: "gcp_vertex", name: "Vertex AI", category: "AI Models", authType: "api_key", domain: "cloud.google.com", color: "#34a853", description: "Google Cloud's unified ML and generative AI platform." },
-  // Voice AI
-  { id: "elevenlabs", name: "ElevenLabs", category: "Voice AI", authType: "api_key", domain: "elevenlabs.io", color: "#7c3aed", description: "Ultra-realistic AI voice synthesis and cloning." },
-  { id: "retell", name: "Retell AI", category: "Voice AI", authType: "api_key", domain: "retellai.com", color: "#6366f1", description: "AI phone call automation with human-like voices." },
-  // Video AI
-  { id: "heygen", name: "HeyGen", category: "Video AI", authType: "api_key", domain: "heygen.com", color: "#ff4785", description: "AI video generation with digital avatars." },
-  { id: "runway", name: "Runway", category: "Video AI", authType: "api_key", domain: "runwayml.com", color: "#00c8ff", description: "AI-powered creative video generation platform." },
-  // Marketing
   { id: "manychat", name: "ManyChat", category: "Marketing", authType: "api_key", domain: "manychat.com", color: "#0084ff", description: "Chat marketing automation across Instagram, WhatsApp, SMS." },
-  { id: "instantly", name: "Instantly.ai", category: "Marketing", authType: "api_key", domain: "instantly.ai", color: "#ff6b35", description: "AI-powered cold email outreach at scale." },
-  { id: "waalaxy", name: "Waalaxy", category: "Marketing", authType: "api_key", domain: "waalaxy.com", color: "#c084fc", description: "LinkedIn automation and cold outreach tool." },
-  { id: "activecampaign", name: "ActiveCampaign", category: "Marketing", authType: "api_key", domain: "activecampaign.com", color: "#356ae6", description: "Email marketing and customer experience automation." },
-  // Commerce
-  { id: "stripe", name: "Stripe", category: "Commerce", authType: "oauth2", domain: "stripe.com", color: "#635bff", description: "Online payment processing and billing infrastructure." },
-  { id: "shopify", name: "Shopify", category: "Commerce", authType: "oauth2", domain: "shopify.com", color: "#96bf48", description: "E-commerce platform for online stores." },
-  // Workspace
-  { id: "slack", name: "Slack", category: "Workspace", authType: "oauth2", domain: "slack.com", color: "#4a154b", description: "Team communication and collaboration hub." },
-  { id: "notion", name: "Notion", category: "Workspace", authType: "oauth2", domain: "notion.so", color: "#000000", description: "All-in-one workspace for notes, docs, and tasks." },
-  { id: "airtable", name: "Airtable", category: "Workspace", authType: "oauth2", domain: "airtable.com", color: "#18bfff", description: "Low-code platform to build collaborative apps." },
+  { id: "n8n", name: "n8n", category: "Automation", authType: "api_key", domain: "n8n.io", color: "#ff6d5a", description: "Fair-code workflow automation — self-hosted or cloud." },
 ];
 
 const containerVariants = {

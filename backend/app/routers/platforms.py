@@ -269,10 +269,10 @@ async def validate_connection(
 
     validation_endpoints = {
         "openai": "https://api.openai.com/v1/models",
-        "elevenlabs": "https://api.elevenlabs.io/v1/user",
-        "cohere": "https://api.cohere.ai/v1/check-api-key",
-        "heygen": "https://api.heygen.com/v1/user.info",
         "groq": "https://api.groq.com/openai/v1/models",
+        "claude": "https://api.anthropic.com/v1/messages",  # Validation requires specific headers
+        "manychat": "https://api.manychat.com/fb/page/getInfo",
+        "n8n": "http://localhost:5678/api/v1/workflows", # Assumes local/default n8n for validation
     }
 
     endpoint = validation_endpoints.get(platform_type)
