@@ -395,23 +395,65 @@ export default function PlatformsPage() {
             </button>
           </div>
         ) : (
-          <motion.div
-            layout
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
-          >
-            {filteredPlatforms.map((platform) => (
-              <motion.div key={platform.id} variants={itemVariants} layout>
-                <PlatformCard
-                  platform={platform}
-                  isConnected={connectedPlatformIds.has(platform.id)}
-                  isDisconnecting={disconnecting === platform.id}
-                  onConnect={handleConnectClick}
-                  onDisconnect={handleDisconnect}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="space-y-12">
+            {/* ── Connected Platforms Section ── */}
+            {filteredPlatforms.filter((p) => connectedPlatformIds.has(p.id)).length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  Connected Integrations
+                </h2>
+                <motion.div
+                  layout
+                  variants={containerVariants}
+                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
+                >
+                  {filteredPlatforms
+                    .filter((p) => connectedPlatformIds.has(p.id))
+                    .map((platform) => (
+                      <motion.div key={platform.id} variants={itemVariants} layout>
+                        <PlatformCard
+                          platform={platform}
+                          isConnected={true}
+                          isDisconnecting={disconnecting === platform.id}
+                          onConnect={handleConnectClick}
+                          onDisconnect={handleDisconnect}
+                        />
+                      </motion.div>
+                    ))}
+                </motion.div>
+              </div>
+            )}
+
+            {/* ── Available Platforms Section ── */}
+            {filteredPlatforms.filter((p) => !connectedPlatformIds.has(p.id)).length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-slate-400 dark:text-zinc-500" />
+                  Available Integrations
+                </h2>
+                <motion.div
+                  layout
+                  variants={containerVariants}
+                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
+                >
+                  {filteredPlatforms
+                    .filter((p) => !connectedPlatformIds.has(p.id))
+                    .map((platform) => (
+                      <motion.div key={platform.id} variants={itemVariants} layout>
+                        <PlatformCard
+                          platform={platform}
+                          isConnected={false}
+                          isDisconnecting={disconnecting === platform.id}
+                          onConnect={handleConnectClick}
+                          onDisconnect={handleDisconnect}
+                        />
+                      </motion.div>
+                    ))}
+                </motion.div>
+              </div>
+            )}
+          </div>
         )}
       </motion.div>
 
